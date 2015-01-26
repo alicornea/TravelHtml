@@ -1,0 +1,49 @@
+.addTravelForm,
+.addTravelForm label::before
+{
+    display: inline-block;
+}
+ 
+.addTravelForm label:hover,
+.addTravelForm label:hover ~ label
+{
+    color: #189800;
+}
+ 
+.addTravelForms *
+{
+    margin: 0;
+    padding: 0;
+}
+ 
+.addTravelForm div > input
+{
+    display: none;
+}
+ 
+.addTravelForm .rating
+{
+    float: left;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+ 
+.addTravelForm label
+{
+    color: #ccc;
+}
+ 
+.addTravelForm label::before
+{
+    content: "\2605";
+    width: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+ 
+.addTravelForm input:checked ~ label
+{
+    color: #f5b301;
+}
