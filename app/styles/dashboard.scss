@@ -1,0 +1,151 @@
+div.dashboard
+{
+  .row 
+  {
+    .tile-blue
+    {
+      a.view-more{
+        background:$tile-view-more-color-blue;
+      }
+    }
+    .tile-red
+    {
+      a.view-more{
+        background:$tile-view-more-color-red;
+      }
+    }
+    .tile-purple
+    {
+      a.view-more{
+        background:$tile-view-more-color-purple;
+      }
+    }
+    .tile-green
+    {
+      a.view-more{
+        background:$tile-view-more-color-green;
+      }
+    }
+    
+    
+    .col-half-height
+    {
+       .thumbnail{
+         margin-bottom:2px;
+          .lead{
+            padding:2px 1px 0px 0px;
+            font-size:2em;
+          }
+          .visual{
+            /*width: 40px;*/
+            height: 43px;
+            padding-top: 2px;
+            padding-left: 5px;
+              i{
+                margin-left:-1em;
+                font-size:1.4em;
+              }
+          }
+        a.view-more{
+          font-size:0.8em;
+          padding:1px 5px;
+        }
+      }
+
+    }
+    
+    .col-xs-3, .col-md-3 
+    {
+       .thumbnail{
+           margin-bottom:4px;
+          .lead{
+            padding:2px 1px 0px 0px;
+            font-size:1.5em;
+          }
+          .visual{
+            width: 40px;
+            height: 30px;
+            padding-top: 2px;
+            padding-left: 5px;
+              i{
+                margin-left:-1em;
+                font-size:1em;
+              }
+          }
+        a.view-more{
+        font-size:0.8em;
+        padding:1px 5px;
+        
+        }
+      }
+      
+    }
+    
+    div{
+      height:5%;
+      max-height:300px;
+    }
+    a{
+        height:100%
+    };  
+    .thumbnail{
+      border-radius: $thumbnail-border-radius;
+      color:$color-white;
+      margin-bottom:5px;
+      padding:0px;
+      .lead{
+        padding:20px 10px 0px 0px;
+        margin:0px;
+        display:inline-block;
+        color:$color-white;
+        font-size:2.5em;
+      }
+      a{
+        display:block;
+      }
+      .visual{
+        width: 80px;
+        height: 80px;
+        display: block;
+        float: left;
+        padding-top: 10px;
+        padding-left: 15px;
+        font-size: 35px;
+        line-height: 35px;
+        overflow:hidden;
+          i{
+            margin-left:-35px;
+            font-size:2.5em;
+            color:$color-white;
+            @include opacity($opacity-tile-icon);
+          }
+      }
+      
+      a.view-more{
+        color:#000;
+        text-decoration:none;
+        @include opacity($opacity-tile-view-more);
+        clear:both;
+        padding:6px 10px;
+
+          i{
+            float:right;
+            display:inline-block;
+            padding-top:2px;
+          }
+      }
+    }
+    
+    
+      
+      
+  
+    
+  .tile-blue{background:$tile-color-blue;  }
+  .tile-red{background:$tile-color-red;  }
+  .tile-green{background:$tile-color-green;  }
+  .tile-purple{background:$tile-color-purple;  }
+  .tile-yellow{background:$tile-color-yellow;  }
+  .tile-light-blue{background:$tile-color-light-blue;  }
+  }
+}
