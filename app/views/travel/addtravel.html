@@ -1,45 +1,68 @@
-<title>Add Travel</title>
+<h1>Add Travel</h1>
 
 <form id="addTravelForm" class="addTravelForm">
-    <table>
-        <tr>
-            <td>
-                <input type="text" placeholder="Location" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="date" name="startDate" />
-            </td>
-            <td>
-                <input type="date" name="endDate" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="text" placeholder="flight" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="textarea" name="review" placeholder="review" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="rating">
-                    <input type="radio" name="group-1" id="group-1-0" value="5" />
-                    <label for="group-1-0"></label>
-                    <input type="radio" name="group-1" id="group-1-1" value="4" />
-                    <label for="group-1-1"></label>
-                    <input type="radio" name="group-1" id="group-1-2" value="3" />
-                    <label for="group-1-2"></label>
-                    <input type="radio" name="group-1" id="group-1-3" value="2" />
-                    <label for="group-1-3"></label>
-                    <input type="radio" name="group-1" id="group-1-4" value="1" />
-                    <label for="group-1-4"></label>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <input type="text" placeholder="Location" />
+    <br/>
+    <input class="datepicker left" type="date" name="startDate"/>
+    <input class="datepicker right" type="date" name="endDate"/>
+    <br/>
+    <input type="text" placeholder="flight" />
+    <br/>
+    <textarea name="review" placeholder="review" />
+    <br/>
+    <div class="rating">
+        <fieldset class="form-group">
+
+            
+            <label class="rating-label">Rate your trip: </label>
+            <div class="form-item">
+                
+                <input id="rating-5" name="rating" type="radio" value="5" />
+                <label for="rating-5" data-value="5">
+                    <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                </label>
+                <input id="rating-4" name="rating" type="radio" value="4" />
+                <label for="rating-4" data-value="4">
+                    <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                </label>
+                <input id="rating-3" name="rating" type="radio" value="3" />
+                <label for="rating-3" data-value="3">
+                    <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                </label>
+                <input id="rating-2" name="rating" type="radio" value="2" />
+                <label for="rating-2" data-value="2">
+                    <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                </label>
+                <input id="rating-1" name="rating" type="radio" value="1" />
+                <label for="rating-1" data-value="1">
+                    <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                </label>
+            </div>
+
+        </fieldset>
+    </div>
+    
+    <div class="addVisitedPlace">
+        <div class="addPlaceIcon">
+            <i class="fa fa-plus"></i>
+        </div>
+        <span>Add visited place</span>
+    </div>
+
+    <button class="submit-btn" type="submit">Submit</button>
 </form>
