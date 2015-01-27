@@ -95,11 +95,15 @@ body {
 $tile-color-blue : #4B8DF8;
 $tile-view-more-color-blue:#3781f7;
 $tile-color-red : #d84a38;
+$tile-view-more-color-red:#d23c29;
 $tile-color-green : #35aa47;
+$tile-view-more-color-green:#309a41;
 $tile-color-purple : #8E44AD;
+$tile-view-more-color-purple:#823e9e;
 $tile-color-yellow : #dfba49;
 $tile-color-light-blue: #89C4F4;
 $tile-color-grey: #c6c6c6;
+$header-color-icon :#C0CDDC;
 $color-white: #fff;
 $thumbnail-border-radius:0px;
 $opacity-tile-icon:0.1;
@@ -111,7 +115,7 @@ $opacity-tile-view-more:0.5;
     i{
       font-size:1.5em;
       padding:10px;
-      color:#C0CDDC;
+      color:$header-color-icon;
     }
   }
 }
@@ -121,7 +125,31 @@ div.dashboard
 {
   .row 
   {
-
+    .tile-blue
+    {
+      a.view-more{
+        background:$tile-view-more-color-blue;
+      }
+    }
+    .tile-red
+    {
+      a.view-more{
+        background:$tile-view-more-color-red;
+      }
+    }
+    .tile-purple
+    {
+      a.view-more{
+        background:$tile-view-more-color-purple;
+      }
+    }
+    .tile-green
+    {
+      a.view-more{
+        background:$tile-view-more-color-green;
+      }
+    }
+    
     
     .col-half-height
     {
@@ -141,12 +169,12 @@ div.dashboard
                 font-size:1.4em;
               }
           }
+        a.view-more{
+          font-size:0.8em;
+          padding:1px 5px;
+        }
       }
-      a.view-more{
-        font-size:0.8em;
-        padding:1px 2px;
-        
-      }
+
     }
     
     .col-xs-3, .col-md-3 
@@ -167,12 +195,13 @@ div.dashboard
                 font-size:1em;
               }
           }
-      }
-      a.view-more{
+        a.view-more{
         font-size:0.8em;
-        padding:1px 2px;
+        padding:1px 5px;
         
+        }
       }
+      
     }
     
     div{
@@ -214,24 +243,26 @@ div.dashboard
             @include opacity($opacity-tile-icon);
           }
       }
-    }
-    
-    a.view-more{
+      
+      a.view-more{
         color:#000;
         text-decoration:none;
         @include opacity($opacity-tile-view-more);
         clear:both;
         padding:6px 10px;
-        background:$tile-view-more-color-blue;
-        
-        
-        i{
-          float:right;
-          display:inline-block;
-          padding-top:2px;
-        }
-        
+
+          i{
+            float:right;
+            display:inline-block;
+            padding-top:2px;
+          }
       }
+    }
+    
+    
+      
+      
+  
     
   .tile-blue{background:$tile-color-blue;  }
   .tile-red{background:$tile-color-red;  }
