@@ -8,9 +8,10 @@
  * Controller of the travelHtmlApp
  */
 angular.module('travelHtmlApp')
-  .controller('AddTravelCtrl', ['$scope', function($scope) {
+  .controller('AddTravelCtrl', ['$scope', '$resource', function($scope, $resource) {
     
     $scope.visitedPlaces = [];
+    var TravelService = $resource("https://travelserver-andrei-murgu.c9.io/travels");
 
     $scope.addNewVisitedPlace = function(visitedPlace) {
       if (visitedPlace !== undefined) {
@@ -31,7 +32,7 @@ angular.module('travelHtmlApp')
         });
       
       var travel = {
-        location: $scope.locationName,
+        locationName: $scope.locationName,
         startDate: $scope.startDate,
         endDate: $scope.endDate,
         flight: $scope.flight,
@@ -39,6 +40,10 @@ angular.module('travelHtmlApp')
         rating: $scope.travelRating,
         visitedPlaces: $scope.visitedPlaces
       };
+      
+      TravelService.save(travel).$promise.then(function(){
+        console.log("Your travel has been saved with success");
+      });
       console.log(travel);
     };
 
