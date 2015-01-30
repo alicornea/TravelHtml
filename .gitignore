@@ -49,3 +49,6 @@ Temporary Items
 .apdisk
 .c9revisions/
 .c9/
+.c9/*
+#Ignore all .c9 specific files<br>
+/.c9/

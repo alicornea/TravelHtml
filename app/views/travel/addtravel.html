@@ -1,0 +1,76 @@
+<h1>Add Travel</h1>
+
+<form id="addTravelForm" name="addTravelForm" class="addTravelForm" ng-submit="addTravelForm.$valid && submit()" novalidate>
+
+    <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.locationName.length && addTravelForm.locationName.$error.required }">
+        <input class="form-control" type="text" ng-model="locationName" name="locationName" placeholder="Location" required/>
+        <div class="alert alert-danger" ng-show="submitted && !addTravelForm.locationName.$dirty && addTravelForm.locationName.$error.required">The name of the place you visited is required!</div>
+    </div>
+    <div class="datepicker left form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.startDate.length && addTravelForm.startDate.$error.required }">
+        <input class="form-control" type="date" ng-model="startDate" name="startDate" required/>
+    </div>
+    <div class="datepicker right form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.endDate.length && addTravelForm.endDate.$error.required }">
+        <input class="form-control" type="date" ng-model="endDate" name="endDate" required/>
+    </div>
+    <div class="alert alert-danger" ng-show="submitted && !addTravelForm.startDate.length && addTravelForm.startDate.$error.required">The name of the place you visited is required!</div>
+    <div class="alert alert-danger" ng-show="submitted && !addTravelForm.endDate.lenth && addTravelForm.endDate.$error.required">The name of the place you visited is required!</div>
+
+    <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.flight.length && addTravelForm.flight.$error.required }">
+        <input class="form-control" type="text" ng-model="flight" name="flight" placeholder="flight" required/>
+        <div class="alert alert-danger" ng-show="submitted && !addTravelForm.flight.$dirty && addTravelForm.flight.$error.required">The name of the place you visited is required!</div>
+    </div>
+    
+    <textarea class="form-control" ng-model="travelReview" name="travelReview" placeholder="review" />
+    <br/>
+    <div class="travelRating">
+        <label class="rating-label">Rate your trip: </label>
+        <div class="rating-stars">
+            <fieldset class="form-group">
+                <div class="form-item">
+
+                    <input id="travel-rating-5" name="travelRating" type="radio" value="5" ng-model="travelRating" />
+                    <label for="travel-rating-5" data-value="5">
+                        <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                    </label>
+                    <input id="travel-rating-4" name="travelRating" type="radio" value="4" ng-model="travelRating" />
+                    <label for="travel-rating-4" data-value="4">
+                        <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                    </label>
+                    <input id="travel-rating-3" name="travelRating" type="radio" value="3" ng-model="travelRating" />
+                    <label for="travel-rating-3" data-value="3">
+                        <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                    </label>
+                    <input id="travel-rating-2" name="travelRating" type="radio" value="2" ng-model="travelRating" />
+                    <label for="travel-rating-2" data-value="2">
+                        <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                    </label>
+                    <input id="travel-rating-1" name="travelRating" type="radio" value="1" ng-model="travelRating" />
+                    <label for="travel-rating-1" data-value="1">
+                        <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <visited-places class="addVisitedPlace">
+
+    </visited-places>
+
+    <button class="submit-btn form-control" type="submit" ng-click="submitted=true">Submit</button>
+</form>
