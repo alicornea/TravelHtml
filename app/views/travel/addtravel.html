@@ -1,17 +1,42 @@
-<h1>Add Travel</h1>
+<image class="travelPlan"></image>
 
 <form id="addTravelForm" name="addTravelForm" class="addTravelForm" ng-submit="addTravelForm.$valid && submit()" novalidate>
 
-    <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.locationName.length && addTravelForm.locationName.$error.required }">
-        <input class="form-control" type="text" ng-model="locationName" name="locationName" placeholder="Location" required/>
-        <div class="alert alert-danger" ng-show="submitted && !addTravelForm.locationName.$dirty && addTravelForm.locationName.$error.required">The name of the place you visited is required!</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.locationName.length && addTravelForm.locationName.$error.required }">
+                    <label>Destination</label>
+                    <input class="form-control" type="text" ng-model="locationName" name="locationName" placeholder="Enter the name of your destination" required/>
+                    <div class="alert alert-danger" ng-show="submitted && !addTravelForm.locationName.$dirty && addTravelForm.locationName.$error.required">The name of the place you visited is required!</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="datepicker left form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.startDate.length && addTravelForm.startDate.$error.required }">
+                    <label>Departing On</label>
+                    <input class="form-control" type="date" ng-model="startDate" name="startDate" required/>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="datepicker right form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.endDate.length && addTravelForm.endDate.$error.required }">
+                    <label>Returning On</label>
+                    <input class="form-control" type="date" ng-model="endDate" name="endDate" required/>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="datepicker left form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.startDate.length && addTravelForm.startDate.$error.required }">
-        <input class="form-control" type="date" ng-model="startDate" name="startDate" required/>
-    </div>
-    <div class="datepicker right form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.endDate.length && addTravelForm.endDate.$error.required }">
-        <input class="form-control" type="date" ng-model="endDate" name="endDate" required/>
-    </div>
+    
+    
+            <div class="col-md-2">
+                <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.flight.length && addTravelForm.flight.$error.required }">
+                    <label>Flight</label>
+                    <input class="form-control" type="text" ng-model="flight" name="flight" placeholder="flight" required/>
+                    <div class="alert alert-danger" ng-show="submitted && !addTravelForm.flight.$dirty && addTravelForm.flight.$error.required">The name of the place you visited is required!</div>
+                </div>
+            </div>
+
+
     <div class="alert alert-danger" ng-show="submitted && !addTravelForm.startDate.length && addTravelForm.startDate.$error.required">The name of the place you visited is required!</div>
     <div class="alert alert-danger" ng-show="submitted && !addTravelForm.endDate.lenth && addTravelForm.endDate.$error.required">The name of the place you visited is required!</div>
 
@@ -19,7 +44,7 @@
         <input class="form-control" type="text" ng-model="flight" name="flight" placeholder="flight" required/>
         <div class="alert alert-danger" ng-show="submitted && !addTravelForm.flight.$dirty && addTravelForm.flight.$error.required">The name of the place you visited is required!</div>
     </div>
-    
+
     <textarea class="form-control" ng-model="travelReview" name="travelReview" placeholder="review" />
     <br/>
     <div class="travelRating">

@@ -1,4 +1,4 @@
-<div class="addPlaceIcon" ng-click="addVisitedPlace()">
+<div class="addPlaceIcon" ng-click="newVisitedPlaceSubmitted = true; addNewVisitedPlace(visitedPlace)">
     <i class="fa fa-plus"></i>
 </div>
 <span>Add new visited place</span>
@@ -6,7 +6,7 @@
     <fieldset>
         <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.visitedPlaceName.length && addTravelForm.visitedPlaceName.$error.required }">
             <input class="form-control" type="text" name="visitedPlaceName" ng-model="visitedPlace.name" placeholder="Vizited place" required/>
-            <div class="alert alert-danger" ng-show="submitted && !addTravelForm.visitedPlaceName$dirty && addTravelForm.visitedPlaceName.$error.required" >The name of the place you visited is required!</div>
+            <div class="alert alert-danger" ng-show="newVisitedPlaceSubmitted && !addTravelForm.visitedPlaceName$dirty && addTravelForm.visitedPlaceName.$error.required" >The name of the place you visited is required!</div>
         </div>
 
         <textarea class="form-control" name="review" ng-model="visitedPlace.review" placeholder="Review" required/>

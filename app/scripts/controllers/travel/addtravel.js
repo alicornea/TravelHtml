@@ -16,12 +16,17 @@ angular.module('travelHtmlApp')
     $scope.addNewVisitedPlace = function(visitedPlace) {
       if (visitedPlace !== undefined) {
         $scope.visitedPlaces.push(visitedPlace);
-        visitedPlace = {
+        /*visitedPlace = {
           name: null,
           review: null,
           rating: null
-        };
+        };*/
+        visitedPlace.name = null;
+        visitedPlace.review = null;
+        visitedPlace.rating = null;
       }
+      
+      $scope.newVisitedPlaceSubmitted = false;
     };
 
     $scope.submit = function(){
@@ -44,7 +49,6 @@ angular.module('travelHtmlApp')
       TravelService.save(travel).$promise.then(function(){
         console.log("Your travel has been saved with success");
       });
-      console.log(travel);
     };
 
   }]);
