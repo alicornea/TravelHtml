@@ -626,8 +626,12 @@
 
         this.scrollOffset = 0;
         this.el_init_offset = this.$player.offset();
+        
         this.player_width = this.$player.width();
         this.player_height = this.$player.height();
+        
+        
+        
 
         var container_width = this.options.container_width || this.$container.width();
         this.player_max_left = (container_width - this.player_width +
@@ -744,7 +748,13 @@
                 col: wgd.col,
                 row: wgd.row,
                 size_x: wgd.size_x,
-                size_y: wgd.size_y
+                size_y: wgd.size_y,
+                num : $w.attr("data-num"),
+                img : $w.attr("data-img"),
+                color : $w.attr("data-color"),
+                num : $w.attr("data-icon"),
+                txt : $w.attr("data-txt"),
+                link : $w.attr("data-link"),
             };
         },
         collision: {},
@@ -1363,6 +1373,7 @@
         $widgets || ($widgets = this.$widgets);
         var result = [];
         $widgets.each($.proxy(function(i, widget) {
+            
             result.push(this.options.serialize_params(
                 $(widget), $(widget).coords().grid ) );
         }, this));
@@ -1607,8 +1618,8 @@
               'data-row': this.$player.attr('data-row'),
               'data-col': this.$player.attr('data-col'),
               css: {
-                  width: coords.width,
-                  height: coords.height
+                  width: this.$player.width(),
+                  height: this.$player.height()
               }
         }).appendTo(this.$el);
 

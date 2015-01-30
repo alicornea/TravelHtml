@@ -43,7 +43,7 @@ angular.module('travelHtmlApp')
     };
 
     $scope.changed = function(serializeData){
-      console.log(serializeData)
+      //console.log(serializeData)
     }
 
 
