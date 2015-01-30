@@ -42,6 +42,11 @@ angular.module('travelHtmlApp')
       max_size_x:4,
     };
 
+    $scope.changed = function(serializeData){
+      console.log(serializeData)
+    }
+
+
     // Mock widgets
     $scope.values = [{
         num: 1,

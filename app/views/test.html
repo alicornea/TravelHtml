@@ -6,7 +6,7 @@
 <div style="clear:both"></div>
     <div class="gridster" >
       <!-- Define gridster directives -->
-      <ul gridster="gridsterOptions" class="dashboard">
+      <ul gridster="gridsterOptions" class="dashboard"  gridster-changed="changed(serialized)">
         <li gridster-repeat="v in values" gridster-layout="values" class="row" >
           <div class="col">
             <div class="thumbnail tile-{color}" {img}>
