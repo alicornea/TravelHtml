@@ -1,0 +1,38 @@
+
+    <link rel="stylesheet" href="bower_components/gridster/dist/jquery.gridster.css">
+    <link rel="stylesheet" href="bower_components/angular-gridster/examples/example.css">
+
+
+<div style="clear:both"></div>
+    <div class="gridster" >
+      <!-- Define gridster directives -->
+      <ul gridster="gridsterOptions" class="dashboard">
+        <li gridster-repeat="v in values" gridster-layout="values" class="row" >
+          <div class="col">
+            <div class="thumbnail tile-{color}" {img}>
+              <a href="{link}" class="text-center ">
+                  <div class="visual">
+                    <i class="fa {icon}"></i>
+                  </div>
+                  <span class="lead ">{txt}</span>
+                </a>
+                <a href="{link}" class="view-more">
+                View More
+                <i class="fa fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- Gridster -->
+    <script src="bower_components/gridster/dist/jquery.gridster.js"></script>
+
+    <!-- angular-gridster -->
+    <script src="bower_components/angular-gridster/lib/angular-gridster.js"></script>
+
+    <!-- Create a basic angular app -->
+ 
