@@ -3,27 +3,40 @@ h1 {
 }
 .addTravelForm {
   font-size: 18px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 5px;
   width: 100%;
+  
+  .form-control {
+    display: initial;  
+  }
+  .form-group {
+    margin-bottom: initial;
+  }
+  
   input {
     margin-bottom: 5px;
     width: 100%;
   }
   input[type="text"],
   input[type="date"] {
-    height: 40px;
+    //height: 40px;
   }
   textarea {
     width: 100%;
     height: 90px;
     word-wrap: break-word;
   }
-  input.datepicker {
+  div.datepicker.form-group {
     width: 49%;
-    text-align: center;
+    display: inline-block;
+    margin-bottom: initial;
+    
+    input {
+      text-align: center;
+    }
   }
-  input.datepicker.right {
+  div.datepicker.right {
     float: right;
   }
   .submit-btn {
@@ -34,13 +47,13 @@ h1 {
     color: white;
     border: none;
   }
-  .rating {
+  .rating-stars {
     font: 12px'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
     font-size: 1.2rem;
     color: #333;
     margin-top: 5px;
-    border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
+    display: inline-block;
   }
   /* RATING - Form - Group */
   .form-group {
@@ -65,10 +78,16 @@ h1 {
     display: inline-block;
     padding-left: 40px;
   }
-  label.rating-label {
-    font-size: 20px;
-    display: inline-block;
-  }
+  .travelRating {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    
+    label.rating-label {
+      font-size: 17px;
+      display: inline-block;
+    }
+  } 
+  
   .form-legend + .form-item {
     padding-top: 10px;
   }
@@ -86,7 +105,7 @@ h1 {
     position: relative;
   }
   label .fa {
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 30px;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -106,7 +125,8 @@ h1 {
   label:hover .fa-star, label:focus .fa-star, label:hover ~ label .fa-star, label:focus ~ label .fa-star, input[type='radio']:checked ~ label .fa-star {
     opacity: 1;
   }
-  input[type='radio']:checked ~ label .fa-star {
+  .travelRating input[type='radio']:checked ~ label .fa-star, 
+  .placeRating input[type='radio']:checked ~ label .fa-star {
     color: gold;
   }
   .ir {
@@ -157,8 +177,7 @@ h1 {
     position: absolute;
     right: 15px;
     bottom: -45px;
-    font-size: 30px;
-    font-size: 3rem;
+    font-size: 2rem;
     opacity: 0;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -171,21 +190,29 @@ h1 {
     opacity: 1;
   }
   .addVisitedPlace {
-    font-size: 20px;
+    font-size: 15px;
+    align-content: center;
+    
+    label {
+      font-size: 17px;
+    }
   }
   .addVisitedPlace .addPlaceIcon {
     border: 1px solid #77aa22;
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     display: inline-block;
     //align-content: center;
     text-align: center;
     cursor: pointer;
     background: #77aa22;
     
-    
     i {
         color: white;
     }
+  }
+  
+  .newVisitedPlaceForm {
+    margin-top: 5px;
   }
 }
