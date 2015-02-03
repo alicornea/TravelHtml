@@ -12,21 +12,20 @@ angular.module('travelHtmlApp')
     
     $scope.visitedPlaces = [];
     var TravelService = $resource("https://travelserver-andrei-murgu.c9.io/travels");
+    
+    /*TravelService.query(function(result) {
+      console.log(result);
+    });*/
+    
 
     $scope.addNewVisitedPlace = function(visitedPlace) {
       if (visitedPlace !== undefined) {
         $scope.visitedPlaces.push(visitedPlace);
-        /*visitedPlace = {
-          name: null,
-          review: null,
-          rating: null
-        };*/
         visitedPlace.name = null;
         visitedPlace.review = null;
         visitedPlace.rating = null;
+        $scope.newVisitedPlaceSubmitted = false;
       }
-      
-      $scope.newVisitedPlaceSubmitted = false;
     };
 
     $scope.submit = function(){
@@ -37,7 +36,8 @@ angular.module('travelHtmlApp')
         });
       
       var travel = {
-        locationName: $scope.locationName,
+        leavingFrom: $scope.leavingFrom,
+        destination: $scope.destination,
         startDate: $scope.startDate,
         endDate: $scope.endDate,
         flight: $scope.flight,

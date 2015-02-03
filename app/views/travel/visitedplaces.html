@@ -2,57 +2,69 @@
     <i class="fa fa-plus"></i>
 </div>
 <span>Add new visited place</span>
+
 <div class="newVisitedPlaceForm">
-    <fieldset>
-        <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.visitedPlaceName.length && addTravelForm.visitedPlaceName.$error.required }">
-            <input class="form-control" type="text" name="visitedPlaceName" ng-model="visitedPlace.name" placeholder="Vizited place" required/>
-            <div class="alert alert-danger" ng-show="newVisitedPlaceSubmitted && !addTravelForm.visitedPlaceName$dirty && addTravelForm.visitedPlaceName.$error.required" >The name of the place you visited is required!</div>
-        </div>
-
-        <textarea class="form-control" name="review" ng-model="visitedPlace.review" placeholder="Review" required/>
-        <div class="placeRating">
-            <label class="rating-label">Rate the place: </label>
-            <div class="rating-stars">
-
-                <div class="form-item">
-                    <input id="place-rating-5" name="placeRating" type="radio" value="5" ng-model="visitedPlace.rating" />
-                    <label for="place-rating-5" data-value="5">
-                        <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    </label>
-                    <input id="place-rating-4" name="placeRating" type="radio" value="4" ng-model="visitedPlace.rating" />
-                    <label for="place-rating-4" data-value="4">
-                        <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    </label>
-                    <input id="place-rating-3" name="placeRating" type="radio" value="3" ng-model="visitedPlace.rating" />
-                    <label for="place-rating-3" data-value="3">
-                        <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    </label>
-                    <input id="place-rating-2" name="placeRating" type="radio" value="2" ng-model="visitedPlace.rating" />
-                    <label for="place-rating-2" data-value="2">
-                        <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    </label>
-                    <input id="place-rating-1" name="placeRating" type="radio" value="1" ng-model="visitedPlace.rating" />
-                    <label for="place-rating-1" data-value="1">
-                        <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    </label>
-                </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" ng-class="{'has-error has-feedback' : submitted && !addTravelForm.visitedPlaceName.length && addTravelForm.visitedPlaceName.$error.required }">
+                <input class="form-control" type="text" name="visitedPlaceName" ng-model="visitedPlace.name" placeholder="Touristic atraction" required/>
+                <div class="alert alert-danger" ng-show="newVisitedPlaceSubmitted && !addTravelForm.visitedPlaceName$dirty && addTravelForm.visitedPlaceName.$error.required">The name of the touristic atraction you visited is required!</div>
             </div>
         </div>
-    </fieldset>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset>
+                <div class="placeRating">
+                    <label class="rating-label">Give a rate and a review</label>
+                    <div class="rating-stars">
+
+                        <div class="form-item">
+                            <input id="place-rating-5" name="placeRating" type="radio" value="5" ng-model="visitedPlace.rating" />
+                            <label for="place-rating-5" data-value="5">
+                                <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                            </label>
+                            <input id="place-rating-4" name="placeRating" type="radio" value="4" ng-model="visitedPlace.rating" />
+                            <label for="place-rating-4" data-value="4">
+                                <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                            </label>
+                            <input id="place-rating-3" name="placeRating" type="radio" value="3" ng-model="visitedPlace.rating" />
+                            <label for="place-rating-3" data-value="3">
+                                <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                            </label>
+                            <input id="place-rating-2" name="placeRating" type="radio" value="2" ng-model="visitedPlace.rating" />
+                            <label for="place-rating-2" data-value="2">
+                                <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                            </label>
+                            <input id="place-rating-1" name="placeRating" type="radio" value="1" ng-model="visitedPlace.rating" />
+                            <label for="place-rating-1" data-value="1">
+                                <span class="rating-star">
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star"></i>
+                    </span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <textarea class="form-control" name="review" ng-model="visitedPlace.review" placeholder="Review" required/>
+        </div>
+    </div>
 </div>

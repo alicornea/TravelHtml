@@ -12,6 +12,7 @@ angular.module('travelHtmlApp')
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
-      'Karma'
+      'Karma',
+      'ui.bootstrap.datetimepicker'
     ];
   });
