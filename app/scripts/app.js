@@ -17,8 +17,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'gridster',
+    'ui.bootstrap.datetimepicker',
+    'ngAutocomplete'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

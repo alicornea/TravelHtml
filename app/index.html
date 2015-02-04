@@ -74,6 +74,8 @@
   <!-- endbuild -->
 
   <!-- build:js(.) scripts/vendor.js -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -87,6 +89,7 @@
   <script src="bower_components/angular-gridster/lib/angular-gridster.js"></script>
   <script src="bower_components/moment/moment.js"></script>
   <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+  <script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -101,19 +104,14 @@
   <script src="scripts/controllers/js/controller/user.js"></script>
 
   <script src="scripts/directives/visitedplaces.js"></script>
+  <script src="scripts/directives/datetimeformat.js"></script>
+  <script src="scripts/directives/greaterthan.js"></script>
   <!-- endbuild -->
   <!-- Gridster -->
   <script src="scripts/lib/jquery.gridster.js"></script>
 
   <!-- angular-gridster -->
   <script src="scripts/lib/angular-gridster.js"></script>
-
-
-
-
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-
-  <!-- endbuild -->
 
 </body>
 
