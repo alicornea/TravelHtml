@@ -1,0 +1,16 @@
+<form ng-submit="login(credentials)">
+    <div ng-show="!isLoggedIn()">
+        <span>Username : </span>
+        <input type="text" ng-model="credentials.username" />
+        <span>Password : </span>
+        <input type="password" ng-model="credentials.password" />
+        <button type="submit">Login</button>
+
+        <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true"></div>
+        {{error}}
+    </div>
+    <div ng-show="isLoggedIn()">
+        {{welcome}}
+        <a ng-click="logout()">Logout</a>
+    </div>
+</form>

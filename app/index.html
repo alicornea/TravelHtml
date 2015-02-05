@@ -21,13 +21,14 @@
 </head>
 
 <body ng-app="travelHtmlApp">
-
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
   <!-- Add your site or application content here -->
   <div class="container">
+    <div id="fb-root"></div>
+    <authentication></authentication>
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <li><a href="#"><i class="fa fa-user"></i></a>
@@ -104,6 +105,10 @@
   <script src="scripts/controllers/js/controller/user.js"></script>
 
   <script src="scripts/directives/visitedplaces.js"></script>
+  <script src="scripts/directives/authentication.js"></script>
+  <script src="scripts/factories/utils.js"></script>
+  <script src="scripts/factories/authInterceptor.js"></script>
+  <script src="scripts/factories/facebook.js"></script>
   <script src="scripts/directives/datetimeformat.js"></script>
   <script src="scripts/directives/dategreaterthan.js"></script>
   <!-- endbuild -->
