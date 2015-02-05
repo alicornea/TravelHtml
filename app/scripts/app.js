@@ -14,7 +14,10 @@ angular.module('travelHtmlApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'gridster',
+    'ui.bootstrap.datetimepicker',
+    'ngAutocomplete'
   ])
   .config(function($routeProvider) {
     $routeProvider
@@ -41,6 +44,10 @@ angular.module('travelHtmlApp', [
       .when('/addtravel', {
         templateUrl: 'views/travel/addtravel.html',
         controller: 'AddTravelCtrl'
+      })
+      .when('/test', {
+        templateUrl: 'views/test.html',
+        controller: 'TestCtrl'
       })
       .otherwise({
         redirectTo: '/'

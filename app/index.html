@@ -9,6 +9,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -74,6 +75,8 @@
   <!-- endbuild -->
 
   <!-- build:js(.) scripts/vendor.js -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -84,22 +87,37 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-gridster/lib/angular-gridster.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+  <script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
+
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/main.js"></script>
   <script src="scripts/controllers/about.js"></script>
-  <script src="scripts/controllers/app.js.js"></script>
-  <script src="scripts/controllers/js/controller/user.js"></script>
+  <script src="scripts/controllers/app.js"></script>
+  <script src="scripts/controllers/testctrl.js"></script>
   <script src="scripts/controllers/travel/addtravel.js"></script>
+  <script src="scripts/controllers/js/controller/user.js"></script>
+
   <script src="scripts/directives/visitedplaces.js"></script>
   <script src="scripts/directives/authentication.js"></script>
   <script src="scripts/factories/utils.js"></script>
   <script src="scripts/factories/authInterceptor.js"></script>
   <script src="scripts/factories/facebook.js"></script>
+  <script src="scripts/directives/datetimeformat.js"></script>
+  <script src="scripts/directives/dategreaterthan.js"></script>
   <!-- endbuild -->
+  <!-- Gridster -->
+  <script src="scripts/lib/jquery.gridster.js"></script>
+
+  <!-- angular-gridster -->
+  <script src="scripts/lib/angular-gridster.js"></script>
+
 </body>
 
 </html>
