@@ -16,7 +16,6 @@ angular.module('travelHtmlApp')
           var valid = (Date.parse(value) > Date.parse(scope.$eval(attrs.dateGreaterThan)));
 
           ngModelCtrl.$setValidity('greater', valid);
-          //ngModelCtrl.$setViewValue(value);
           
           if(!valid){
             return undefined;
