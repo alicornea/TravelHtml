@@ -17,12 +17,11 @@ angular.module('travelHtmlApp')
           var filteredDatetime = $filter('date')(value, 'MM/dd/yyyy');
 
           ngModelCtrl.$setViewValue(filteredDatetime);
-          ngModelCtrl.$render();
 
           return filteredDatetime;
         }
 
-        ngModelCtrl.$parsers.push(dateTimeFormat);
+        ngModelCtrl.$parsers.unshift(dateTimeFormat);
       }
     };
   }]);
