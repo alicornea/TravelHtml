@@ -7,14 +7,14 @@
      * # Login
      */
     angular.module('travelHtmlApp')
-        .directive('authentication', ['$http', '$window', '$rootScope', 'Convert', 'Facebook', function($http, $window, $rootScope, Convert, Facebook) {
+        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', function($http, $window, $rootScope, ServiceApi, Convert, facebookService) {
             return {
                 restrict: 'E',
                 replace: true,
                 templateUrl: 'views/directives/authentication.html',
                 link: function(scope) {
                     scope.login = function(credentials) {
-                        $http.post('https://travelserver-andreisantaaccenture.c9.io/authenticate', credentials)
+                        $http.post(ServiceApi.url + '/authenticate', credentials)
                             .success(function(data, status, headers, config) {
                                 loginResponseHandler(data);
                             })
@@ -24,19 +24,15 @@
                     };
 
                     scope.logout = function() {
-                        try {
-                            Facebook.logout(function(response) {
-                                if (response) { //FB logout successfull
+                        facebookService.getLoginStatus(function(response) {
+                            if (response && response.status === 'connected') { //user logged in with FB
+                                facebookService.logout(function() {
                                     logoutHandler();
-                                }
-                                else {
-                                    scope.error = 'Error og FB logout';
-                                }
-                            });
-                        }
-                        catch (err) {
-                        }
-                        logoutHandler();
+                                });
+                            }
+                            else
+                                logoutHandler();
+                        });
                     };
 
                     scope.isLoggedIn = function() {
@@ -44,7 +40,7 @@
                     };
 
                     scope.getUsers = function() {
-                        $http.get('https://travelserver-andreisantaaccenture.c9.io/api/users/54c7542fe4b04b21cf31bb87')
+                        $http.get(ServiceApi.url + '/api/users/54c7542fe4b04b21cf31bb87')
                             .success(function(data, status, headers, config) {
                                 alert('da');
                             })
@@ -54,8 +50,8 @@
                     }
 
                     $rootScope.$on("fb_connected", function(event, args) {
-                        Facebook.getUserInfo(function(response) {
-                            $http.post('https://travelserver-andreisantaaccenture.c9.io/authenticateViaFacebook', response)
+                        facebookService.getUserInfo(function(response) {
+                            $http.post(ServiceApi.url + '/authenticateViaFacebook', response)
                                 .success(function(data, status, headers, config) {
                                     loginResponseHandler(data);
                                 })

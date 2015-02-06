@@ -1,4 +1,4 @@
-angular.module('travelHtmlApp').factory('Facebook', ['$rootScope', function($rootScope) {
+angular.module('travelHtmlApp').factory('facebookService', ['$rootScope', function($rootScope) {
 
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
@@ -21,21 +21,26 @@ angular.module('travelHtmlApp').factory('Facebook', ['$rootScope', function($roo
             else {
                 // The person is not logged into Facebook, so we're not sure if
                 // they are logged into this app or not.
-                alert('Please log into Facebook.');
+                $rootScope.$broadcast('fb_loggedout');
             }
         }
     }
 
     return {
         statusChangeCallback: statusChangeCallback,
+        getLoginStatus: function getLoginStatus(cb) {
+            FB.getLoginStatus(function(response) {
+                cb(response);
+            });
+        },
         getUserInfo: function getUserInfo(success) {
             FB.api('/me', function(response) {
                 success(response);
             });
         },
-        logout: function logout(logoutHandler) {
+        logout: function logout(cb) {
             FB.logout(function(response) {
-                logoutHandler(response);
+                cb();
             });
         }
     }

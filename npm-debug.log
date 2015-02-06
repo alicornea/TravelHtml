@@ -1,0 +1,76 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/v0.10.35/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/v0.10.35/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'git://github.com/wpalahnuk/ngAutocomplete' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 warn package.json travelhtml@0.0.0 No description
+5 warn package.json travelhtml@0.0.0 No repository field.
+6 warn package.json travelhtml@0.0.0 No README data
+7 warn package.json karma-chrome-launcher@0.1.7 No README data
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'git://github.com/wpalahnuk/ngAutocomplete', null ]
+10 verbose cache add name=undefined spec="git://github.com/wpalahnuk/ngAutocomplete" args=["git://github.com/wpalahnuk/ngAutocomplete",null]
+11 verbose parsed url { protocol: 'git:',
+11 verbose parsed url   slashes: true,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: 'github.com',
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: 'github.com',
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: '/wpalahnuk/ngAutocomplete',
+11 verbose parsed url   path: '/wpalahnuk/ngAutocomplete',
+11 verbose parsed url   href: 'git://github.com/wpalahnuk/ngAutocomplete' }
+12 silly lockFile 5098bb3c-hub-com-wpalahnuk-ngAutocomplete git://github.com/wpalahnuk/ngAutocomplete
+13 verbose lock git://github.com/wpalahnuk/ngAutocomplete /home/ubuntu/.npm/5098bb3c-hub-com-wpalahnuk-ngAutocomplete.lock
+14 verbose addRemoteGit [ 'git://github.com/wpalahnuk/ngAutocomplete', 'master' ]
+15 verbose git clone git://github.com/wpalahnuk/ngAutocomplete Cloning into bare repository '/home/ubuntu/.npm/_git-remotes/git-github-com-wpalahnuk-ngAutocomplete-5098bb3c'...
+16 verbose git fetch -a origin (git://github.com/wpalahnuk/ngAutocomplete)
+17 verbose git rev-list -n1 master c9ea47f13a2ffa86b97bb2eb1e4f0e1ed9bf4d1e
+18 verbose resolved git url git://github.com/wpalahnuk/ngAutocomplete#c9ea47f13a2ffa86b97bb2eb1e4f0e1ed9bf4d1e
+19 verbose tar unpack /tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz
+20 silly lockFile ea30b892--6216009187046438-tmp-tgz-unpack tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz-unpack
+21 verbose lock tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz-unpack /home/ubuntu/.npm/ea30b892--6216009187046438-tmp-tgz-unpack.lock
+22 silly lockFile 551323e8-67318-0-6216009187046438-tmp-tgz tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz
+23 verbose lock tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz /home/ubuntu/.npm/551323e8-67318-0-6216009187046438-tmp-tgz.lock
+24 silly gunzTarPerm modes [ '755', '644' ]
+25 silly gunzTarPerm extractEntry
+26 silly gunzTarPerm modified mode [ '', 509, 493 ]
+27 silly gunzTarPerm extractEntry README.md
+28 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+29 silly gunzTarPerm extractEntry bower.json
+30 silly gunzTarPerm modified mode [ 'bower.json', 436, 420 ]
+31 silly gunzTarPerm extractEntry examples/
+32 silly gunzTarPerm modified mode [ 'examples/', 509, 493 ]
+33 silly gunzTarPerm extractEntry examples/advanced.css
+34 silly gunzTarPerm modified mode [ 'examples/advanced.css', 436, 420 ]
+35 silly gunzTarPerm extractEntry examples/advanced.html
+36 silly gunzTarPerm modified mode [ 'examples/advanced.html', 436, 420 ]
+37 silly gunzTarPerm extractEntry examples/advanced.js
+38 silly gunzTarPerm modified mode [ 'examples/advanced.js', 436, 420 ]
+39 silly gunzTarPerm extractEntry src/
+40 silly gunzTarPerm modified mode [ 'src/', 509, 493 ]
+41 silly gunzTarPerm extractEntry src/ngAutocomplete.js
+42 silly gunzTarPerm modified mode [ 'src/ngAutocomplete.js', 436, 420 ]
+43 silly lockFile ea30b892--6216009187046438-tmp-tgz-unpack tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz-unpack
+44 silly lockFile ea30b892--6216009187046438-tmp-tgz-unpack tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz-unpack
+45 silly lockFile 551323e8-67318-0-6216009187046438-tmp-tgz tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz
+46 silly lockFile 551323e8-67318-0-6216009187046438-tmp-tgz tar:///tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz
+47 silly lockFile 5098bb3c-hub-com-wpalahnuk-ngAutocomplete git://github.com/wpalahnuk/ngAutocomplete
+48 silly lockFile 5098bb3c-hub-com-wpalahnuk-ngAutocomplete git://github.com/wpalahnuk/ngAutocomplete
+49 error Error: ENOENT, open '/tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz-unpack/package.json'
+50 error If you need help, you may report this *entire* log,
+50 error including the npm and node versions, at:
+50 error     <http://github.com/npm/npm/issues>
+51 error System Linux 3.14.13-c9
+52 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install" "git://github.com/wpalahnuk/ngAutocomplete"
+53 error cwd /home/ubuntu/workspace
+54 error node -v v0.10.35
+55 error npm -v 1.4.28
+56 error path /tmp/npm-3714-1hazGjHz/1423142467318-0.6216009187046438/tmp.tgz-unpack/package.json
+57 error code ENOENT
+58 error errno 34
+59 verbose exit [ 34, true ]
