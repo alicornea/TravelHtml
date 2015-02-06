@@ -14,7 +14,7 @@ angular.module('travelHtmlApp')
       link: function(scope, element, attrs, ngModelCtrl) {
         
         function dateTimeFormat(value) {
-          var filteredDatetime = $filter('date')(value, 'MM/dd/yyyy');
+          var filteredDatetime = $filter('date')(value, 'MMM dd, yyyy');
 
           ngModelCtrl.$setViewValue(filteredDatetime);
 

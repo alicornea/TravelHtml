@@ -12,6 +12,14 @@ h1 {
   text-align: center;
 }
 
+.btn-style1 {
+  width: 100%;
+  height: 35px;
+  background-color: #5589B2;
+  color: white;
+  border: none;
+}
+
 .navigation {
   margin-top: -41px;
   position: relative;
@@ -52,7 +60,8 @@ h1 {
   font-size: 18px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
-  
+}
+
   .row {
     margin-bottom: 10px;
   }
@@ -88,11 +97,6 @@ h1 {
   
   .submit-btn {
     margin-top: 10px;
-    width: 100%;
-    height: 35px;
-    background-color: #5589B2;
-    color: white;
-    border: none;
   }
   .rating-stars {
     font: 12px'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
@@ -144,31 +148,37 @@ h1 {
     position: relative;
     cursor: pointer;
   }
-  label .fa {
-    font-size: 2rem;
-    line-height: 30px;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-  }
-  label .fa-star-o {} label:hover .fa-star-o, label:focus .fa-star-o, label:hover ~ label .fa-star-o, label:focus ~ label .fa-star-o, input[type='radio']:checked ~ label .fa-star-o {
-    opacity: 0;
-    //color: gold;
+  
+  .travelRating, .placeRating {
+    label .fa {
+      font-size: 2rem;
+      line-height: 30px;
+      -webkit-transition: all .2s ease-in-out;
+      -moz-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+    }
+    
+    
+    label .fa-star-o {} label:hover .fa-star-o, label:focus .fa-star-o, label:hover ~ label .fa-star-o, label:focus ~ label .fa-star-o, input[type='radio']:checked ~ label .fa-star-o {
+      opacity: 0;
+      //color: gold;
+    }
+    
+    label:hover .fa-star, label:focus .fa-star, label:hover ~ label .fa-star, label:focus ~ label .fa-star, input[type='radio']:checked ~ label .fa-star {
+      opacity: 1;
+      color: gold;
+    }
+    input[type='radio']:checked ~ label .fa-star, 
+    input[type='radio']:checked ~ label .fa-star {
+      color: gold;
+    }
   }
   label .fa-star {
     position: absolute;
     left: 0;
     top: 0;
     opacity: 0;
-  }
-  label:hover .fa-star, label:focus .fa-star, label:hover ~ label .fa-star, label:focus ~ label .fa-star, input[type='radio']:checked ~ label .fa-star {
-    opacity: 1;
-    color: gold;
-  }
-  .travelRating input[type='radio']:checked ~ label .fa-star, 
-  .placeRating input[type='radio']:checked ~ label .fa-star {
-    color: gold;
   }
   .ir {
     position: absolute;
@@ -256,5 +266,81 @@ h1 {
   .newVisitedPlaceForm {
     margin-top: 5px;
   }
-}
 
+
+.myTravels {
+  
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  h1 {
+    text-align: left;
+  }
+  
+  .travel {
+    
+    .travel-content {
+      display: inline-block;
+      width: 100%;
+    
+      .travel-details {
+        width: 72%;
+        float: left;
+        
+        .entry-label {
+          color: #5589B2;
+          font-size: 15px;
+        }
+      }
+    
+      .travel-actions {
+        width: 25%;
+        float: right;
+        
+        button {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    
+    article {
+      border: 4px solid #F1F1F1;
+      padding: 10px;
+      margin-bottom: 10px;
+      
+      .atraction-title {
+        color: #069;
+        font-size: 16px;
+        padding-left: 17px;
+        margin-top: 15px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      
+      .row {
+        margin-left: -40px;
+        margin-right: -40px;
+        
+        label .fa {
+          font-size: 1.8rem;
+        }
+        .review-date {
+          display: inline-block;
+          padding-left: 10px;
+          font-size: 15px;
+        }
+      }
+      
+      input[type='radio']:checked ~ label .fa-star {
+        opacity: 1;
+        color: gold;
+      }
+    
+      .rated-place input[type='radio']:checked ~ label .fa-star {
+        color: gold;
+      }
+      
+      .travel-review {
+        font-size: 12px;
+      }
+    }
+  }
+}

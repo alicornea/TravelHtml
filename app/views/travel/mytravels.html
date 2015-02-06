@@ -1,0 +1,115 @@
+<div class="myTravels" ng-init="loadTravels()">
+
+    <h1 style="text-align: left">My Travels</h1>
+
+    <div class="travel">
+        <div class="travel-content">
+            <div class="travel-details">
+                <table class="table table-hover">
+                    <tr>
+                        <td class="entry-label"><b>Leaving from</b>
+                        </td>
+                        <td>{{travel.leavingFrom}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Destination</b>
+                        </td>
+                        <td>{{travel.destination}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Check-in Date</b>
+                        </td>
+                        <td>{{travel.startDate | date:'MMM dd, yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Check-out Date</b>
+                        </td>
+                        <td>{{travel.endDate | date:'MMM dd, yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Check-out Date</b>
+                        </td>
+                        <td>{{travel.rating}} out of 5</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Review</b>
+                        </td>
+                        <td>{{travel.review}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="travel-actions">
+                <button class="btn-style1">Edit</button>
+                <button class="btn-style1">Delete</button>
+                <button class="btn-style1">Add atraction</button>
+                <button class="btn-style1">Share</button>
+            </div>
+
+        </div>
+
+        <div class="travel-atractions" ng-repeat="atraction in travel.visitedPlaces">
+            <article>
+                <div class="atraction-title">
+                    <span>{{atraction.title}}</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset>
+                            <div class="rated-place">
+                                <div class="rating-stars">
+
+                                    <div class="form-item">
+                                        <input id="place-rating-{{$index}}-5" name="ratedPlace-{{$index}}" type="radio" value="5"  ng-model="atraction.rating" disabled/>
+                                        <label for="place-rating-{{$index}}-5" data-value="5">
+                                            <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                        </label>
+                                        <input id="place-rating-{{$index}}-4" name="ratedPlace-{{$index}}" type="radio" value="4"  ng-model="atraction.rating" disabled />
+                                        <label for="place-rating-{{$index}}-4" data-value="4">
+                                            <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                        </label>
+                                        <input id="place-rating-{{$index}}-3" name="ratedPlace-{{$index}}" type="radio" value="3"  ng-model="atraction.rating" disabled />
+                                        <label for="place-rating-{{$index}}-3" data-value="3">
+                                            <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                        </label>
+                                        <input id="place-rating-{{$index}}-2" name="ratedPlace-{{$index}}" type="radio" value="2"  ng-model="atraction.rating" disabled />
+                                        <label for="place-rating-{{$index}}-2" data-value="2">
+                                            <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                        </label>
+                                        <input id="place-rating-{{$index}}-1" name="ratedPlace-{{$index}}" type="radio" value="1" ng-model="atraction.rating" disabled />
+                                        <label for="place-rating-{{$index}}-1" data-value="1">
+                                            <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="review-date">
+                                    <span> Reviewed on {{atraction.date | date:'MMM dd, yyyy'}}</span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="travel-review">
+                    <p>
+                        {{atraction.review}}
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

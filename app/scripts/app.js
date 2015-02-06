@@ -45,6 +45,10 @@ angular.module('travelHtmlApp', [
         templateUrl: 'views/travel/addtravel.html',
         controller: 'TravelsCtrl'
       })
+      .when('/mytravels', {
+        templateUrl: 'views/travel/mytravels.html',
+        controller: 'TravelsCtrl',
+      })
       .when('/test', {
         templateUrl: 'views/test.html',
         controller: 'TestCtrl'

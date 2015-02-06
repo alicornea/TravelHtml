@@ -5,13 +5,18 @@
 </div>
 <span>Add new visited place</span>
 
-<div class="alert alert-danger" data-ng-show="newVisitedPlaceSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destonation.length">Fill in at least the name of the touristic atraction in order to add a new one!</div>
+<div class="alert alert-danger" data-ng-show="newVisitedPlaceSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destonation.length">Fill the name of the touristic atraction in order to add a new one!</div>
 
 <div class="newVisitedPlaceForm">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group" data-ng-class="{'has-error has-feedback' : newVisitedPlaceSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destonation.length }">
                 <input class="form-control" type="text" name="visitedPlaceName" data-ng-model="visitedPlace.name" placeholder="Touristic atraction" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input class="form-control" type="text" name="visitedPlaceTitle" data-ng-model="visitedPlace.title" placeholder="Title" />
             </div>
         </div>
     </div>

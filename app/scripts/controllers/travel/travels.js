@@ -13,13 +13,21 @@ angular.module('travelHtmlApp')
     $scope.visitedPlaces = [];
     $scope.tripSaved = false;
 
-    var TravelService = $resource("https://travelserver-andrei-murgu.c9.io/travels");
+    var TravelService = $resource("https://travelserver-andrei-murgu.c9.io/travels", { query : { methog: 'GET'}});
+    
+    $scope.loadTravels = function(){
+      var myTravels = TravelService.query(function(travels){
+        $scope.travel = travels[0];
+      });
+    };
 
     $scope.addNewVisitedPlace = function(visitedPlace) {
       if (visitedPlace !== undefined) {
+        visitedPlace.date = new Date();
         pushVisitedPlace(visitedPlace);
 
         visitedPlace.name = null;
+        visitedPlace.title = null;
         visitedPlace.review = null;
         visitedPlace.rating = null;
         $scope.newVisitedPlaceSubmitted = false;
@@ -34,8 +42,6 @@ angular.module('travelHtmlApp')
       var travel = createTravelModel();
 
       TravelService.save(travel).$promise.then(function() {
-        console.log("Your travel has been saved with success");
-
         $scope.tripSaved = true;
 
         resetTravelModel();
@@ -50,8 +56,10 @@ angular.module('travelHtmlApp')
     var pushVisitedPlace = function(visitedPlace) {
       $scope.visitedPlaces.push({
         name: visitedPlace.name,
+        title: visitedPlace.title,
         review: visitedPlace.review,
-        rating: visitedPlace.rating
+        rating: visitedPlace.rating,
+        date: new Date()
       });
     };
 
@@ -78,6 +86,7 @@ angular.module('travelHtmlApp')
       $scope.travelRating = null;
       if ($scope.visitedPlace != null) {
         $scope.visitedPlace.name = null;
+        $scope.visitedPlace.title = null;
         $scope.visitedPlace.review = null;
         $scope.visitedPlace.rating = null;
       }
