@@ -7,7 +7,7 @@
      * # Login
      */
     angular.module('travelHtmlApp')
-        .directive('authentication', ['$http', '$window', '$rootScope', 'Convert', 'Facebook', function($http, $window, $rootScope, Convert, Facebook) {
+        .directive('authentication', ['$http', '$window', '$rootScope', 'Convert', 'facebookService', function($http, $window, $rootScope, Convert, facebookService) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -24,19 +24,15 @@
                     };
 
                     scope.logout = function() {
-                        try {
-                            Facebook.logout(function(response) {
-                                if (response) { //FB logout successfull
+                        facebookService.getLoginStatus(function(response) {
+                            if (response && response.status === 'connected') { //user logged in with FB
+                                facebookService.logout(function() {
                                     logoutHandler();
-                                }
-                                else {
-                                    scope.error = 'Error og FB logout';
-                                }
-                            });
-                        }
-                        catch (err) {
-                        }
-                        logoutHandler();
+                                });
+                            }
+                            else
+                                logoutHandler();
+                        });
                     };
 
                     scope.isLoggedIn = function() {
@@ -54,7 +50,7 @@
                     }
 
                     $rootScope.$on("fb_connected", function(event, args) {
-                        Facebook.getUserInfo(function(response) {
+                        facebookService.getUserInfo(function(response) {
                             $http.post('https://travelserver-andreisantaaccenture.c9.io/authenticateViaFacebook', response)
                                 .success(function(data, status, headers, config) {
                                     loginResponseHandler(data);
