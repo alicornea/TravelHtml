@@ -55,7 +55,7 @@ angular.module('travelHtmlApp', [
   });
 
 
-angular.module('travelHtmlApp').run(['$window', 'Facebook', function($window, Facebook) {
+angular.module('travelHtmlApp').run(['$window', 'facebookService', function($window, facebookService) {
 
   $window.fbAsyncInit = function() {
     // Executed when the SDK is loaded
@@ -68,7 +68,7 @@ angular.module('travelHtmlApp').run(['$window', 'Facebook', function($window, Fa
       xfbml: true /* Parse XFBML */
     });
 
-    FB.Event.subscribe('auth.authResponseChange', Facebook.statusChangeCallback);
+    FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
   };
 
   // Are you familiar to IIFE ( http://bit.ly/iifewdb ) ?

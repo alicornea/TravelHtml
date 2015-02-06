@@ -7,14 +7,14 @@
      * # Login
      */
     angular.module('travelHtmlApp')
-        .directive('authentication', ['$http', '$window', '$rootScope', 'Convert', 'facebookService', function($http, $window, $rootScope, Convert, facebookService) {
+        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', function($http, $window, $rootScope, ServiceApi, Convert, facebookService) {
             return {
                 restrict: 'E',
                 replace: true,
                 templateUrl: 'views/directives/authentication.html',
                 link: function(scope) {
                     scope.login = function(credentials) {
-                        $http.post('https://travelserver-andreisantaaccenture.c9.io/authenticate', credentials)
+                        $http.post(ServiceApi.url + '/authenticate', credentials)
                             .success(function(data, status, headers, config) {
                                 loginResponseHandler(data);
                             })
@@ -40,7 +40,7 @@
                     };
 
                     scope.getUsers = function() {
-                        $http.get('https://travelserver-andreisantaaccenture.c9.io/api/users/54c7542fe4b04b21cf31bb87')
+                        $http.get(ServiceApi.url + '/api/users/54c7542fe4b04b21cf31bb87')
                             .success(function(data, status, headers, config) {
                                 alert('da');
                             })
@@ -51,7 +51,7 @@
 
                     $rootScope.$on("fb_connected", function(event, args) {
                         facebookService.getUserInfo(function(response) {
-                            $http.post('https://travelserver-andreisantaaccenture.c9.io/authenticateViaFacebook', response)
+                            $http.post(ServiceApi.url + '/authenticateViaFacebook', response)
                                 .success(function(data, status, headers, config) {
                                     loginResponseHandler(data);
                                 })
