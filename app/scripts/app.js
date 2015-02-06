@@ -43,7 +43,7 @@ angular.module('travelHtmlApp', [
       })
       .when('/addtravel', {
         templateUrl: 'views/travel/addtravel.html',
-        controller: 'AddTravelCtrl'
+        controller: 'TravelsCtrl'
       })
       .when('/test', {
         templateUrl: 'views/test.html',

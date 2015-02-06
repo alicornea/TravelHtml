@@ -5,9 +5,9 @@
 
 <div class="navigation">
     <ul class="nav nav-tabs" data-ng-init="visible = 'showTripContainer'">
-        <li data-ng-class="{ 'active' : visible == 'showTripContainer' }"><a data-ng-click="visible = 'showTripContainer'">Trip</a>
+        <li data-ng-class="{ 'active' : visible == 'showTripContainer' }"><a data-ng-click="visible = 'showTripContainer'"><b>Trip</b></a>
         </li>
-        <li data-ng-class="{ 'active' : visible == 'showAtractionsContainer' }"><a data-ng-click="visible = 'showAtractionsContainer'">Atractions</a>
+        <li data-ng-class="{ 'active' : visible == 'showAtractionsContainer' }"><a data-ng-click="visible = 'showAtractionsContainer'"><b>Atractions</b></a>
         </li>
     </ul>
 </div>
@@ -19,15 +19,15 @@
             <div class="col-md-6">
                 <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !leavingFrom.length && addTravelForm.leavingFrom.$error.required }">
                     <label>Leaving from</label>
-                    <input type="text" data-ng-model="leavingFrom" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Type in your dearting place" required/>
-                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && addTravelForm.leavingFrom.$error.required">Departing place is required!</div>
+                    <input type="text" data-ng-model="leavingFrom" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search dearting place"/>
+                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && !addTravelForm.leavingFrom.legth">Departing place is required!</div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !destination.length && addTravelForm.destination.$error.required }">
                     <label>Going to</label>
-                    <input type="text" data-ng-model="destination" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Type in your destination" required/>
-                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && addTravelForm.destination.$error.required">Destination is required!</div>
+                    <input type="text" data-ng-model="destination" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search destination"/>
+                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.legth">Destination is required!</div>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <div class="col-md-4">
                 <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !flight.length && addTravelForm.flight.$error.required }">
                     <label>Flight</label>
-                    <input class="form-control" type="text" data-ng-model="flight" name="flight" placeholder="flight" required/>
+                    <input class="form-control" type="text" data-ng-model="flight" name="flight" placeholder="Flight" required/>
                     <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.flight.$dirty && addTravelForm.flight.$error.required">Flight is required!</div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <textarea class="form-control" data-ng-model="travelReview" name="travelReview" placeholder="review" />
+                <textarea class="form-control" data-ng-model="travelReview" name="travelReview" placeholder="Review" />
             </div>
         </div>
     </div>
