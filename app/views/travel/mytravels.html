@@ -1,11 +1,8 @@
-<div class="myTravels" ng-init="loadTravels()">
+<div class="blur" ng-if="isPopupEnabled" ng-class="{ 'popup blur' : isPopupEnabled }"></div>
 
+<div class="myTravels" ng-init="loadTravels()">
     <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
 
-    <button data-ng-click="enableAddAtractionPopup()">Test button</button>
-    <div class="blur" ng-if="isPopupEnabled" ng-class="{ 'popup blur' : isPopupEnabled }">
-        
-    </div>
     <div class="my-travels-header">
         <div class="left-navigation" ng-click="swipeLeft()">
             <span class="glyphicon glyphicon-menu-left"></span>
@@ -22,11 +19,11 @@
                     <a role="menuitem">Edit</a>
                 </li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation" ng-click="remove(travel._id)">
+                <li role="presentation" data-ng-click="remove(travel._id)">
                     <a role="menuitem">Delete</a>
                 </li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation">
+                <li role="presentation" data-ng-click="enableAddAtractionPopup()">
                     <a role="menuitem">Add atraction</a>
                 </li>
             </ul>
@@ -181,12 +178,7 @@
             </article>
         </div>
     </div>
-    
-    
-</div>
 
-
-<!-- <div class="popup" >
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquam erat in ante malesuada, facilisis semper nulla semper. Phasellus sapien neque, faucibus in malesuada quis, lacinia et libero. Sed sed turpis tellus. Etiam ac aliquam tortor, eleifend rhoncus metus. Ut turpis massa, sollicitudin sit amet molestie a, posuere sit amet nisl. Mauris tincidunt cursus posuere. Nam commodo libero quis lacus sodales, nec feugiat ante posuere. Donec pulvinar auctor commodo. Donec egestas diam ut mi adipiscing, quis lacinia mauris condimentum. Quisque quis odio venenatis, venenatis nisi a, vehicula ipsum. Etiam at nisl eu felis vulputate porta.</p>
+    <!--<div class="popup">
     <visited-places class="add-visited-place"></visited-places>
-    </div> -->
+</div> -->
