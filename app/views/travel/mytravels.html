@@ -1,8 +1,38 @@
 <div class="myTravels" ng-init="loadTravels()">
 
-    <h1 style="text-align: left">My Travels</h1>
+    <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
 
-    <div class="travel">
+    <button data-ng-click="enableAddAtractionPopup()">Test button</button>
+    <div class="blur" ng-if="isPopupEnabled" ng-class="{ 'popup blur' : isPopupEnabled }">
+        
+    </div>
+    <div class="my-travels-header">
+        <div class="left-navigation" ng-click="swipeLeft()">
+            <span class="glyphicon glyphicon-menu-left"></span>
+            <span class="sr-only">Prev</span>
+        </div>
+        <div class="right-navigation" ng-click="swipeRight()">
+            <span class="glyphicon glyphicon-menu-right"></span>
+            <span class="sr-only">Prev</span>
+        </div>
+        <div class="travel-menu dropdown">
+            <span class="glyphicon glyphicon-option-horizontal dropdown-toggle" data-toggle="dropdown" aria-expanded="true"></span>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li role="presentation">
+                    <a role="menuitem">Edit</a>
+                </li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" ng-click="remove(travel._id)">
+                    <a role="menuitem">Delete</a>
+                </li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation">
+                    <a role="menuitem">Add atraction</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="travel slide slide-animation nonDraggableImage" ng-if="!noTravelAvaialble" ng-swipe-right="swipeRight()" ng-swipe-left="swipeLeft()">
         <div class="travel-content">
             <div class="travel-details">
                 <table class="table table-hover">
@@ -29,7 +59,52 @@
                     <tr>
                         <td class="entry-label"><b>Check-out Date</b>
                         </td>
-                        <td>{{travel.rating}} out of 5</td>
+                        <td>
+                            <fieldset>
+                                <div class="rated-travel">
+                                    <div class="rating-stars">
+
+                                        <div class="form-item">
+                                            <input id="travel-rating-{{$index}}-5" name="ratedtravel-{{$index}}" type="radio" value="5" ng-model="travel.rating" disabled/>
+                                            <label for="travel-rating-{{$index}}-5" data-value="5">
+                                                <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                            </label>
+                                            <input id="travel-rating-{{$index}}-4" name="ratedtravel-{{$index}}" type="radio" value="4" ng-model="travel.rating" disabled />
+                                            <label for="travel-rating-{{$index}}-4" data-value="4">
+                                                <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                            </label>
+                                            <input id="travel-rating-{{$index}}-3" name="ratedtravel-{{$index}}" type="radio" value="3" ng-model="travel.rating" disabled />
+                                            <label for="travel-rating-{{$index}}-3" data-value="3">
+                                                <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                            </label>
+                                            <input id="travel-rating-{{$index}}-2" name="ratedtravel-{{$index}}" type="radio" value="2" ng-model="travel.rating" disabled />
+                                            <label for="travel-rating-{{$index}}-2" data-value="2">
+                                                <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                            </label>
+                                            <input id="travel-rating-{{$index}}-1" name="ratedtravel-{{$index}}" type="radio" value="1" ng-model="travel.rating" disabled />
+                                            <label for="travel-rating-{{$index}}-1" data-value="1">
+                                                <span class="rating-star">
+                                          <i class="fa fa-star-o" readonly></i>
+                                          <i class="fa fa-star" readonly></i>
+                                        </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </td>
                     </tr>
                     <tr>
                         <td class="entry-label"><b>Review</b>
@@ -38,15 +113,9 @@
                     </tr>
                 </table>
             </div>
-            <div class="travel-actions">
-                <button class="btn-style1">Edit</button>
-                <button class="btn-style1">Delete</button>
-                <button class="btn-style1">Add atraction</button>
-                <button class="btn-style1">Share</button>
-            </div>
-
         </div>
 
+        <label>Visited atractions</label>
         <div class="travel-atractions" ng-repeat="atraction in travel.visitedPlaces">
             <article>
                 <div class="atraction-title">
@@ -59,28 +128,28 @@
                                 <div class="rating-stars">
 
                                     <div class="form-item">
-                                        <input id="place-rating-{{$index}}-5" name="ratedPlace-{{$index}}" type="radio" value="5"  ng-model="atraction.rating" disabled/>
+                                        <input id="place-rating-{{$index}}-5" name="ratedPlace-{{$index}}" type="radio" value="5" ng-model="atraction.rating" disabled/>
                                         <label for="place-rating-{{$index}}-5" data-value="5">
                                             <span class="rating-star">
                                           <i class="fa fa-star-o" readonly></i>
                                           <i class="fa fa-star" readonly></i>
                                         </span>
                                         </label>
-                                        <input id="place-rating-{{$index}}-4" name="ratedPlace-{{$index}}" type="radio" value="4"  ng-model="atraction.rating" disabled />
+                                        <input id="place-rating-{{$index}}-4" name="ratedPlace-{{$index}}" type="radio" value="4" ng-model="atraction.rating" disabled />
                                         <label for="place-rating-{{$index}}-4" data-value="4">
                                             <span class="rating-star">
                                           <i class="fa fa-star-o" readonly></i>
                                           <i class="fa fa-star" readonly></i>
                                         </span>
                                         </label>
-                                        <input id="place-rating-{{$index}}-3" name="ratedPlace-{{$index}}" type="radio" value="3"  ng-model="atraction.rating" disabled />
+                                        <input id="place-rating-{{$index}}-3" name="ratedPlace-{{$index}}" type="radio" value="3" ng-model="atraction.rating" disabled />
                                         <label for="place-rating-{{$index}}-3" data-value="3">
                                             <span class="rating-star">
                                           <i class="fa fa-star-o" readonly></i>
                                           <i class="fa fa-star" readonly></i>
                                         </span>
                                         </label>
-                                        <input id="place-rating-{{$index}}-2" name="ratedPlace-{{$index}}" type="radio" value="2"  ng-model="atraction.rating" disabled />
+                                        <input id="place-rating-{{$index}}-2" name="ratedPlace-{{$index}}" type="radio" value="2" ng-model="atraction.rating" disabled />
                                         <label for="place-rating-{{$index}}-2" data-value="2">
                                             <span class="rating-star">
                                           <i class="fa fa-star-o" readonly></i>
@@ -98,7 +167,7 @@
 
                                 </div>
                                 <div class="review-date">
-                                    <span> Reviewed on {{atraction.date | date:'MMM dd, yyyy'}}</span>
+                                    <p> on {{atraction.date | date:'MMM dd, yyyy'}}</p>
                                 </div>
                             </div>
                         </fieldset>
@@ -112,4 +181,12 @@
             </article>
         </div>
     </div>
+    
+    
 </div>
+
+
+<!-- <div class="popup" >
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquam erat in ante malesuada, facilisis semper nulla semper. Phasellus sapien neque, faucibus in malesuada quis, lacinia et libero. Sed sed turpis tellus. Etiam ac aliquam tortor, eleifend rhoncus metus. Ut turpis massa, sollicitudin sit amet molestie a, posuere sit amet nisl. Mauris tincidunt cursus posuere. Nam commodo libero quis lacus sodales, nec feugiat ante posuere. Donec pulvinar auctor commodo. Donec egestas diam ut mi adipiscing, quis lacinia mauris condimentum. Quisque quis odio venenatis, venenatis nisi a, vehicula ipsum. Etiam at nisl eu felis vulputate porta.</p>
+    <visited-places class="add-visited-place"></visited-places>
+    </div> -->

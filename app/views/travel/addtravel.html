@@ -1,5 +1,5 @@
 <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.$valid">Please correct the errors before submitting your trip plan!</div>
-<div class="alert alert-success" data-ng-show="tripSaved">Your trip has been saved. Go to My Travels to see your trips.</div>
+<div class="alert alert-success" data-ng-show="travelSaved">Your trip has been saved. Go to My Travels to see your trips.</div>
 
 <image class="travelPlan"></image>
 
@@ -17,17 +17,17 @@
     <div data-ng-show="visible == 'showTripContainer'" class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !leavingFrom.length && addTravelForm.leavingFrom.$error.required }">
+                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !leavingFrom.length }">
                     <label>Leaving from</label>
-                    <input type="text" data-ng-model="leavingFrom" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search dearting place"/>
-                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && !addTravelForm.leavingFrom.legth">Departing place is required!</div>
+                    <input type="text" data-ng-model="leavingFrom" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search dearting place" />
+                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && !leavingFrom.legth">Departing place is required!</div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !destination.length && addTravelForm.destination.$error.required }">
+                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !destination.length }">
                     <label>Going to</label>
-                    <input type="text" data-ng-model="destination" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search destination"/>
-                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.legth">Destination is required!</div>
+                    <input type="text" data-ng-model="destination" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search destination" />
+                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && !destination.legth">Destination is required!</div>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" id="datetimepickerCheckOut" role="button" data-toggle="dropdown" data-target="#">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="endDate" data-ng-model="endDate"  placeholder="mm/dd/yyyy" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input type="text" class="form-control" name="endDate" data-ng-model="endDate" placeholder="mm/dd/yyyy" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             </div>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -118,7 +118,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <textarea class="form-control" data-ng-model="travelReview" name="travelReview" placeholder="Review" />
+                <textarea class="form-control" data-ng-model="travelReview" name="travelReview" placeholder="Review"></textarea>
             </div>
         </div>
     </div>

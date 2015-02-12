@@ -1,3 +1,7 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .travelPlan {
   content: url("../images/travel-background.png");
   height: 300px;
@@ -23,7 +27,6 @@ h1 {
 .navigation {
   margin-top: -41px;
   position: relative;
-  z-index: 99;
   
   .nav-tabs {
     border: none;
@@ -60,7 +63,6 @@ h1 {
   font-size: 18px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
-}
 
   .row {
     margin-bottom: 10px;
@@ -98,13 +100,7 @@ h1 {
   .submit-btn {
     margin-top: 10px;
   }
-  .rating-stars {
-    font: 12px'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
-    font-size: 1.2rem;
-    color: gold;
-    margin-top: 5px;
-    display: inline-block;
-  }
+  
   /* RATING - Form - Group */
   .form-group {
     position: relative;
@@ -117,9 +113,22 @@ h1 {
     margin: 0;
     padding: 0;
     font-size: 20px;
-    font-size: 2rem;
     /*background: green;*/
   }
+  
+  .travelRating {
+    margin-bottom: 10px;
+  } 
+  
+  .form-legend + .form-item {
+    padding-top: 10px;
+  }
+}
+  /* RATING */
+  .rating-label {
+    display: inline-block;
+  }
+  
   /* RATING - Form - Item */
   .form-item {
     margin: auto;
@@ -128,25 +137,24 @@ h1 {
     display: inline-block;
     padding-left: 40px;
   }
-  .travelRating {
-    margin-bottom: 10px;
-  } 
   
-  .form-legend + .form-item {
-    padding-top: 10px;
-  }
-  input[type='radio'] {
-    position: absolute;
-    left: -9999px;
-  }
-  /* RATING */
-  .rating-label {
+  .rating-stars {
+    font: 12px'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-size: 1.2rem;
+    color: gold;
+    margin-top: 5px;
     display: inline-block;
   }
+  
   .rating-star {
     display: inline-block;
     position: relative;
     cursor: pointer;
+  }
+  
+  input[type='radio'] {
+    position: absolute;
+    left: -9999px;
   }
   
   .travelRating, .placeRating {
@@ -240,7 +248,7 @@ h1 {
     right: 5px;
     opacity: 1;
   }
-  .addVisitedPlace {
+  .add-visited-place {
     font-size: 15px;
     align-content: center;
     
@@ -270,10 +278,34 @@ h1 {
 
 .myTravels {
   
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  
   h1 {
     text-align: left;
+  }
+  
+  .my-travels-header {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding-top: 8px;
+    font-size: 20px;
+    
+    .left-navigation {
+      float: left;
+      width: 10%;
+      text-align: center;
+    }
+    
+   .travel-menu {
+      width: 10%;
+      float: right;
+      text-align: center;
+    }
+    
+    .right-navigation {
+      float: left;
+      width: 10%;
+      text-align: center;
+    }
   }
   
   .travel {
@@ -281,14 +313,16 @@ h1 {
     .travel-content {
       display: inline-block;
       width: 100%;
+      border-bottom: 1px solid #e5e5e5;
     
       .travel-details {
-        width: 72%;
+        width: 100%;
         float: left;
         
         .entry-label {
           color: #5589B2;
           font-size: 15px;
+          width: 20%;
         }
       }
     
@@ -300,6 +334,11 @@ h1 {
           margin-bottom: 10px;
         }
       }
+    }
+    
+    label {
+      font-size: 1.4em;
+      color: #5589B2;
     }
     
     article {
@@ -314,19 +353,40 @@ h1 {
         margin-top: 15px;
         border-bottom: 1px solid #e5e5e5;
       }
-      
-      .row {
-        margin-left: -40px;
-        margin-right: -40px;
+    }
+    
+    .row {
+        margin-left: -15px;
+        margin-right: -15px;
         
-        label .fa {
-          font-size: 1.8rem;
-        }
-        .review-date {
+        fieldset, fieldset .rated-place {
+          width: 100%;
           display: inline-block;
-          padding-left: 10px;
-          font-size: 15px;
+          
+          .rating-stars {
+            float: left;
+            
+            .form-item {
+              padding-left: 15px;
+            }
+          }
+          
+          .review-date {
+            display: inline-block;
+            padding-left: 5px;
+            position: absolute;
+            margin-top: 4px;
+            
+            p {
+              position: relative;
+              font-size: 14px;
+            }
+          }
         }
+      }
+      
+      label .fa {
+        font-size: 1.8rem;
       }
       
       input[type='radio']:checked ~ label .fa-star {
@@ -334,13 +394,17 @@ h1 {
         color: gold;
       }
     
-      .rated-place input[type='radio']:checked ~ label .fa-star {
+      .rated-place input[type='radio']:checked ~ label .fa-star,
+      .rated-travel input[type='radio']:checked ~ label .fa-star{
         color: gold;
+      }
+      
+      .rated-travel .form-item {
+        padding-left: 0px;
       }
       
       .travel-review {
         font-size: 12px;
       }
-    }
   }
 }
