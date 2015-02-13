@@ -52,3 +52,6 @@ Temporary Items
 .c9/*
 #Ignore all .c9 specific files<br>
 /.c9/
+
+#Ignore ServiceApi constant
+app/scripts/constants/serviceApi.js
