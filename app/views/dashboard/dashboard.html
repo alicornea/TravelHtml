@@ -4,9 +4,11 @@
 
 
 <div style="clear:both"></div>
+<a href="https://travelhtml-alicornea.c9.io/#/dashboard/1">edit</a>
+<input type="button" class="button" ng-click="save()" value ="Save" ng-show="editable"/>
     <div class="gridster" >
       <!-- Define gridster directives -->
-      <ul gridster="gridsterOptions" class="dashboard"  gridster-changed="changed(serialized)">
+      <ul gridster="gridsterOptions" class="dashboard"  gridster-changed="changed(serialized)" gridster-editable="{{editable}}">
         <li gridster-repeat="v in values" gridster-layout="values" class="row" >
           <div class="col">
             <div class="thumbnail tile-{color}" {img}>

@@ -281,11 +281,7 @@ angular.module('gridster', [])
           // Need to wait until after the current $digest to instantiate gridster
           $timeout(function() {
             scope.$emit('gridster-repeat-complete');
-            $("a.text-center").click(
-      function(event){
-        event.preventDefault()
-        
-      })
+            
           });
         });
       }

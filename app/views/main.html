@@ -1,165 +1,40 @@
-<ul class="dashboard" >
-  <li class="row">
-    <div class="col-xs-6 col-md-6">
-      <div class="thumbnail tile-blue">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-globe"></i>
+
+    <link rel="stylesheet" href="bower_components/gridster/dist/jquery.gridster.css">
+    <link rel="stylesheet" href="bower_components/angular-gridster/examples/example.css">
+
+
+<div style="clear:both"></div>
+
+<input type="button" class="button" ng-click="save()" value ="Save" ng-show="editable"/>
+    <div class="gridster" >
+      <!-- Define gridster directives -->
+      <ul gridster="gridsterOptions" class="dashboard"  gridster-changed="changed(serialized)" gridster-editable="{{editable}}">
+        <li gridster-repeat="v in values" gridster-layout="values" class="row" >
+          <div class="col">
+            <div class="thumbnail tile-{color}" {img}>
+              <a href="{link}" class="text-center ">
+                  <div class="visual">
+                    <i class="fa {icon}"></i>
+                  </div>
+                  <span class="lead ">{txt}</span>
+                </a>
+                <a href="{link}" class="view-more">
+                View More
+                <i class="fa fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
-
-          <span class="lead ">My Travels</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
+          
+        </li>
+      </ul>
     </div>
 
 
-    <div class="col-xs-6 col-md-6 ">
-      <div class="thumbnail tile-red">
-        <a href="#/addtravel" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-plus"></i>
-          </div>
+    <!-- Gridster -->
+    <script src="bower_components/gridster/dist/jquery.gridster.js"></script>
 
-          <span class="lead ">Add Travel</span>
-        </a>
-        <a href="#/addtravel" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
+    <!-- angular-gridster -->
+    <script src="bower_components/angular-gridster/lib/angular-gridster.js"></script>
 
-  </li>
-
-  <li class="row">
-    <div class="col-xs-12 col-md-14 text-center">
-      <a href="#" class="thumbnail">
-        <img src="images/map.jpg" alt="...">
-      </a>
-    </div>
-  </li>
-
-
-  <div class="row">
-    <div class="col-xs-6 col-md-6 ">
-      <div class="thumbnail tile-green">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-camera"></i>
-          </div>
-
-          <span class="lead ">Attractions</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
-
-    <div class="col-xs-6 col-md-6 col-half-height">
-      <div class="thumbnail tile-purple">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-user-plus"></i>
-          </div>
-
-          <span class="lead ">Buddies</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
-
-
-    <div class="col-xs-3 col-md-3 ">
-      <div class="thumbnail tile-blue">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-weixin"></i>
-          </div>
-
-          <span class="lead ">Chat</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
-
-    <div class="col-xs-3 col-md-3 ">
-      <div class="thumbnail tile-blue">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-thumbs-o-up"></i>
-          </div>
-
-          <span class="lead ">Popular</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
-
-
-
-  </div>
-  
-    <div class="row">
-    <div class="col-xs-12 col-md-12 text-center">
-      <a href="#" class="thumbnail">
-        <img src="images/photos.png" alt="...">
-      </a>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-6 col-md-6 ">
-      <div class="thumbnail tile-blue">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-child"></i>
-          </div>
-
-          <span class="lead ">Events</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
-
-
-    <div class="col-xs-6 col-md-6 ">
-      <div class="thumbnail tile-red">
-        <a href="#" class="text-center ">
-          <div class="visual">
-            <i class="fa fa-bed"></i>
-          </div>
-
-          <span class="lead">Booking</span>
-        </a>
-        <a href="#" class="view-more">
-        View More
-        <i class="fa fa-arrow-right"></i>
-      </a>
-      </div>
-    </div>
-
-
-  </div>
-
-</ul>
-
-
-<script src="https://raw.github.com/fatlinesofcode/ngDraggable/blob/master/ngDraggable.js"></script>
+    <!-- Create a basic angular app -->
+ 

@@ -65,12 +65,14 @@
                         $window.localStorage.token = data.token;
                         var encodedProfile = data.token.split('.')[1];
                         var profile = JSON.parse(Convert.urlBase64Decode(encodedProfile));
+                        $window.localStorage.profileId = profile.id;
                         scope.welcome = 'Welcome ' + profile.first_name + ' ' + profile.last_name;
                     }
 
                     function loginErrorResponseHandler() {
                         // Erase the token if the user fails to log in
                         delete $window.localStorage.token;
+                        delete $window.localStorage.profile;
 
                         // Handle login errors here
                         scope.error = 'Error: Invalid user or password';
@@ -81,6 +83,7 @@
                         scope.welcome = '';
                         scope.message = '';
                         delete $window.localStorage.token;
+                        delete $window.localStorage.profile;
                     }
                 }
             }

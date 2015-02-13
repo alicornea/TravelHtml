@@ -17,13 +17,18 @@ angular.module('travelHtmlApp', [
     'ngTouch',
     'gridster',
     'ui.bootstrap.datetimepicker',
-    'ngAutocomplete'
+    'ngAutocomplete',
+    'restangular'
   ])
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/dashboard/dashboard.html',
+        controller: 'DashboardCtrl'
+      })
+      .when('/dashboard/:editEnabled', {
+        templateUrl: 'views/dashboard/dashboard.html',
+        controller: 'DashboardCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -45,17 +50,26 @@ angular.module('travelHtmlApp', [
         templateUrl: 'views/travel/addtravel.html',
         controller: 'TravelsCtrl'
       })
+      .when('/dashboard', {
+        templateUrl: 'views/travel/addtravel.html',
+        controller: 'DashboardCtrl'
+      })
       .when('/test', {
         templateUrl: 'views/test.html',
         controller: 'TestCtrl'
       })
+      
       .otherwise({
         redirectTo: '/'
       });
   });
 
 
-angular.module('travelHtmlApp').run(['$window', 'facebookService', function($window, facebookService) {
+angular.module('travelHtmlApp').run(['$window', 'facebookService','ServiceApi', 'Restangular', function($window, facebookService, ServiceApi, Restangular) {
+
+
+  Restangular.setBaseUrl(ServiceApi.url);
+
 
   $window.fbAsyncInit = function() {
     // Executed when the SDK is loaded
