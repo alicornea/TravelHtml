@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="styles/font-awesome.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/travel.css">
+  <link rel="stylesheet" href="styles/homer.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <!-- endbuild -->
 </head>
@@ -26,10 +27,10 @@
     <![endif]-->
 
   <!-- Add your site or application content here -->
-  <div class="container">
-    <div id="fb-root"></div>
-    <authentication></authentication>
-    <div class="header">
+  <div class="container" ng-controller="AppJsCtrl">
+    <div id="fb-root" ng-class="{ 'blur': isPopupEnabled }"></div>
+    <authentication ng-class="{ 'blur': isPopupEnabled }"></authentication>
+    <div class="header" ng-class="{ 'blur': isPopupEnabled }">
       <ul class="nav nav-pills pull-right">
         <li><a href="#"><i class="fa fa-user"></i></a>
         </li>
@@ -43,7 +44,7 @@
 
     <div ng-view=""></div>
 
-    <div class="footer">
+    <div class="footer" ng-class="{ 'blur': isPopupEnabled }">
       <p></p>
     </div>
   </div>
@@ -104,18 +105,27 @@
   <script src="scripts/controllers/app.js"></script>
   <!--<script src="scripts/controllers/testctrl.js"></script>-->
   <script src="scripts/controllers/travel/travels.js"></script>
+
   <script src="scripts/controllers/js/controller/user.js"></script>
 
-  <script src="scripts/directives/visitedplaces.js"></script>
   <script src="scripts/directives/authentication.js"></script>
   <script src="scripts/factories/utils.js"></script>
   <script src="scripts/factories/authInterceptor.js"></script>
   <script src="scripts/factories/facebookService.js"></script>
+  <script src="scripts/factories/twitterService.js"></script>
   <script src="scripts/directives/datetimeformat.js"></script>
   <script src="scripts/directives/dategreaterthan.js"></script>
+
   <script src="scripts/dashboard/controllers/dashboard.js"></script>
   
   <script src="scripts/dashboard/services/dashboardService.js"></script>
+
+  <script src="scripts/travel/controllers/travels.js"></script>
+  <script src="scripts/travel/directives/travelrating.js"></script>
+  <script src="scripts/travel/directives/attractionrating.js"></script>
+  <script src="scripts/travel/factories/travelservice.js"></script>
+  <script src="scripts/travel/directives/addattraction.js"></script>
+
   <!-- endbuild -->
   <!-- Gridster -->
   <script src="scripts/lib/jquery.gridster.js"></script>

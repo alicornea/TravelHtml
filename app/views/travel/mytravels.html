@@ -1,0 +1,108 @@
+<div class="blur" ng-if="isPopupEnabled" ng-class="{ 'overlay-background' : isPopupEnabled }"></div>
+
+<div class="myTravels" ng-init="loadTravels(); readonly=true" ng-class="{ 'blur' : isPopupEnabled }">
+    <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
+
+    <div class="my-travels-header">
+        <div class="left-navigation" ng-click="swipeLeft()">
+            <span class="glyphicon glyphicon-menu-left"></span>
+            <span class="sr-only">Prev</span>
+        </div>
+        <div class="right-navigation" ng-click="swipeRight()">
+            <span class="glyphicon glyphicon-menu-right"></span>
+            <span class="sr-only">Prev</span>
+        </div>
+        <div class="travel-menu dropdown">
+            <span class="glyphicon glyphicon-option-horizontal dropdown-toggle" data-toggle="dropdown" aria-expanded="true"></span>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li role="presentation">
+                    <a role="menuitem">Edit</a>
+                </li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" data-ng-click="remove(travel._id)">
+                    <a role="menuitem">Delete</a>
+                </li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" data-ng-click="enableAddattractionPopup()">
+                    <a role="menuitem">Add attraction</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="travel slide slide-animation nonDraggableImage" ng-if="!noTravelAvaialble" ng-swipe-right="swipeRight()" ng-swipe-left="swipeLeft()">
+        <div class="travel-content">
+            <div class="travel-details">
+                <table class="table table-hover">
+                    <tr>
+                        <td class="entry-label"><b>Leaving from</b>
+                        </td>
+                        <td>{{travel.leavingFrom}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Destination</b>
+                        </td>
+                        <td>{{travel.destination}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Check-in Date</b>
+                        </td>
+                        <td>{{travel.startDate | date:'MMM dd, yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Check-out Date</b>
+                        </td>
+                        <td>{{travel.endDate | date:'MMM dd, yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Check-out Date</b>
+                        </td>
+                        <td>
+                            <div class="rated-travel">
+                                <travel-rating></travel-rating>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="entry-label"><b>Review</b>
+                        </td>
+                        <td>{{travel.review}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <label>Visited attractions</label>
+        <div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index">
+
+            <article>
+                <div class="attraction-title">
+                    <span>{{attraction.title}}</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 rated-attraction">
+                        <attraction-rating></attraction-rating>
+                        <div class="review-date">
+                            <p> on {{attraction.date | date:'MMM dd, yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="travel-review">
+                    <p>
+                        {{attraction.review}}
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+<div class="popup" ng-if="isPopupEnabled">
+    <form id="addNewattraction" class="new-attraction-form">
+        <add-attraction></add-attraction>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="submit-btn btn-style1 form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

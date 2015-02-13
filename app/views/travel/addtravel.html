@@ -1,5 +1,5 @@
 <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.$valid">Please correct the errors before submitting your trip plan!</div>
-<div class="alert alert-success" data-ng-show="tripSaved">Your trip has been saved. Go to My Travels to see your trips.</div>
+<div class="alert alert-success" data-ng-show="travelSaved">Your trip has been saved. Go to My Travels to see your trips.</div>
 
 <image class="travelPlan"></image>
 
@@ -7,27 +7,27 @@
     <ul class="nav nav-tabs" data-ng-init="visible = 'showTripContainer'">
         <li data-ng-class="{ 'active' : visible == 'showTripContainer' }"><a data-ng-click="visible = 'showTripContainer'"><b>Trip</b></a>
         </li>
-        <li data-ng-class="{ 'active' : visible == 'showAtractionsContainer' }"><a data-ng-click="visible = 'showAtractionsContainer'"><b>Atractions</b></a>
+        <li data-ng-class="{ 'active' : visible == 'showattractionsContainer' }"><a data-ng-click="visible = 'showattractionsContainer'"><b>attractions</b></a>
         </li>
     </ul>
 </div>
 
-<form id="addTravelForm" name="addTravelForm" class="addTravelForm" data-ng-submit="addTravelForm.$valid && submit()" novalidate>
+<form id="addTravelForm" name="addTravelForm" class="addTravelForm" data-ng-submit="addTravelForm.$valid && submit()" ng-init="readonly=false" novalidate>
 
-    <div data-ng-show="visible == 'showTripContainer'" class="container">
+    <div data-ng-show="visible == 'showTripContainer'" class="add-travel-container">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !leavingFrom.length && addTravelForm.leavingFrom.$error.required }">
+                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !leavingFrom.length }">
                     <label>Leaving from</label>
-                    <input type="text" data-ng-model="leavingFrom" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search dearting place"/>
-                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && !addTravelForm.leavingFrom.legth">Departing place is required!</div>
+                    <input type="text" data-ng-model="leavingFrom" class="form-control" data-ng-autocomplete options="{types: '(cities)'}" details="details" placeholder="Search dearting place" />
+                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && !leavingFrom.legth">Departing place is required!</div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !destination.length && addTravelForm.destination.$error.required }">
+                <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !destination.length }">
                     <label>Going to</label>
-                    <input type="text" data-ng-model="destination" class="form-control" data-ng-autocomplete options="options" details="details" placeholder="Search destination"/>
-                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.legth">Destination is required!</div>
+                    <input type="text" data-ng-model="destination" class="form-control" data-ng-autocomplete options="{types: '(cities)'}" details="details" placeholder="Search destination" />
+                    <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && !destination.legth">Destination is required!</div>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" id="datetimepickerCheckOut" role="button" data-toggle="dropdown" data-target="#">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="endDate" data-ng-model="endDate"  placeholder="mm/dd/yyyy" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input type="text" class="form-control" name="endDate" data-ng-model="endDate" placeholder="mm/dd/yyyy" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             </div>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -74,58 +74,24 @@
             </div>
         </div>
 
-        <div class="row travelRating">
+        <div class="row travelRating" ng-init="index = 1">
             <div class="col-md-12">
                 <label class="rating-label">Rate and review your trip</label>
-                <div class="rating-stars">
-                    <fieldset class="form-group">
-                        <div class="form-item">
-                            <input id="travel-rating-5" name="travelRating" type="radio" value="5" data-ng-model="travelRating" />
-                            <label for="travel-rating-5" data-value="5">
-                                <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                            </label>
-                            <input id="travel-rating-4" name="travelRating" type="radio" value="4" data-ng-model="travelRating" />
-                            <label for="travel-rating-4" data-value="4">
-                                <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                            </label>
-                            <input id="travel-rating-3" name="travelRating" type="radio" value="3" data-ng-model="travelRating" />
-                            <label for="travel-rating-3" data-value="3">
-                                <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                            </label>
-                            <input id="travel-rating-2" name="travelRating" type="radio" value="2" data-ng-model="travelRating" />
-                            <label for="travel-rating-2" data-value="2">
-                                <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                            </label>
-                            <input id="travel-rating-1" name="travelRating" type="radio" value="1" data-ng-model="travelRating" />
-                            <label for="travel-rating-1" data-value="1">
-                                <span class="rating-star">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                            </label>
-                        </div>
-                    </fieldset>
-                </div>
-                <textarea class="form-control" data-ng-model="travelReview" name="travelReview" placeholder="Review" />
+                <travel-rating></travel-rating>
+                <textarea class="form-control" data-ng-model="travelReview" name="travelReview" placeholder="Review"></textarea>
             </div>
         </div>
     </div>
 
-    <div data-ng-show="visible == 'showAtractionsContainer'" class="container">
-        <visited-places class="addVisitedPlace"></visited-places>
+    <div data-ng-show="visible == 'showattractionsContainer'" class="add-attraction-container">
+        <div class="addPlaceIcon" data-ng-click="newattractionSubmitted = true; addNewattraction(attraction)">
+            <i class="fa fa-plus"></i>
+        </div>
+        <span>Add new visited place</span>
+
+        <div class="alert alert-danger" data-ng-show="newattractionSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.length">Fill the name of the touristic attraction in order to add a new one!</div>
+        <add-attraction class="add-attraction"></add-attraction>
     </div>
 
-    <button class="submit-btn form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+    <button class="submit-btn btn-style1 form-control" type="submit" data-ng-click="submitted=true">Submit</button>
 </form>
