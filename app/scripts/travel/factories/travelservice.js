@@ -63,12 +63,30 @@
 
         return deferred.promise;
       };
+      
+      var update = function(travel){
+        var travelResource = $resource(api + '/:travelId', { 'update': { method : 'PUT'}}); 
+        var deferred = $q.defer();
+        
+        travelResource.update({travelId: travel._id}, travel, function(res) {
+          if (res.hasError === undefined || res.hasError) {
+            deferred.resolve({
+              updatedSuccessfully: false
+            });
+          }
+
+          deferred.resolve({
+            updatedSuccessfully: true
+          });
+        });
+      };
 
       // Public API here
       return {
         getUsersTravels: getUsersTravels,
         save: save,
         remove: remove,
+        update: update
       };
 
     }]);

@@ -42,10 +42,10 @@
         });
       };
 
-      $scope.addNewattraction = function(attraction) {
+      $scope.addNewAttraction = function(attraction) {
         if (attraction !== undefined) {
           attraction.date = new Date();
-          pushAttraction(attraction);
+          $scope.attractions.push(JSON.stringify(attraction));
 
           attraction.name = null;
           attraction.title = null;
@@ -57,7 +57,7 @@
 
       $scope.submit = function() {
         if ($scope.attraction !== undefined) {
-          pushAttraction($scope.attraction);
+          $scope.attractions.push(JSON.stringify($scope.attraction));
         }
 
         var travel = createTravelModel();
@@ -73,6 +73,19 @@
           }
           else {
             console.log("Trip was not saaved");
+          }
+        });
+      };
+      
+      $scope.submitNewAttraction = function(travel, attraction){
+        travel.attractions.push(JSON.stringify(attraction));
+        
+        travelService.update(travel).then(function(travelUpdatedSuccessfully) {
+          if (travelUpdatedSuccessfully) {
+            $scope.loadTravels();
+          }
+          else {
+            console.log("Travel remove failed");
           }
         });
       };
@@ -101,18 +114,18 @@
 
       $scope.enableAddattractionPopup = function() {
         $rootScope.isPopupEnabled = true;
-      }
+      };
 
       /* Private Methods */
 
-      var pushAttraction = function(attraction) {
-        $scope.attractions.push({
+      var createAttractionModel = function(attraction) {
+        return {
           name: attraction.name,
           title: attraction.title,
           review: attraction.review,
           rating: attraction.rating,
           date: new Date()
-        });
+        };
       };
 
       var createTravelModel = function() {

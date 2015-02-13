@@ -72,7 +72,7 @@
         </div>
 
         <label>Visited attractions</label>
-        <div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index">
+        <div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index + 1">
 
             <article>
                 <div class="attraction-title">
@@ -96,9 +96,11 @@
     </div>
 </div>
 
-<div class="popup" ng-if="isPopupEnabled">
-    <form id="addNewattraction" class="new-attraction-form">
-        <add-attraction></add-attraction>
+<div class="popup" ng-if="isPopupEnabled" ng-init="index = 0; readonly = false">
+    <form id="addNewattraction" class="new-attraction-form" ng-submit="submitNewAttraction(travel, attraction)">
+        <div class="attractionRating">
+            <add-attraction></add-attraction>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <button class="submit-btn btn-style1 form-control" type="submit" data-ng-click="submitted=true">Submit</button>
