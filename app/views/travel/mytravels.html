@@ -1,6 +1,6 @@
-<div class="blur" ng-if="isPopupEnabled" ng-class="{ 'popup blur' : isPopupEnabled }"></div>
+<div class="blur" ng-if="isPopupEnabled" ng-class="{ 'overlay-background' : isPopupEnabled }"></div>
 
-<div class="myTravels" ng-init="loadTravels()">
+<div class="myTravels" ng-init="loadTravels(); readonly=true" ng-class="{ 'blur' : isPopupEnabled }">
     <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
 
     <div class="my-travels-header">
@@ -23,8 +23,8 @@
                     <a role="menuitem">Delete</a>
                 </li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation" data-ng-click="enableAddAtractionPopup()">
-                    <a role="menuitem">Add atraction</a>
+                <li role="presentation" data-ng-click="enableAddattractionPopup()">
+                    <a role="menuitem">Add attraction</a>
                 </li>
             </ul>
         </div>
@@ -57,50 +57,9 @@
                         <td class="entry-label"><b>Check-out Date</b>
                         </td>
                         <td>
-                            <fieldset>
-                                <div class="rated-travel">
-                                    <div class="rating-stars">
-
-                                        <div class="form-item">
-                                            <input id="travel-rating-{{$index}}-5" name="ratedtravel-{{$index}}" type="radio" value="5" ng-model="travel.rating" disabled/>
-                                            <label for="travel-rating-{{$index}}-5" data-value="5">
-                                                <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                            </label>
-                                            <input id="travel-rating-{{$index}}-4" name="ratedtravel-{{$index}}" type="radio" value="4" ng-model="travel.rating" disabled />
-                                            <label for="travel-rating-{{$index}}-4" data-value="4">
-                                                <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                            </label>
-                                            <input id="travel-rating-{{$index}}-3" name="ratedtravel-{{$index}}" type="radio" value="3" ng-model="travel.rating" disabled />
-                                            <label for="travel-rating-{{$index}}-3" data-value="3">
-                                                <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                            </label>
-                                            <input id="travel-rating-{{$index}}-2" name="ratedtravel-{{$index}}" type="radio" value="2" ng-model="travel.rating" disabled />
-                                            <label for="travel-rating-{{$index}}-2" data-value="2">
-                                                <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                            </label>
-                                            <input id="travel-rating-{{$index}}-1" name="ratedtravel-{{$index}}" type="radio" value="1" ng-model="travel.rating" disabled />
-                                            <label for="travel-rating-{{$index}}-1" data-value="1">
-                                                <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
+                            <div class="rated-travel">
+                                <travel-rating></travel-rating>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -112,73 +71,38 @@
             </div>
         </div>
 
-        <label>Visited atractions</label>
-        <div class="travel-atractions" ng-repeat="atraction in travel.visitedPlaces">
+        <label>Visited attractions</label>
+        <div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index">
+
             <article>
-                <div class="atraction-title">
-                    <span>{{atraction.title}}</span>
+                <div class="attraction-title">
+                    <span>{{attraction.title}}</span>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <fieldset>
-                            <div class="rated-place">
-                                <div class="rating-stars">
-
-                                    <div class="form-item">
-                                        <input id="place-rating-{{$index}}-5" name="ratedPlace-{{$index}}" type="radio" value="5" ng-model="atraction.rating" disabled/>
-                                        <label for="place-rating-{{$index}}-5" data-value="5">
-                                            <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                        </label>
-                                        <input id="place-rating-{{$index}}-4" name="ratedPlace-{{$index}}" type="radio" value="4" ng-model="atraction.rating" disabled />
-                                        <label for="place-rating-{{$index}}-4" data-value="4">
-                                            <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                        </label>
-                                        <input id="place-rating-{{$index}}-3" name="ratedPlace-{{$index}}" type="radio" value="3" ng-model="atraction.rating" disabled />
-                                        <label for="place-rating-{{$index}}-3" data-value="3">
-                                            <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                        </label>
-                                        <input id="place-rating-{{$index}}-2" name="ratedPlace-{{$index}}" type="radio" value="2" ng-model="atraction.rating" disabled />
-                                        <label for="place-rating-{{$index}}-2" data-value="2">
-                                            <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                        </label>
-                                        <input id="place-rating-{{$index}}-1" name="ratedPlace-{{$index}}" type="radio" value="1" ng-model="atraction.rating" disabled />
-                                        <label for="place-rating-{{$index}}-1" data-value="1">
-                                            <span class="rating-star">
-                                          <i class="fa fa-star-o" readonly></i>
-                                          <i class="fa fa-star" readonly></i>
-                                        </span>
-                                        </label>
-                                    </div>
-
-                                </div>
-                                <div class="review-date">
-                                    <p> on {{atraction.date | date:'MMM dd, yyyy'}}</p>
-                                </div>
-                            </div>
-                        </fieldset>
+                    <div class="col-md-12 rated-attraction">
+                        <attraction-rating></attraction-rating>
+                        <div class="review-date">
+                            <p> on {{attraction.date | date:'MMM dd, yyyy'}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="travel-review">
                     <p>
-                        {{atraction.review}}
+                        {{attraction.review}}
                     </p>
                 </div>
             </article>
         </div>
     </div>
+</div>
 
-    <!--<div class="popup">
-    <visited-places class="add-visited-place"></visited-places>
-</div> -->
+<div class="popup" ng-if="isPopupEnabled">
+    <form id="addNewattraction" class="new-attraction-form">
+        <add-attraction></add-attraction>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="submit-btn btn-style1 form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

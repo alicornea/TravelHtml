@@ -11,7 +11,7 @@
   angular.module('travelHtmlApp')
     .controller('TravelsCtrl', ['$rootScope', '$scope', 'travelService', '$filter', function($rootScope, $scope, travelService, $filter) {
 
-      $scope.visitedPlaces = [];
+      $scope.attractions = [];
       $scope.travelSaved = false;
       $scope.index = 0;
       $scope.travels = [];
@@ -42,22 +42,22 @@
         });
       };
 
-      $scope.addNewVisitedPlace = function(visitedPlace) {
-        if (visitedPlace !== undefined) {
-          visitedPlace.date = new Date();
-          pushVisitedPlace(visitedPlace);
+      $scope.addNewattraction = function(attraction) {
+        if (attraction !== undefined) {
+          attraction.date = new Date();
+          pushAttraction(attraction);
 
-          visitedPlace.name = null;
-          visitedPlace.title = null;
-          visitedPlace.review = null;
-          visitedPlace.rating = null;
+          attraction.name = null;
+          attraction.title = null;
+          attraction.review = null;
+          attraction.rating = null;
           $scope.newVisitedPlaceSubmitted = false;
         }
       };
 
       $scope.submit = function() {
-        if ($scope.visitedPlace !== undefined) {
-          pushVisitedPlace($scope.visitedPlace);
+        if ($scope.attraction !== undefined) {
+          pushAttraction($scope.attraction);
         }
 
         var travel = createTravelModel();
@@ -99,18 +99,18 @@
         $scope.travel = $scope.travels[$scope.index];
       };
 
-      $scope.enableAddAtractionPopup = function() {
+      $scope.enableAddattractionPopup = function() {
         $rootScope.isPopupEnabled = true;
       }
 
       /* Private Methods */
 
-      var pushVisitedPlace = function(visitedPlace) {
-        $scope.visitedPlaces.push({
-          name: visitedPlace.name,
-          title: visitedPlace.title,
-          review: visitedPlace.review,
-          rating: visitedPlace.rating,
+      var pushAttraction = function(attraction) {
+        $scope.attractions.push({
+          name: attraction.name,
+          title: attraction.title,
+          review: attraction.review,
+          rating: attraction.rating,
           date: new Date()
         });
       };
@@ -123,8 +123,8 @@
           endDate: $scope.endDate,
           flight: $scope.flight,
           review: $scope.travelReview,
-          rating: $scope.travelRating,
-          visitedPlaces: $scope.visitedPlaces
+          rating: $scope.travel.rating,
+          attractions: $scope.attractions
         };
       };
 
@@ -135,15 +135,15 @@
         $scope.endDate = null;
         $scope.flight = null;
         $scope.travelReview = null;
-        $scope.travelRating = null;
-        if ($scope.visitedPlace != null) {
-          $scope.visitedPlace.name = null;
-          $scope.visitedPlace.title = null;
-          $scope.visitedPlace.review = null;
-          $scope.visitedPlace.rating = null;
+        $scope.travel.rating = null;
+        if ($scope.attraction != null) {
+          $scope.attraction.name = null;
+          $scope.attraction.title = null;
+          $scope.attraction.review = null;
+          $scope.attraction.rating = null;
         }
 
-        $scope.visitedPlaces = [];
+        $scope.attractions = [];
       };
     }]);
 

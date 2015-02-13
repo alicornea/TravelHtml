@@ -93,11 +93,22 @@ body {
     border-bottom: 0;
   }
   
+  .popup {
+    width: 100%;
+    max-width: 700px;
+    top: 35%;
+    border: 1px solid #5e5e5e;
+    z-index: 5;
+    position: fixed;
+    background: white;
+  
+  }
+  
   .blur {
     -webkit-filter: blur(3px);
   }
   
-  .popup {
+  .overlay-background {
     width: 100%;
     height: 100%;
     background: url("../images/white_background.png");
@@ -106,12 +117,10 @@ body {
     right: 0;
     position: fixed;
     z-index: 1;
-    opacity: 0.5;
+    opacity: 0.6;
+    -webkit-filter: blur(3px);
   }
 }
-
-
-
 
 .header{
   .nav {

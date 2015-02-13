@@ -3,15 +3,15 @@
 
   /**
    * @ngdoc directive
-   * @name travelHtmlApp.directive:travelRating
+   * @name travelHtmlApp.directive:addattraction
    * @description
-   * # travelRating
+   * # addattraction
    */
   angular.module('travelHtmlApp')
-    .directive('travelRating', ['$compile', function($compile) {
+    .directive('addAttraction', ['$compile', function($compile) {
       return {
         restrict: 'E',
-        templateUrl: 'views/travel/directives/travelrating.html',
+        templateUrl: 'views/travel/directives/addattraction.html',
         link: function(scope, element, attrs) {}
       };
     }]);
