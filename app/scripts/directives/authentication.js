@@ -7,14 +7,14 @@
      * # Login
      */
     angular.module('travelHtmlApp')
-        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService',
-            function($http, $window, $rootScope, ServiceApi, Convert, facebookService) {
+        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', 'twitterService',
+            function($http, $window, $rootScope, ServiceApi, Convert, facebookService, twitterService) {
                 return {
                     restrict: 'E',
                     replace: true,
                     templateUrl: 'views/directives/authentication.html',
                     link: function(scope) {
-                        //twitterService.initialize(); //initialize twitter service (oAuth)
+                        twitterService.initialize(); //initialize twitter service (oAuth)
 
                         scope.login = function(credentials) {
                             $http.post(ServiceApi.url + '/authenticate', credentials)
@@ -34,7 +34,7 @@
                                     });
                                 }
                                 else {
-                                    //twitterService.clearCache();
+                                    twitterService.clearCache();
                                     logoutHandler();
                                 }
                             });
@@ -44,7 +44,7 @@
                             return $window.localStorage != null && $window.localStorage.token != null;
                         };
 
-                        /*scope.twitterLogin = function() {
+                        scope.twitterLogin = function() {
                             twitterService.connectTwitter().then(function() {
                                 if (twitterService.isReady()) {
                                     //if the authorization is successful, hide the connect button and display the tweets
@@ -59,7 +59,7 @@
                                     });
                                 }
                             });
-                        };*/
+                        };
 
                         $rootScope.$on("fb_connected", function(event, args) {
                             facebookService.getUserInfo(function(response) {

@@ -2,12 +2,12 @@
 <div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index + 1">
 
     <article>
-        <div class="attraction-article-header row">
+        <div class="row attraction-article-header">
             <div class="col-md-10 attraction-title">
                 <span>{{attraction.name}}</span>
             </div>
-            <div class="col-md-2 attraction-actions">
-                <button type="button">Edit</button>
+            <div class="col-md-2 attraction-actions ">
+                <button class="edit-attraction fadeInRight" type="button">Edit</button>
             </div>
         </div>
 
