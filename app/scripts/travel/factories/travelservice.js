@@ -50,35 +50,47 @@
         travelResource.delete({
           travelId: travelId
         }, function(res) {
-          if (res.hasError === undefined || res.hasError) {
+          if (res.hasError !== undefined && res.hasError) {
             deferred.resolve({
               removedSuccessfully: false
             });
           }
-
-          deferred.resolve({
-            removedSuccessfully: true
-          });
+          else {
+            deferred.resolve({
+              removedSuccessfully: true
+            });
+          }
         });
 
         return deferred.promise;
       };
-      
-      var update = function(travel){
-        var travelResource = $resource(api + '/:travelId', { 'update': { method : 'PUT'}}); 
+
+      var update = function(travel) {
+        var travelResource = $resource(api + '/:travelId', {
+          travelId: '@travelId'
+        }, {
+          'update': {
+            method: 'PUT'
+          }
+        });
         var deferred = $q.defer();
-        
-        travelResource.update({travelId: travel._id}, travel, function(res) {
-          if (res.hasError === undefined || res.hasError) {
+
+        travelResource.update({
+          travelId: travel._id
+        }, travel, function(res) {
+          if (res.hasError !== undefined && res.hasError) {
             deferred.resolve({
               updatedSuccessfully: false
             });
           }
-
-          deferred.resolve({
-            updatedSuccessfully: true
-          });
+          else {
+            deferred.resolve({
+              updatedSuccessfully: true
+            });
+          }
         });
+
+        return deferred.promise;
       };
 
       // Public API here

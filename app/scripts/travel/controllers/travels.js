@@ -27,7 +27,6 @@
           else {
             $scope.noTravelAvaialble = true;
           }
-
         });
       };
 
@@ -44,8 +43,7 @@
 
       $scope.addNewAttraction = function(attraction) {
         if (attraction !== undefined) {
-          attraction.date = new Date();
-          $scope.attractions.push(JSON.stringify(attraction));
+          $scope.attractions.push(createAttractionModel(attraction));
 
           attraction.name = null;
           attraction.title = null;
@@ -57,7 +55,7 @@
 
       $scope.submit = function() {
         if ($scope.attraction !== undefined) {
-          $scope.attractions.push(JSON.stringify($scope.attraction));
+          $scope.attractions.push(createAttractionModel($scope.attraction));
         }
 
         var travel = createTravelModel();
@@ -78,11 +76,12 @@
       };
       
       $scope.submitNewAttraction = function(travel, attraction){
-        travel.attractions.push(JSON.stringify(attraction));
+        travel.attractions.push(createAttractionModel(attraction));
         
         travelService.update(travel).then(function(travelUpdatedSuccessfully) {
           if (travelUpdatedSuccessfully) {
-            $scope.loadTravels();
+            
+            $rootScope.disablePopup();
           }
           else {
             console.log("Travel remove failed");
@@ -111,11 +110,6 @@
 
         $scope.travel = $scope.travels[$scope.index];
       };
-
-      $scope.enableAddattractionPopup = function() {
-        $rootScope.isPopupEnabled = true;
-      };
-
       /* Private Methods */
 
       var createAttractionModel = function(attraction) {

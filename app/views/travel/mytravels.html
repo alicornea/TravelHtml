@@ -1,5 +1,14 @@
 <div class="blur" ng-if="isPopupEnabled" ng-class="{ 'overlay-background' : isPopupEnabled }"></div>
 
+<div class="social-share row">
+    <div class="col-xs-3">
+        <div fb-like></div>    
+    </div>
+    <div class=col-xs-3>
+        <div tweet="travel.destination"></div>    
+    </div>
+</div>
+
 <div class="myTravels" ng-init="loadTravels(); readonly=true" ng-class="{ 'blur' : isPopupEnabled }">
     <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
 
@@ -23,7 +32,7 @@
                     <a role="menuitem">Delete</a>
                 </li>
                 <li role="presentation" class="divider"></li>
-                <li role="presentation" data-ng-click="enableAddattractionPopup()">
+                <li role="presentation" data-ng-click="enablePopup()">
                     <a role="menuitem">Add attraction</a>
                 </li>
             </ul>
@@ -71,40 +80,8 @@
             </div>
         </div>
 
-        <label>Visited attractions</label>
-        <div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index + 1">
-
-            <article>
-                <div class="attraction-title">
-                    <span>{{attraction.title}}</span>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 rated-attraction">
-                        <attraction-rating></attraction-rating>
-                        <div class="review-date">
-                            <p> on {{attraction.date | date:'MMM dd, yyyy'}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="travel-review">
-                    <p>
-                        {{attraction.review}}
-                    </p>
-                </div>
-            </article>
-        </div>
+        <ng-include src="'views/travel/partial/_mytravelattractions.html'"></ng-include>
     </div>
 </div>
 
-<div class="popup" ng-if="isPopupEnabled" ng-init="index = 0; readonly = false">
-    <form id="addNewattraction" class="new-attraction-form" ng-submit="submitNewAttraction(travel, attraction)">
-        <div class="attractionRating">
-            <add-attraction></add-attraction>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button class="submit-btn btn-style1 form-control" type="submit" data-ng-click="submitted=true">Submit</button>
-            </div>
-        </div>
-    </form>
-</div>
+<ng-include src="'views/travel/partial/_addattraction.html'"></ng-include>

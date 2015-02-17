@@ -1,0 +1,15 @@
+<div class="popup" ng-if="isPopupEnabled" ng-init="index = 0; readonly = false">
+    <form id="addNewattraction" class="new-attraction-form" ng-submit="submitNewAttraction(travel, attraction)">
+        <div class="attractionRating">
+            <add-attraction></add-attraction>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn cancel-btn form-control" type="button" data-ng-click="disablePopup()">Cancel</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn submit-btn form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

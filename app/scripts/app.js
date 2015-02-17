@@ -18,9 +18,11 @@ angular.module('travelHtmlApp', [
     'gridster',
     'ui.bootstrap.datetimepicker',
     'ngAutocomplete',
-    'restangular'
+    'restangular',
+    'angulike'
   ])
   .config(function($routeProvider) {
+    
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard/dashboard.html',

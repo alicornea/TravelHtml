@@ -16,4 +16,12 @@ angular.module('travelHtmlApp')
     ];
     
     $rootScope.isPopupEnabled = false;
+    
+    $rootScope.disablePopup = function(){
+      $rootScope.isPopupEnabled = false;
+    };
+    
+    $rootScope.enablePopup = function(){
+      $rootScope.isPopupEnabled = true;
+    };
   }]);

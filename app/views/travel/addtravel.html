@@ -1,5 +1,5 @@
 <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.$valid">Please correct the errors before submitting your trip plan!</div>
-<div class="alert alert-success" data-ng-show="travelSaved">Your trip has been saved. Go to My Travels to see your trips.</div>
+<div class="alert alert-success" data-ng-show="travelSaved">Your trip has been saved. Go to <a href="#/mytravels">My Travels</a> to see your trips.</div>
 
 <image class="travelPlan"></image>
 
@@ -84,7 +84,7 @@
     </div>
 
     <div data-ng-show="visible == 'showattractionsContainer'" class="add-attraction-container">
-        <div class="addPlaceIcon" data-ng-click="newattractionSubmitted = true; addNewattraction(attraction)">
+        <div class="addPlaceIcon" data-ng-click="newattractionSubmitted = true; addNewAttraction(attraction)">
             <i class="fa fa-plus"></i>
         </div>
         <span>Add new visited place</span>
@@ -93,5 +93,5 @@
         <add-attraction class="add-attraction"></add-attraction>
     </div>
 
-    <button class="submit-btn btn-style1 form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+    <button class="btn submit-btn form-control" type="submit" data-ng-click="submitted=true">Submit</button>
 </form>

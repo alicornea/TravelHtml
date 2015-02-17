@@ -117,8 +117,23 @@ body {
     right: 0;
     position: fixed;
     z-index: 1;
-    opacity: 0.6;
+    opacity: 0;
     -webkit-filter: blur(3px);
+  }
+  
+  .btn {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 35px;
+    color: white;
+    border: none;
+  }
+  .submit-btn {
+    background-color: #5589B2;
+  }
+  .cancel-btn {
+    background-color: slategrey;
   }
 }
 
