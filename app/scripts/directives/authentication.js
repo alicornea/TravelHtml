@@ -14,7 +14,7 @@
                     replace: true,
                     templateUrl: 'views/directives/authentication.html',
                     link: function(scope) {
-                        //twitterService.initialize(); //initialize twitter service (oAuth)
+                        twitterService.initialize(); //initialize twitter service (oAuth)
 
                         scope.login = function(credentials) {
                             $http.post(ServiceApi.url + '/authenticate', credentials)
@@ -34,7 +34,7 @@
                                     });
                                 }
                                 else {
-                                    //twitterService.clearCache();
+                                    twitterService.clearCache();
                                     logoutHandler();
                                 }
                             });
@@ -44,9 +44,9 @@
                             return $window.localStorage != null && $window.localStorage.token != null;
                         };
 
-                        scope.twitterlogin = function() {
-                            twitterService.connecttwitter().then(function() {
-                                if (twitterService.isready()) {
+                        scope.twitterLogin = function() {
+                            twitterService.connectTwitter().then(function() {
+                                if (twitterService.isReady()) {
                                     //if the authorization is successful, hide the connect button and display the tweets
                                     twitterService.getuserdetails().then(function(response) {
                                         $http.post(ServiceApi.url + '/authenticateviatwitter', parseUserDataFromTwitter(response))
