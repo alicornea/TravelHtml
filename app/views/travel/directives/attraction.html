@@ -1,0 +1,30 @@
+<div class="attraction">
+    <div class="attraction-containter">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" data-ng-class="{'has-error has-feedback' : newattractionSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.length }">
+                    <input class="form-control" type="text" name="attractionName" data-ng-model="attraction.name" data-add-ng-autocomplete-attr options="options" details="details" placeholder="Search attraction" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="attractionTitle" data-ng-model="attraction.title" placeholder="Title" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="attractionRating">
+                    <label class="rating-label">Give a rate and a review</label>
+
+                    <attraction-rating></attraction-rating>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea class="form-control" name="review" data-ng-model="attraction.review" placeholder="Review" />
+            </div>
+        </div>
+    </div>
+</div>

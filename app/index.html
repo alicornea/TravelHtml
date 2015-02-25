@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="travelHtmlApp">
 
 <head>
   <meta charset="utf-8">
@@ -21,13 +21,13 @@
   <!-- endbuild -->
 </head>
 
-<body ng-app="travelHtmlApp">
+<body ng-controller="AppJsCtrl">
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
   <!-- Add your site or application content here -->
-  <div class="container" ng-controller="AppJsCtrl">
+  <div class="container">
     <div id="fb-root" ng-class="{ 'blur': isPopupEnabled }"></div>
     <authentication ng-class="{ 'blur': isPopupEnabled }"></authentication>
     <div class="header" ng-class="{ 'blur': isPopupEnabled }">
@@ -74,8 +74,10 @@
     <script src="bower_components/json3/lib/json3.js"></script>
     <![endif]-->
   <!-- endbuild -->
-
+  
   <!-- build:js(.) scripts/vendor.js -->
+  <!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>-->
+  
   
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -94,7 +96,7 @@
   <script src="bower_components/lodash/lodash.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <script src="bower_components/angulike/angulike.js"></script>
-  <script src="bower_components/oauth-js/dist/oauth.js"></script>
+  <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -111,6 +113,7 @@
   <script src="scripts/factories/authInterceptor.js"></script>
   <script src="scripts/factories/facebookService.js"></script>
   <script src="scripts/factories/twitterService.js"></script>
+  <script src="scripts/factories/googlemapsinitializer.js"></script>
   <script src="scripts/directives/datetimeformat.js"></script>
   <script src="scripts/directives/dategreaterthan.js"></script>
 
@@ -118,15 +121,13 @@
   
   <script src="scripts/dashboard/services/dashboardService.js"></script>
 
-  <script src="scripts/travel/controllers/travels.js"></script>
   <script src="scripts/travel/directives/travelrating.js"></script>
   <script src="scripts/travel/directives/attractionrating.js"></script>
   <script src="scripts/travel/factories/travelservice.js"></script>
-  <script src="scripts/travel/directives/addattraction.js"></script>
-
+  <script src="scripts/travel/directives/attraction.js"></script>
+  <script src="scripts/travel/controllers/travels.js"></script>
+  <script src="scripts/travel/directives/addngautocomplete.js"></script>
   <!-- endbuild -->
- 
-
 
 </body>
 

@@ -17,12 +17,12 @@ angular.module('travelHtmlApp', [
     'ngTouch',
     'gridster',
     'ui.bootstrap.datetimepicker',
-    'ngAutocomplete',
     'restangular',
+    'ngAutocomplete',
     'angulike'
   ])
   .config(function($routeProvider) {
-    
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard/dashboard.html',
@@ -113,3 +113,10 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
 
   }(document));
 }]);
+
+angular.module('travelHtmlApp').run(function($rootScope) {
+  $rootScope.$on('$routeChangeStart', function(next, current) {
+    $rootScope.disableAddAttractionPopup();
+    $rootScope.disableEditAttractionPopup();
+  });
+});

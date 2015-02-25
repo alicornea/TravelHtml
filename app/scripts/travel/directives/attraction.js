@@ -8,10 +8,10 @@
    * # addattraction
    */
   angular.module('travelHtmlApp')
-    .directive('addAttraction', ['$compile', function($compile) {
+    .directive('attraction', ['$compile', function($compile) {
       return {
         restrict: 'E',
-        templateUrl: 'views/travel/directives/addattraction.html',
+        templateUrl: 'views/travel/directives/attraction.html',
         link: function(scope, element, attrs) {}
       };
     }]);

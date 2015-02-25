@@ -9,10 +9,26 @@
    * Factory in the travelHtmlApp.
    */
   angular.module('travelHtmlApp')
-    .factory('travelService', ['$resource', 'ServiceApi', '$q', function($resource, ServiceApi, $q) {
+    .factory('travelService', ['$resource', 'ServiceApi', '$rootScope', '$q', 'googleMapsInitializer', function($resource, ServiceApi, $rootScope, $q, googleMapsInitializer) {
       // Service logic
       // ...
+      
       var api = ServiceApi.url + '/travels';
+      
+      var initializeGoogleMapsApi = function(){
+        var deferred = $q.defer();
+        
+        if(!$rootScope.googleMapsApi.isLoaded){
+          googleMapsInitializer.mapsInitialized.then(function(googleMaps){
+            console.log('google maps api loaded..');
+            deferred.resolve(googleMaps);
+            $rootScope.googleMapsApi.isLoaded = true;
+            $rootScope.$broadcast("GoogleMapsApiLoaded");
+          });
+        }
+        
+        return deferred.promise;
+      };
 
       var getUsersTravels = function() {
         var travelResource = $resource(api);
@@ -98,7 +114,8 @@
         getUsersTravels: getUsersTravels,
         save: save,
         remove: remove,
-        update: update
+        update: update,
+        initializeGoogleMapsApi: initializeGoogleMapsApi
       };
 
     }]);
