@@ -49,8 +49,11 @@
         if (attraction !== undefined) {
           $scope.attractions.push(createAttractionModel(attraction));
 
-          resetAttraction(attraction);
-          $scope.newVisitedPlaceSubmitted = false;
+          attraction.name = null;
+          attraction.title = null;
+          attraction.rating = null;
+          attraction.review = null;
+          $scope.newAttractionAdded = false;
         }
       };
 
@@ -68,7 +71,7 @@
             resetTravelModel();
 
             $scope.submitted = false;
-            $scope.newVisitedPlaceSubmitted = false;
+            $scope.newAttractionAdded = false;
           }
           else {
             console.log("Trip was not saaved");
@@ -77,6 +80,9 @@
       };
 
       $scope.submitNewAttraction = function(travel, attraction) {
+        if(attraction === undefined || attraction.name === undefined || attraction.name === null)
+          return;
+        
         travel.attractions.push(createAttractionModel(attraction));
 
         travelService.update(travel).then(function(travelUpdatedSuccessfully) {
@@ -92,15 +98,13 @@
             console.log("The attraction was not submitted due to an error");
           }
         });
+        
+        $scope.newAttractionSubmitted = false;
       };
 
       $scope.cancelNewAttraction = function(attraction) {
         $rootScope.disableAddAttractionPopup();
-
-        attraction.name = null;
-        attraction.title = null;
-        attraction.review = null;
-        attraction.rating = null;
+        $scope.newAttractionSubmitted = false;
       };
 
       $scope.editAttraction = function(travel, attraction) {

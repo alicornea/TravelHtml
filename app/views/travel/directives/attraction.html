@@ -2,7 +2,7 @@
     <div class="attraction-containter">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group" data-ng-class="{'has-error has-feedback' : newattractionSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.length }">
+                <div class="form-group" data-ng-class="{'has-error has-feedback' : (newAttractionAdded && !destination.legth && !attraction.name.length) || (newAttractionSubmitted && !attraction.name.length) }">
                     <input class="form-control" type="text" name="attractionName" data-ng-model="attraction.name" data-add-ng-autocomplete-attr options="options" details="details" placeholder="Search attraction" />
                 </div>
             </div>

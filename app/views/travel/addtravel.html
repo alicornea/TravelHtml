@@ -20,7 +20,7 @@
                 <div class="col-md-6">
                     <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !leavingFrom.length }">
                         <label>Leaving from</label>
-                        <input type="text" data-ng-model="leavingFrom" class="form-control" data-add-ng-autocomplete-attr options="{types: '(cities)'}" details="details" placeholder="Search dearting place" />
+                        <input type="text" name="leavingFrom" data-ng-model="leavingFrom" class="form-control" data-add-ng-autocomplete-attr options="{types: '(cities)'}" details="details" placeholder="Search dearting place" />
                         <!--<input type="text" data-ng-model="leavingFrom" ng-if="!googleMapsApi.isLoaded" class="form-control" placeholder="Search dearting place" />-->
                         <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.leavingFrom.$dirty && !leavingFrom.legth">Departing place is required!</div>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !destination.length }">
                         <label>Going to</label>
-                        <input type="text" data-ng-model="destination" class="form-control" data-add-ng-autocomplete-attr options="{types: '(cities)'}" details="details" placeholder="Search destination" />
+                        <input type="text" name="destination" data-ng-model="destination" class="form-control" data-add-ng-autocomplete-attr options="{types: '(cities)'}" details="details" placeholder="Search destination" />
                         <!--<input type="text" data-ng-model="destination" ng-if="!googleMapsApi.isLoaded" class="form-control" placeholder="Search destination" />-->
                         <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.destination.$dirty && !destination.legth">Destination is required!</div>
                     </div>
@@ -87,12 +87,12 @@
         </div>
 
         <div data-ng-show="visible == 'showattractionsContainer'" class="add-attraction-container">
-            <div class="addPlaceIcon" data-ng-click="newAttractionSubmitted = true; addNewAttraction(attraction)">
+            <div class="addPlaceIcon" data-ng-click="newAttractionAdded = true; addNewAttraction(attraction)">
                 <i class="fa fa-plus"></i>
             </div>
             <span>Add new visited place</span>
 
-            <div class="alert alert-danger" data-ng-show="newAttractionSubmitted && !addTravelForm.destination.$dirty && !addTravelForm.destination.length">Fill the name of the touristic attraction in order to add a new one!</div>
+            <div class="alert alert-danger" data-ng-show="newAttractionAdded && !leavingFrom.legth && !attraction.name.length">Fill the name of the touristic attraction in order to add a new one!</div>
             <attraction class="add-attraction"></attraction>
         </div>
 
