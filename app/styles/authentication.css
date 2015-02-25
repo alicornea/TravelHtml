@@ -1,0 +1,21 @@
+#social-buttons {
+  line-height:40px;
+}
+#social-buttons button {
+  width: 34px;
+  height: 34px;
+  padding:5px;
+  border: 0;
+  box-shadow: 0;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
+  vertical-align: middle;
+}
+.button-facebook {
+  background-image: url("../images/social/facebook.png");
+}
+.button-twitter {
+  background-image: url("../images/social/twitter.png");
+}

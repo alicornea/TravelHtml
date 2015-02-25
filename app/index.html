@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/travel.css">
   <link rel="stylesheet" href="styles/homer.css">
+  <link rel="stylesheet" href="styles/authentication.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <!-- endbuild -->
 </head>
@@ -25,7 +26,7 @@
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+  <script src="//connect.facebook.net/en_US/all.js"></script>
   <!-- Add your site or application content here -->
   <div class="container">
     <div id="fb-root" ng-class="{ 'blur': isPopupEnabled }"></div>
@@ -76,9 +77,9 @@
   <!-- endbuild -->
   
   <!-- build:js(.) scripts/vendor.js -->
+
   <!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>-->
-  
-  
+
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -118,7 +119,7 @@
   <script src="scripts/directives/dategreaterthan.js"></script>
 
   <script src="scripts/dashboard/controllers/dashboard.js"></script>
-  
+
   <script src="scripts/dashboard/services/dashboardService.js"></script>
 
   <script src="scripts/travel/directives/travelrating.js"></script>

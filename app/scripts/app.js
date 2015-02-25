@@ -77,23 +77,23 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
   Restangular.setBaseUrl(ServiceApi.url);
 
 
-  $window.fbAsyncInit = function() {
-    // Executed when the SDK is loaded
+  //$window.fbAsyncInit = function() {
+  // Executed when the SDK is loaded
 
-    FB.init({
-      appId: '1013215985358490',
-      channelUrl: 'app/channel.html',
-      status: true, //Set if you want to check the authentication statusat the start up of the app
-      cookie: true, //Enable cookies to allow the server to access the session
-      xfbml: true /* Parse XFBML */
-    });
+  FB.init({
+    appId: '1013215985358490',
+    channelUrl: 'app/channel.html',
+    status: true, //Set if you want to check the authentication statusat the start up of the app
+    cookie: true, //Enable cookies to allow the server to access the session
+    xfbml: true /* Parse XFBML */
+  });
 
-    FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
-  };
+  FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
+  //};
 
   // Are you familiar to IIFE ( http://bit.ly/iifewdb ) ?
 
-  (function(d) {
+  /*(function(d) {
     // load the Facebook javascript SDK
 
     var js,
@@ -111,7 +111,7 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
 
     ref.parentNode.insertBefore(js, ref);
 
-  }(document));
+  }(document));*/
 }]);
 
 angular.module('travelHtmlApp').run(function($rootScope) {

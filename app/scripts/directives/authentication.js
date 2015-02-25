@@ -16,6 +16,8 @@
                     link: function(scope) {
                         twitterService.initialize(); //initialize twitter service (oAuth)
 
+                        scope.isLoggedIn = $window.localStorage != null && $window.localStorage.token != null;
+
                         scope.login = function(credentials) {
                             $http.post(ServiceApi.url + '/authenticate', credentials)
                                 .success(function(data, status, headers, config) {
@@ -40,16 +42,11 @@
                             });
                         };
 
-                        scope.isLoggedIn = function() {
-                            return $window.localStorage != null && $window.localStorage.token != null;
-                        };
-
                         scope.twitterLogin = function() {
                             twitterService.connectTwitter().then(function() {
                                 if (twitterService.isReady()) {
-                                    //if the authorization is successful, hide the connect button and display the tweets
                                     twitterService.getUserDetails().then(function(response) {
-                                        $http.post(ServiceApi.url + '/authenticateViaTwitter', parseUserDataFromTwitter(response))
+                                        $http.post(ServiceApi.url + '/authenticateviatwitter', parseUserDataFromTwitter(response))
                                             .success(function(data, status, headers, config) {
                                                 loginResponseHandler(data);
                                             })
@@ -61,7 +58,26 @@
                             });
                         };
 
+                        scope.fbLogin = function() {
+                            //if logged in in FB, auto login in app
+                            facebookService.getLoginStatus(function(response) {
+                                if (response && response.status === 'connected') { //user logged in with FB
+                                    connectWithFacebook();
+                                }
+                                else
+                                    facebookService.login();
+                            });
+                        }
+
                         $rootScope.$on("fb_connected", function(event, args) {
+                            connectWithFacebook();
+                        });
+
+                        function userLoggedIn() {
+                            return $window.localStorage != null && $window.localStorage.token != null;
+                        }
+
+                        function connectWithFacebook() {
                             facebookService.getUserInfo(function(response) {
                                 $http.post(ServiceApi.url + '/authenticateViaFacebook', response)
                                     .success(function(data, status, headers, config) {
@@ -71,14 +87,17 @@
                                         loginErrorResponseHandler();
                                     });
                             });
-                        });
+                        }
 
                         function loginResponseHandler(data) {
-                            $window.localStorage.token = data.token;
                             var encodedProfile = data.token.split('.')[1];
                             var profile = JSON.parse(Convert.urlBase64Decode(encodedProfile));
+
+                            $window.localStorage.token = data.token;
                             $window.localStorage.profileId = profile.id;
+
                             scope.welcome = 'Welcome ' + profile.first_name + ' ' + profile.last_name;
+                            scope.isLoggedIn = true;
                         }
 
                         function loginErrorResponseHandler() {
@@ -86,20 +105,16 @@
                             delete $window.localStorage.token;
                             delete $window.localStorage.profileId;
 
-
                             // Handle login errors here
                             scope.error = 'Error: Invalid user or password';
                             scope.welcome = '';
+                            scope.isLoggedIn = false;
+                            scope.$apply();
                         }
-
-                        /*function logoutHandler() {
-                            scope.welcome = '';
-                            scope.message = '';
-                            delete $window.localStorage.token;
-                        }*/
 
                         function parseUserDataFromTwitter(data) {
                             var names = data.name.split(' ');
+
                             return {
                                 id: data.id,
                                 first_name: names ? names[0] : '',
@@ -109,11 +124,15 @@
                         }
 
                         function logoutHandler() {
+                            delete $window.localStorage.token;
+                            delete $window.localStorage.profileId;
+
                             scope.welcome = '';
                             scope.message = '';
-                            delete $window.localStorage.token;
-                            delete $window.localStorage.profile;
+                            scope.isLoggedIn = false;
 
+                            if (!scope.$$phase)
+                                scope.$apply();
                         }
                     }
                 };
