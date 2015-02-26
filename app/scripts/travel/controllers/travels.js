@@ -80,9 +80,9 @@
       };
 
       $scope.submitNewAttraction = function(travel, attraction) {
-        if(attraction === undefined || attraction.name === undefined || attraction.name === null)
+        if (attraction === undefined || attraction.name === undefined || attraction.name === null)
           return;
-        
+
         travel.attractions.push(createAttractionModel(attraction));
 
         travelService.update(travel).then(function(travelUpdatedSuccessfully) {
@@ -98,13 +98,17 @@
             console.log("The attraction was not submitted due to an error");
           }
         });
-        
+
         $scope.newAttractionSubmitted = false;
       };
 
       $scope.cancelNewAttraction = function(attraction) {
         $rootScope.disableAddAttractionPopup();
-        $scope.newAttractionSubmitted = false;
+
+        $timeout(function() {
+          $scope.newAttractionCanceled = false;
+        });
+
       };
 
       $scope.editAttraction = function(travel, attraction) {

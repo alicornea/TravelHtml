@@ -1,6 +1,9 @@
 <div class="blur" ng-if="isPopupEnabled" ng-class="{ 'overlay-background' : isPopupEnabled }"></div>
 
 <div class="myTravels" ng-init="loadTravels(); readonly = true; initialLoad = true" ng-class="{ 'blur' : isPopupEnabled }">
+    
+    <geo-location></geo-location>
+    
     <div class="row social-share">
         <div class="col-xs-3">
             <div fb-like></div>
