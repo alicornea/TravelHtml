@@ -15,32 +15,31 @@
         link: function postLink(scope, element, attrs) {
           var map;
 
-          function initialize() {
-            var mapOptions = {
-              zoom: 8,
-            };
+          var mapOptions = {
+            zoom: 8,
+          };
 
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+          map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-                var infoWindow = new google.maps.InfoWindow({
-                  map: map,
-                  position: pos,
-                  content: 'Your current location'
-                });
-
-                map.setCenter(pos);
-              }, function() {
-                handleNoGeolocation(true);
+              var infoWindow = new google.maps.InfoWindow({
+                map: map,
+                position: pos,
+                content: 'Your current location'
               });
-            }
-            else {
-              handleNoGeolocation(false);
-            }
+
+              map.setCenter(pos);
+            }, function() {
+              handleNoGeolocation(true);
+            });
           }
+          else {
+            handleNoGeolocation(false);
+          }
+
 
           function handleNoGeolocation(errorFlag) {
             var content = 'Error: Your browser doesn\'t support geolocation.';
@@ -61,8 +60,6 @@
             var infoWindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
           }
-
-          $rootScope.$on("GoogleMapsApiLoaded", initialize);
         }
       };
     }]);

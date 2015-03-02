@@ -9,7 +9,7 @@
    * Factory in the travelHtmlApp.
    */
   angular.module('travelHtmlApp')
-    .factory('googleMapsInitializer', ['$window', '$q', function($window, $q) {
+    .factory('googleMapsInitializer', ['$window', '$q', '$rootScope', function($window, $q, $rootScope) {
       // Service logic
       // ...
 
@@ -26,10 +26,14 @@
         document.head.appendChild(script);
       };
 
-      asyncLoad(googleMapApi, 'googleMapsInitialized');
+      var mapsInitialization = function() {
+        asyncLoad(googleMapApi, 'googleMapsInitialized');
+
+        return mapsDefer.promise;
+      };
 
       return {
-        mapsInitialized: mapsDefer.promise
+        mapsInitialized: mapsInitialization
       };
     }]);
 })();

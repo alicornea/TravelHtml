@@ -8,7 +8,7 @@
  * Controller of the travelHtmlApp
  */
 angular.module('travelHtmlApp')
-  .controller('AppJsCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
+  .controller('AppJsCtrl', ['$rootScope', '$scope', '$window', function($rootScope, $scope, $window) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -49,5 +49,9 @@ angular.module('travelHtmlApp')
     $rootScope.enableEditAttractionPopup = function() {
       $rootScope.editAttractionPopup.isEnabled = true;
       $scope.isPopupEnabled = true;
+    };
+    
+    $rootScope.isUserAuthenticated = function(){
+      return $window.localStorage != null && $window.localStorage.token != null;
     };
   }]);

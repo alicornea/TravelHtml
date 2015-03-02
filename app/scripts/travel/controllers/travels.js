@@ -9,7 +9,7 @@
    * Controller of the travelHtmlApp
    */
   angular.module('travelHtmlApp')
-    .controller('TravelsCtrl', ['$rootScope', '$scope', 'travelService', '$filter', '$timeout', function($rootScope, $scope, travelService, $filter, $timeout) {
+    .controller('TravelsCtrl', ['$rootScope', '$scope', 'travelService', '$filter', '$timeout', '$window', function($rootScope, $scope, travelService, $filter, $timeout, $window) {
 
       $scope.attractions = [];
       $scope.travelSaved = false;
@@ -115,8 +115,8 @@
 
         var index = travel.attractions.indexOf(attraction);
         if (index > -1) {
-          attraction = createAttractionModel(attraction);
-          travel.attractions[index] = attraction;
+          var edittedAttraction = createAttractionModel(attraction);
+          travel.attractions[index] = edittedAttraction;
 
           travelService.update(travel).then(function(travelUpdatedSuccessfully) {
             if (!travelUpdatedSuccessfully) {
@@ -171,10 +171,10 @@
 
         initTravel($scope.travels[$scope.currentPosition]);
       };
+      
+      $timeout($scope.initializeGoogleMapsApi);
 
       /* Private Methods */
-
-      $timeout($scope.initializeGoogleMapsApi, 10000);
 
       var initTravel = function(travel) {
         $scope.travel = travel;
@@ -194,6 +194,7 @@
 
       var createTravelModel = function() {
         return {
+          profileId: $window.localStorage.profileId,
           leavingFrom: $scope.leavingFrom,
           destination: $scope.destination,
           startDate: $scope.startDate,

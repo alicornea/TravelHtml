@@ -1,4 +1,6 @@
-<div ng-init="">
+<div class="alert alert-danger" ng-show="!isUserAuthenticated()">Please login in order to see your travels.</div>
+
+<div ng-show="isUserAuthenticated()">
     <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.$valid">Please correct the errors before submitting your trip plan!</div>
     <div class="alert alert-success" data-ng-show="travelSaved">Your trip has been saved. Go to <a href="#/mytravels">My Travels</a> to see your trips.</div>
 
@@ -13,7 +15,7 @@
         </ul>
     </div>
 
-    <form id="addTravelForm" name="addTravelForm" class="addTravelForm" data-ng-submit="addTravelForm.$valid && submit()" ng-init="readonly=false" novalidate>
+    <form id="addTravelForm" name="addTravelForm" class="addTravelForm" data-ng-submit="addTravelForm.$valid" ng-init="readonly=false" novalidate>
 
         <div data-ng-show="visible == 'showTripContainer'" class="add-travel-container">
             <div class="row">
@@ -96,6 +98,6 @@
             <attraction class="add-attraction"></attraction>
         </div>
 
-        <button class="btn submit-btn form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+        <button class="btn submit-btn form-control" type="submit" data-ng-click="submitted=true; submit()">Submit</button>
     </form>
 </div>
