@@ -1,0 +1,16 @@
+<div ng-if="attraction.isEditable" class="popup" ng-class="{ 'show-popup animated-popup' : editAttractionPopup.isEnabled, 'hide-popup animated-popup' : !editAttractionPopup.isEnabled && attraction.isEditable && !editAttractionPopup.initialLoad, 'initial-load' : editAttractionPopup.initialLoad }" ng-init="readonly = false">
+<!--<div>-->
+    <form id="editAttraction" class="edit-attraction-form" ng-submit="editAttraction(travel, attraction)">
+        
+        <attraction></attraction>
+
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn cancel-btn form-control" type="button" data-ng-click="cancelEditAttraction(attraction)">Cancel</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn submit-btn form-control" type="submit">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>

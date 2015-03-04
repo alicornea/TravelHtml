@@ -1,90 +1,97 @@
 <div class="blur" ng-if="isPopupEnabled" ng-class="{ 'overlay-background' : isPopupEnabled }"></div>
 
-<div class="social-share row">
-    <div class="col-xs-3">
-        <div fb-like></div>    
-    </div>
-    <div class=col-xs-3>
-        <div tweet="travel.destination"></div>    
-    </div>
-</div>
+<div class="alert alert-danger" ng-show="!isUserAuthenticated()">Please login in order to see your travels.</div>
 
-<div class="myTravels" ng-init="loadTravels(); readonly=true" ng-class="{ 'blur' : isPopupEnabled }">
-    <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
+<div ng-if="isUserAuthenticated()" ng-init="loadTravels()">
+    <div class="myTravels" ng-init="readonly = true; initialLoad = true" ng-class="{ 'blur' : isPopupEnabled }">
 
-    <div class="my-travels-header">
-        <div class="left-navigation" ng-click="swipeLeft()">
-            <span class="glyphicon glyphicon-menu-left"></span>
-            <span class="sr-only">Prev</span>
-        </div>
-        <div class="right-navigation" ng-click="swipeRight()">
-            <span class="glyphicon glyphicon-menu-right"></span>
-            <span class="sr-only">Prev</span>
-        </div>
-        <div class="travel-menu dropdown">
-            <span class="glyphicon glyphicon-option-horizontal dropdown-toggle" data-toggle="dropdown" aria-expanded="true"></span>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li role="presentation">
-                    <a role="menuitem">Edit</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation" data-ng-click="remove(travel._id)">
-                    <a role="menuitem">Delete</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation" data-ng-click="enablePopup()">
-                    <a role="menuitem">Add attraction</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="travel slide slide-animation nonDraggableImage" ng-if="!noTravelAvaialble" ng-swipe-right="swipeRight()" ng-swipe-left="swipeLeft()">
-        <div class="travel-content">
-            <div class="travel-details">
-                <table class="table table-hover">
-                    <tr>
-                        <td class="entry-label"><b>Leaving from</b>
-                        </td>
-                        <td>{{travel.leavingFrom}}</td>
-                    </tr>
-                    <tr>
-                        <td class="entry-label"><b>Destination</b>
-                        </td>
-                        <td>{{travel.destination}}</td>
-                    </tr>
-                    <tr>
-                        <td class="entry-label"><b>Check-in Date</b>
-                        </td>
-                        <td>{{travel.startDate | date:'MMM dd, yyyy'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="entry-label"><b>Check-out Date</b>
-                        </td>
-                        <td>{{travel.endDate | date:'MMM dd, yyyy'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="entry-label"><b>Check-out Date</b>
-                        </td>
-                        <td>
-                            <div class="rated-travel">
-                                <travel-rating></travel-rating>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="entry-label"><b>Review</b>
-                        </td>
-                        <td>{{travel.review}}</td>
-                    </tr>
-                </table>
+        <geo-location ></geo-location>
+
+        <div class="row social-share">
+            <div class="col-xs-3">
+                <div fb-like></div>
+            </div>
+            <div class=col-xs-3>
+                <div tweet="travel.destination"></div>
             </div>
         </div>
 
-        <ng-include src="'views/travel/partial/_mytravelattractions.html'"></ng-include>
+        <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
+
+        <div class="my-travels-header">
+            <div class="left-navigation" ng-click="swipeLeft()">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                <span class="sr-only">Prev</span>
+            </div>
+            <div class="right-navigation" ng-click="swipeRight()">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                <span class="sr-only">Prev</span>
+            </div>
+            <div class="travel-menu dropdown">
+                <span class="glyphicon glyphicon-option-horizontal dropdown-toggle" data-toggle="dropdown" aria-expanded="true"></span>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li role="presentation" data-ng-click="remove(travel._id)">
+                        <a role="menuitem">Delete</a>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation" data-ng-click="enableAddAttractionPopup(); addAttractionPopup.initialLoad = false">
+                        <a role="menuitem">Add attraction</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="travel slider">
+            <div class="slide slide-animation" ng-if="!noTravelAvaialble" ng-swipe-right="!isPopupEnabled ? swipeRight() : ''" ng-swipe-left="!isPopupEnabled ? swipeLeft() : ''">
+                <div class="travel-content">
+                    <div class="travel-details">
+                        <table class="table table-hover">
+                            <tr>
+                                <td class="entry-label"><b>Leaving from</b>
+                                </td>
+                                <td>{{travel.leavingFrom}}</td>
+                            </tr>
+                            <tr>
+                                <td class="entry-label"><b>Destination</b>
+                                </td>
+                                <td>{{travel.destination}}</td>
+                            </tr>
+                            <tr>
+                                <td class="entry-label"><b>Check-in Date</b>
+                                </td>
+                                <td>{{travel.startDate | date:'MMM dd, yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="entry-label"><b>Check-out Date</b>
+                                </td>
+                                <td>{{travel.endDate | date:'MMM dd, yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="entry-label"><b>Check-out Date</b>
+                                </td>
+                                <td>
+                                    <div class="rated-travel">
+                                        <travel-rating></travel-rating>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="entry-label"><b>Review</b>
+                                </td>
+                                <td>{{travel.review}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <ng-include src="'views/travel/partial/_mytravelattractions.html'"></ng-include>
+            </div>
+        </div>
     </div>
+
+    <div ng-repeat="attraction in travel.attractions" ng-init="index = $index + travel.attractions.length + 1">
+        <ng-include src="'views/travel/partial/_editattraction.html'"></ng-include>
+    </div>
+
+    <ng-include src="'views/travel/partial/_addattraction.html'"></ng-include>
 </div>
-
-<ng-include src="'views/travel/partial/_addattraction.html'"></ng-include>
-
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>

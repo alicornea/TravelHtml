@@ -9,16 +9,41 @@
    * Factory in the travelHtmlApp.
    */
   angular.module('travelHtmlApp')
-    .factory('travelService', ['$resource', 'ServiceApi', '$q', function($resource, ServiceApi, $q) {
+    .factory('travelService', ['$resource', 'ServiceApi', '$rootScope', '$q', 'googleMapsInitializer', '$window', function($resource, ServiceApi, $rootScope, $q, googleMapsInitializer, $window) {
       // Service logic
       // ...
-      var api = ServiceApi.url + '/travels';
+      
+      var api = ServiceApi.url + '/api/travels';
+      
+      var initializeGoogleMapsApi = function(){
+        var deferred = $q.defer();
+        
+        if(!$rootScope.googleMapsApi.isLoaded){
+          googleMapsInitializer.mapsInitialized().then(function(googleMaps){
+            console.log('google maps api loaded..');
+            deferred.resolve(googleMaps);
+            $rootScope.googleMapsApi.isLoaded = true;
+            $rootScope.$broadcast("GoogleMapsApiLoaded");
+          });
+        }
+        
+        return deferred.promise;
+      };
 
       var getUsersTravels = function() {
-        var travelResource = $resource(api);
+        var travelResource = $resource(api + '/getTravelsByProfileId/:profileId', {
+          profileId: '@profileId'
+        }, {
+          'query': {
+            method: 'GET',
+            isArray: true
+          }
+        });
         var deferred = $q.defer();
 
-        travelResource.query(function(travels) {
+        travelResource.query({
+            profileId: $window.localStorage.profileId
+          }, function(travels) {
             deferred.resolve(travels);
           }),
           function(err) {
@@ -47,20 +72,16 @@
         var travelResource = $resource(api + '/:travelId');
         var deferred = $q.defer();
 
-        travelResource.delete({
+        deferred.resolve(travelResource.delete({
           travelId: travelId
         }, function(res) {
           if (res.hasError !== undefined && res.hasError) {
-            deferred.resolve({
-              removedSuccessfully: false
-            });
+            return false;
           }
           else {
-            deferred.resolve({
-              removedSuccessfully: true
-            });
+            return true;
           }
-        });
+        }));
 
         return deferred.promise;
       };
@@ -98,7 +119,8 @@
         getUsersTravels: getUsersTravels,
         save: save,
         remove: remove,
-        update: update
+        update: update,
+        initializeGoogleMapsApi: initializeGoogleMapsApi
       };
 
     }]);
