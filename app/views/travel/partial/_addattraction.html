@@ -1,14 +1,19 @@
-<div class="popup" ng-if="isPopupEnabled" ng-init="index = 0; readonly = false">
-    <form id="addNewattraction" class="new-attraction-form" ng-submit="submitNewAttraction(travel, attraction)">
-        <div class="attractionRating">
-            <add-attraction></add-attraction>
+<div class="popup" ng-class="{ 'show-popup animated-popup' : addAttractionPopup.isEnabled, 'hide-popup animated-popup' : !addAttractionPopup.isEnabled && !addAttractionPopup.initialLoad && newAttractionCanceled, 'initial-load' : addAttractionPopup.initialLoad }" ng-init="readonly = false">
+    <form id="addNewAttraction" class="new-attraction-form" ng-submit="submitNewAttraction(travel, attraction)">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" data-ng-show="newAttractionSubmitted && !newAttractionCanceled && !attraction.name.length">Fill the name of the touristic attraction!</div>
+            </div>
         </div>
+        
+        <attraction></attraction>
+        
         <div class="row">
             <div class="col-md-6">
-                <button class="btn cancel-btn form-control" type="button" data-ng-click="disablePopup()">Cancel</button>
+                <button class="btn cancel-btn form-control" type="button" data-ng-click="newAttractionCanceled = true; cancelNewAttraction(attraction)">Cancel</button>
             </div>
             <div class="col-md-6">
-                <button class="btn submit-btn form-control" type="submit" data-ng-click="submitted=true">Submit</button>
+                <button class="btn submit-btn form-control" type="submit" data-ng-click="newAttractionSubmitted=true">Submit</button>
             </div>
         </div>
     </form>
