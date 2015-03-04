@@ -19,10 +19,13 @@ angular.module('travelHtmlApp', [
     'ui.bootstrap.datetimepicker',
     'ngAutocomplete',
     'restangular',
-    'angulike'
+    'angulike',
+    'ngAnimate',
+    'ngTouch',
+    'swipe'
   ])
   .config(function($routeProvider) {
-    
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard/dashboard.html',
@@ -61,13 +64,16 @@ angular.module('travelHtmlApp', [
         controller: 'TravelsCtrl',
       })
       .when('/test', {
-        templateUrl: 'views/test.html',
+        templateUrl: 'swipe.html',
         controller: 'TestCtrl'
       })
-
-    .otherwise({
-      redirectTo: '/'
-    });
+      .when('/gallery', {
+        templateUrl: 'views/gallery/gallery.html',
+        controller: 'GalleryCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
   });
 
 
