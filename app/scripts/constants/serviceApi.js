@@ -2,7 +2,7 @@
     angular.module("travelHtmlApp")
         .constant('ServiceApi', {
 
-            url: 'https://travelserver-andreisantaaccenture.c9.io'
+            url: 'http://dev.travelserver.com:3000'
 
         });
 }());
