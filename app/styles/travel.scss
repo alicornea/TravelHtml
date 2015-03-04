@@ -1,6 +1,56 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.animated-button { 
+    -webkit-animation-duration: 0.2s; 
+    -moz-animation-duration: 0.2s; 
+    -o-animation-duration: 0.2s; 
+    animation-duration: 0.2s; 
+    -webkit-animation-fill-mode: both; 
+    -moz-animation-fill-mode: both; 
+    -o-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: ease-in; 
+    -moz-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; 
+} 
+
+@keyframes fadeInRight { 
+  0% { 
+    opacity: 0; 
+    -webkit-transform: translateX(10px); 
+    -moz-transform: translateX(10px);
+    -o-transform: translateX(10px);
+    transform: translateX(10px); 
+  } 
+  100% { 
+    opacity: 1; 
+    -webkit-transform: translateX(0px); 
+    -moz-transform: translateX(0px); 
+    -o-transform: translateX(0px); 
+    transform: translateX(0px); 
+  } 
+} 
+
+@keyframes fadeInDown { 
+  0% { 
+    opacity: 0; 
+    -webkit-transform: translateY(5px); 
+    -moz-transform: translateY(5px);
+    -o-transform: translateY(5px);
+    transform: translateY(5px); 
+  } 
+  100% { 
+    opacity: 1; 
+    -webkit-transform: translateX(0px); 
+    -moz-transform: translateX(0px); 
+    -o-transform: translateX(0px); 
+    transform: translateX(0px); 
+  } 
+} 
+
 .travelPlan {
   content: url("../images/travel-background.png");
   height: 300px;
@@ -45,7 +95,8 @@ h1 {
 }
 
 .addTravelForm,
-.new-attraction-form {
+.new-attraction-form,
+.edit-attraction-form {
   font-size: 18px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
@@ -78,13 +129,11 @@ h1 {
   .datepicker .input-group-addon {
     border-radius: 0;
   }
-  /* RATING - Form - Group */
   .form-group {
     position: relative;
     border: 0;
     width: 100%;
   }
-  /* RATING - Form - Legend */
   .form-legend {
     display: none;
     margin: 0;
@@ -98,13 +147,13 @@ h1 {
     padding-top: 10px;
   }
 }
-/* RATING */
 
+/* RATING */
 .rating-label {
   display: inline-block;
 }
-/* RATING - Form - Item */
 
+/* RATING - Form - Item */
 .form-item {
   margin: auto;
   text-align: center;
@@ -140,7 +189,6 @@ input[type='radio'] {
   }
   label .fa-star-o {} label:hover .fa-star-o, label:focus .fa-star-o, label:hover ~ label .fa-star-o, label:focus ~ label .fa-star-o, input[type='radio']:checked ~ label .fa-star-o {
     opacity: 0;
-    //color: gold;
   }
   label:hover .fa-star, label:focus .fa-star, label:hover ~ label .fa-star, label:focus ~ label .fa-star, input[type='radio']:checked ~ label .fa-star {
     opacity: 1;
@@ -160,8 +208,8 @@ label .fa-star {
   position: absolute;
   left: -9999px;
 }
-/* RATING - Form - Action */
 
+/* RATING - Form - Action */
 .form-action {
   opacity: 0;
   position: absolute;
@@ -181,7 +229,6 @@ input[type='radio']:checked ~ .form-action .btn-reset {
 }
 
 /* RATING - Form - Output */
-
 .form-output {
   display: none;
   position: absolute;
@@ -219,8 +266,13 @@ input[type='radio']:checked ~ .form-output {
 }
 
 /****** My Travels *******/
-
 .myTravels {
+  #map-canvas {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 15px;
+  }
+
   h1 {
     text-align: left;
   }
@@ -279,25 +331,49 @@ input[type='radio']:checked ~ .form-output {
       border: 4px solid #F1F1F1;
       padding: 10px;
       margin-bottom: 10px;
+      word-wrap: break-word;
       
       .attraction-article-header {
-        display: inline-block;
-        margin-top: 15px;
+        margin-bottom: 4px;
         border-bottom: 1px solid #e5e5e5;
         font-size: 16px;
         
         .attraction-title {
           color: #069;
           padding-left: 17px;
-          float: left;
         }
         
-        .attraction-actions {
+        .attraction-actions .edit-attraction,
+        .attraction-actions .delete-attraction {
           float:right;
-          align: right;
+          display: none;
+          cursor: pointer;
+          font-size: 18px;
+          padding-right: 5px;
         }
       }
     }
+    
+    article:hover {
+      .attraction-article-header .attraction-actions .edit-attraction {
+        transition: all 0.5s ease-in;
+        display: inherit;
+        -webkit-animation-name: fadeInRight; 
+        -moz-animation-name: fadeInRight; 
+        -o-animation-name: fadeInRight; 
+        animation-name: fadeInRight;
+      }
+      
+      .attraction-article-header .attraction-actions .delete-attraction {
+        transition: all 0.5s ease-in;
+        display: inherit;
+        -webkit-animation-name: fadeInDown; 
+        -moz-animation-name: fadeInDown; 
+        -o-animation-name: fadeInDown; 
+        animation-name: fadeInDown;
+      }
+    }
+    
     .row {
       margin-left: -15px;
       margin-right: -15px;
@@ -325,11 +401,12 @@ input[type='radio']:checked ~ .form-output {
     label .fa {
       font-size: 1.8rem;
     }
-    input[type='radio']:checked ~ label .fa-star {
+    /*input[type='radio']:checked ~ label .fa-star {
       opacity: 1;
       color: gold;
-    }
+    }*/
     .rated-attraction input[type='radio']:checked ~ label .fa-star, .rated-travel input[type='radio']:checked ~ label .fa-star {
+      opacity: 1;
       color: gold;
     }
     .rated-travel .form-item {
@@ -341,10 +418,13 @@ input[type='radio']:checked ~ .form-output {
   }
 }
 
-.new-attraction-form {
+.new-attraction-form,
+.edit-attraction-form {
   margin-top: 25px;
   .row {
     margin-left: 0;
     margin-right: 0;
   }
 }
+
+

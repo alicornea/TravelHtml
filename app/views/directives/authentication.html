@@ -1,4 +1,4 @@
-<form ng-submit="login(credentials)">
+<form>
     <div id="homer">
         <div class="head">
 
@@ -57,19 +57,21 @@
         </div>
     </div>
     <br/>
-    <div ng-show="!isLoggedIn()">
+    <div ng-show="!isLoggedIn">
         <span>Username : </span>
         <input type="text" ng-model="credentials.username" />
         <span>Password : </span>
         <input type="password" ng-model="credentials.password" />
-        <button type="submit">Login</button>
-        <button ng-click="twitterLogin()" id="connectButton" type="button">Connect Twitter</button>
+        <button ng-click="login(credentials)">Login</button>
+        <div id="social-buttons">
+            <span>Connect with : </span>
+            <button class="button-facebook" ng-click="fbLogin()"></button>
+            <button class="button-twitter" ng-click="twitterLogin()"></button>
+        </div>
         {{error}}
-        <a ng-click="logout()">Logout</a>
     </div>
-    <div ng-show="isLoggedIn()">
+    <div ng-show="isLoggedIn">
         {{welcome}}
         <a ng-click="logout()">Logout</a>
     </div>
-    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true"></div>
 </form>

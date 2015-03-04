@@ -1,13 +1,18 @@
-<label>Visited attractions</label>
-<div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index + 1">
+<label ng-if="travel.attractions.length">Visited attractions</label>
+<div class="travel-attractions" ng-repeat="attraction in travel.attractions" ng-init="index = $index + 1; name = attraction.name; date = attraction.date; review = attraction.review">
 
     <article>
-        <div class="attraction-article-header row">
+        <div class="row attraction-article-header">
             <div class="col-md-10 attraction-title">
-                <span>{{attraction.name}}</span>
+                <span>{{name}}</span>
             </div>
             <div class="col-md-2 attraction-actions">
-                <button type="button">Edit</button>
+                <div class="edit-attraction animated-button">
+                    <span class="glyphicon glyphicon-edit" data-ng-click="enableEditAttractionPopup(); attraction.isEditable = true; editAttractionPopup.initialLoad = false;"></span>
+                </div>
+                <div class="delete-attraction animated-button">
+                    <span class="glyphicon glyphicon-remove-circle" data-ng-click="deleteAttraction(travel, attraction)"></span>
+                </div>
             </div>
         </div>
 
@@ -15,14 +20,16 @@
             <div class="col-md-12 rated-attraction">
                 <attraction-rating></attraction-rating>
                 <div class="review-date">
-                    <p> on {{attraction.date | date:'MMM dd, yyyy'}}</p>
+                    <p> on {{date | date:'MMM dd, yyyy'}}</p>
                 </div>
             </div>
         </div>
         <div class="travel-review">
             <p>
-                {{attraction.review}}
+                {{review}}
             </p>
         </div>
     </article>
+    
 </div>
+
