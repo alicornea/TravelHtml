@@ -64,6 +64,10 @@ angular.module('travelHtmlApp', [
         templateUrl: 'views/test.html',
         controller: 'TestCtrl'
       })
+      .when('/user', {
+        templateUrl: 'views/user/user.html',
+        controller: 'UserDetailsCtrl'
+      })
 
     .otherwise({
       redirectTo: '/'
@@ -76,10 +80,6 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
 
   Restangular.setBaseUrl(ServiceApi.url);
 
-
-  //$window.fbAsyncInit = function() {
-  // Executed when the SDK is loaded
-
   FB.init({
     appId: '1013215985358490',
     channelUrl: 'app/channel.html',
@@ -89,27 +89,4 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
   });
 
   FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
-  //};
-
-  // Are you familiar to IIFE ( http://bit.ly/iifewdb ) ?
-
-  /*(function(d) {
-    // load the Facebook javascript SDK
-
-    var js,
-      id = 'facebook-jssdk',
-      ref = d.getElementsByTagName('script')[0];
-
-    if (d.getElementById(id)) {
-      return;
-    }
-
-    js = d.createElement('script');
-    js.id = id;
-    js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-
-    ref.parentNode.insertBefore(js, ref);
-
-  }(document));*/
 }]);

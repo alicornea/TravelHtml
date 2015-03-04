@@ -8,20 +8,20 @@
  * Controller of the travelHtmlApp
  */
 angular.module('travelHtmlApp')
-  .controller('AppJsCtrl', ['$rootScope', '$scope', function ($rootScope, $scope) {
+  .controller('AppJsCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    
+
     $rootScope.isPopupEnabled = false;
-    
-    $rootScope.disablePopup = function(){
+
+    $rootScope.disablePopup = function() {
       $rootScope.isPopupEnabled = false;
     };
-    
-    $rootScope.enablePopup = function(){
+
+    $rootScope.enablePopup = function() {
       $rootScope.isPopupEnabled = true;
     };
   }]);

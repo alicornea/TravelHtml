@@ -33,7 +33,7 @@
     <authentication ng-class="{ 'blur': isPopupEnabled }"></authentication>
     <div class="header" ng-class="{ 'blur': isPopupEnabled }">
       <ul class="nav nav-pills pull-right">
-        <li><a href="#"><i class="fa fa-user"></i></a>
+        <li><a ng-href="#/user"><i class="fa fa-user"></i></a>
         </li>
         <li><a href="#"><i class="fa fa-bars"></i></a>
         </li>
@@ -124,6 +124,9 @@
   <script src="scripts/travel/directives/attractionrating.js"></script>
   <script src="scripts/travel/factories/travelservice.js"></script>
   <script src="scripts/travel/directives/addattraction.js"></script>
+  
+  <script src="scripts/user/controllers/userDetails.js"></script>
+  <script src="scripts/user/services/userService.js"></script>
 
   <!-- endbuild -->
 
