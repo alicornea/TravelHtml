@@ -1,7 +1,6 @@
 (function () {
     angular.module("travelHtmlApp")
         .constant('ServiceApi', {
-            url: 'https://travelserver-alicornea.c9.io'
-
+            url: 'http://dev.travelserver.com:3000'
         });
 }());

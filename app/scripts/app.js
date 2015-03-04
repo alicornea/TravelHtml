@@ -22,8 +22,8 @@ angular.module('travelHtmlApp', [
         'ngAnimate',
         'ngTouch',
         'swipe'
-    ])
-    .config(function($routeProvider) {
+])
+    .config(function ($routeProvider) {
 
         $routeProvider
             .when('/', {
@@ -80,7 +80,7 @@ angular.module('travelHtmlApp', [
     });
 
 
-angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', function($window, facebookService, ServiceApi, Restangular, $rootScope) {
+angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', function ($window, facebookService, ServiceApi, Restangular, $rootScope) {
 
 
     Restangular.setBaseUrl(ServiceApi.url);
@@ -95,7 +95,7 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
 
     FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
 
-    $rootScope.$on('$routeChangeStart', function(next, current) {
+    $rootScope.$on('$routeChangeStart', function (next, current) {
         $rootScope.disableAddAttractionPopup();
         $rootScope.disableEditAttractionPopup();
     });
