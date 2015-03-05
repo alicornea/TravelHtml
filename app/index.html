@@ -34,7 +34,7 @@
     <authentication ng-class="{ 'blur': isPopupEnabled }"></authentication>
     <div class="header" ng-class="{ 'blur': isPopupEnabled }">
       <ul class="nav nav-pills pull-right">
-        <li><a href="#"><i class="fa fa-user"></i></a>
+        <li><a ng-href="#/user"><i class="fa fa-user"></i></a>
         </li>
         <li><a href="#"><i class="fa fa-bars"></i></a>
         </li>
@@ -76,7 +76,7 @@
     <script src="bower_components/json3/lib/json3.js"></script>
     <![endif]-->
   <!-- endbuild -->
-  
+
   <!-- build:js(.) scripts/vendor.js -->
 
   <!-- bower:js -->
@@ -136,8 +136,15 @@
 
   <script src="scripts/users/factories/usersService.js"></script>
   <script src="scripts/buddies/controllers/buddies.js"></script>
-  
-  
+
+  <!--<script src="scripts/travel/directives/addattraction.js"></script>-->
+
+  <script src="scripts/user/controllers/userDetails.js"></script>
+  <script src="scripts/user/services/userService.js"></script>
+
+  <script src="scripts/controllers/test.js"></script>
+  <script src="scripts/gallery/controllers/gallery.js"></script>
+
   <!-- endbuild -->
 
 </body>

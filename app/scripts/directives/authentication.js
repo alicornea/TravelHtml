@@ -109,7 +109,9 @@
                             scope.error = 'Error: Invalid user or password';
                             scope.welcome = '';
                             scope.isLoggedIn = false;
-                            scope.$apply();
+
+                            if (!scope.$$phase)
+                                scope.$apply();
                         }
 
                         function parseUserDataFromTwitter(data) {

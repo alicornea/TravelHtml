@@ -1,0 +1,42 @@
+<div>
+    <table>
+        <tr ng-if="userDetails.username">
+            <td>
+                <label>Username : </label>
+            </td>
+            <td>
+                <input type="text" readonly="true" ng-model="userDetails.username">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>First name : </label>
+            </td>
+            <td>
+                <input ng-model="userDetails.first_name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Last name : </label>
+            </td>
+            <td>
+                <input ng-model="userDetails.last_name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Email : </label>
+            </td>
+            <td>
+                <input ng-model="userDetails.email">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br/>
+                <button id="btnUpdate" ng-click="updateUser()">Update</button>
+            </td>
+        </tr>
+    </table>
+</div>
