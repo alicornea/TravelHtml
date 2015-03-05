@@ -62,13 +62,17 @@ angular.module('travelHtmlApp', [
             templateUrl: 'views/travel/mytravels.html',
             controller: 'TravelsCtrl',
         })
+        .when('/buddies', {
+            templateUrl: 'views/buddies/buddies.html',
+            controller: 'BuddiesCtrl'
+        })
               .when('/test', {
-        templateUrl: 'swipe.html',
-        controller: 'TestCtrl'
-      })
+                  templateUrl: 'swipe.html',
+                  controller: 'TestCtrl'
+              })
       .when('/gallery', {
-        templateUrl: 'views/gallery/gallery.html',
-        controller: 'GalleryCtrl'
+          templateUrl: 'views/gallery/gallery.html',
+          controller: 'GalleryCtrl'
       })
 
       .otherwise({
@@ -78,7 +82,7 @@ angular.module('travelHtmlApp', [
   });
 
 
-angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', function ($window, facebookService, ServiceApi, Restangular) {
+angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', function ($window, facebookService, ServiceApi, Restangular, $rootScope) {
 
 
     Restangular.setBaseUrl(ServiceApi.url);
@@ -97,11 +101,9 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
 
     FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
 
+    $rootScope.$on('$routeChangeStart', function (next, current) {
+        $rootScope.disableAddAttractionPopup();
+        $rootScope.disableEditAttractionPopup();
+    });
 }]);
 
-angular.module('travelHtmlApp').run(function($rootScope) {
-  $rootScope.$on('$routeChangeStart', function(next, current) {
-    $rootScope.disableAddAttractionPopup();
-    $rootScope.disableEditAttractionPopup();
-  });
-});
