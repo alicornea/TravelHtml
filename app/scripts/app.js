@@ -9,84 +9,84 @@
  * Main module of the application.
  */
 angular.module('travelHtmlApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'gridster',
-    'ui.bootstrap.datetimepicker',
-    'restangular',
-    'angulike',
-    'ngAnimate',
-    'ngTouch',
-    'swipe'
+        'ngAnimate',
+        'ngCookies',
+        'ngResource',
+        'ngRoute',
+        'ngSanitize',
+        'ngTouch',
+        'gridster',
+        'ui.bootstrap.datetimepicker',
+        'restangular',
+        'angulike',
+        'ngAnimate',
+        'ngTouch',
+        'swipe'
 ])
-  .config(function ($routeProvider) {
-
-      $routeProvider
-        .when('/', {
-            templateUrl: 'views/dashboard/dashboard.html',
-            controller: 'DashboardCtrl'
-        })
-        .when('/dashboard/:editEnabled', {
-            templateUrl: 'views/dashboard/dashboard.html',
-            controller: 'DashboardCtrl'
-        })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
-        })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
-        })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
-        })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
-        })
-        .when('/addtravel', {
-            templateUrl: 'views/travel/addtravel.html',
-            controller: 'TravelsCtrl'
-        })
-        .when('/dashboard', {
-            templateUrl: 'views/travel/addtravel.html',
-            controller: 'DashboardCtrl'
-        })
-        .when('/mytravels', {
-            templateUrl: 'views/travel/mytravels.html',
-            controller: 'TravelsCtrl',
-        })
+    .config(['$routeProvider', 'RestangularProvider', 'ServiceApi', function ($routeProvider, RestangularProvider, ServiceApi) {
+        $routeProvider
+              .when('/', {
+                  templateUrl: 'views/dashboard/dashboard.html',
+                  controller: 'DashboardCtrl'
+              })
+              .when('/dashboard/:editEnabled', {
+                  templateUrl: 'views/dashboard/dashboard.html',
+                  controller: 'DashboardCtrl'
+              })
+              .when('/about', {
+                  templateUrl: 'views/about.html',
+                  controller: 'AboutCtrl'
+              })
+              .when('/about', {
+                  templateUrl: 'views/about.html',
+                  controller: 'AboutCtrl'
+              })
+              .when('/about', {
+                  templateUrl: 'views/about.html',
+                  controller: 'AboutCtrl'
+              })
+              .when('/about', {
+                  templateUrl: 'views/about.html',
+                  controller: 'AboutCtrl'
+              })
+              .when('/addtravel', {
+                  templateUrl: 'views/travel/addtravel.html',
+                  controller: 'TravelsCtrl'
+              })
+              .when('/dashboard', {
+                  templateUrl: 'views/travel/addtravel.html',
+                  controller: 'DashboardCtrl'
+              })
+              .when('/mytravels', {
+                  templateUrl: 'views/travel/mytravels.html',
+                  controller: 'TravelsCtrl',
+              })
               .when('/test', {
-        templateUrl: 'swipe.html',
-        controller: 'TestCtrl'
-      })
-      .when('/gallery', {
-        templateUrl: 'views/gallery/gallery.html',
-        controller: 'GalleryCtrl'
-      })
+                  templateUrl: 'swipe.html',
+                  controller: 'TestCtrl'
+              })
+              .when('/user', {
+                  templateUrl: 'views/user/user.html',
+                  controller: 'UserDetailsCtrl'
+              }).when('/gallery', {
+                  templateUrl: 'views/gallery/gallery.html',
+                  controller: 'GalleryCtrl'
+              })
+              .when('/buddies', {
+                  templateUrl: 'views/buddies/buddies.html',
+                  controller: 'BuddiesCtrl'
+              })
 
-      .otherwise({
-          redirectTo: '/'
+          .otherwise({
+              redirectTo: '/'
+          });
 
-      });
-  });
-
-
-angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', function ($window, facebookService, ServiceApi, Restangular) {
+        RestangularProvider.setBaseUrl(ServiceApi.url);
+    }]);
 
 
-    Restangular.setBaseUrl(ServiceApi.url);
-
-
-    //$window.fbAsyncInit = function() {
-    // Executed when the SDK is loaded
-
+angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', function ($window, facebookService, ServiceApi, Restangular, $rootScope) {
+    
     FB.init({
         appId: '1013215985358490',
         channelUrl: 'app/channel.html',
@@ -97,11 +97,8 @@ angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi',
 
     FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
 
+    $rootScope.$on('$routeChangeStart', function (next, current) {
+        $rootScope.disableAddAttractionPopup();
+        $rootScope.disableEditAttractionPopup();
+    });
 }]);
-
-angular.module('travelHtmlApp').run(function($rootScope) {
-  $rootScope.$on('$routeChangeStart', function(next, current) {
-    $rootScope.disableAddAttractionPopup();
-    $rootScope.disableEditAttractionPopup();
-  });
-});

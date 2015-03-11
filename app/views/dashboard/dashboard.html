@@ -1,40 +1,36 @@
 
-    <link rel="stylesheet" href="bower_components/gridster/dist/jquery.gridster.css">
-    <link rel="stylesheet" href="bower_components/angular-gridster/examples/example.css">
-
+<link rel="stylesheet" href="bower_components/gridster/dist/jquery.gridster.css">
+<link rel="stylesheet" href="bower_components/angular-gridster/examples/example.css">
 
 <div style="clear:both"></div>
 <a href="https://travelhtml-andrei-murgu.c9.io/#/dashboard/1">edit</a>
-<input type="button" class="button" ng-click="save()" value ="Save" ng-show="editable"/>
-    <div class="gridster" >
-      <!-- Define gridster directives -->
-      <ul gridster="gridsterOptions" class="dashboard"  gridster-changed="changed(serialized)" gridster-editable="{{editable}}">
-        <li gridster-repeat="v in values" gridster-layout="values" class="row" >
-          <div class="col">
-            <div class="thumbnail tile-{color}" {img}>
-              <a href="{link}" class="text-center ">
-                  <div class="visual">
-                    <i class="fa {icon}"></i>
-                  </div>
-                  <span class="lead ">{txt}</span>
-                </a>
-                <a href="{link}" class="view-more">
-                View More
-                <i class="fa fa-arrow-right"></i>
-              </a>
+<input type="button" class="button" ng-click="save()" value="Save" ng-show="editable" />
+<div class="gridster">
+    <!-- Define gridster directives -->
+    <ul gridster="gridsterOptions" class="dashboard" gridster-changed="changed(serialized)" gridster-editable="{{editable}}">
+        <li gridster-repeat="v in values" gridster-layout="values" class="row">
+            <div class="col">
+                <div class="thumbnail tile-{{v.color}}" {{v.img}}>
+                    <a href="{{v.link}}" class="text-center ">
+                        <div class="visual">
+                            <i class="fa {{v.icon}}"></i>
+                        </div>
+                        <span class="lead ">{{v.txt}}</span>
+                    </a>
+                    <a href="{{v.link}}" class="view-more">
+                        View More
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-          </div>
-          
+
         </li>
-      </ul>
-    </div>
+    </ul>
+</div>
 
+<!-- Gridster -->
 
-    <!-- Gridster -->
-    
-    <script src="scripts/lib/jquery.gridster.js"></script>
-    <!-- angular-gridster -->
-    <script src="scripts/lib/angular-gridster.js"></script>
-
-    <!-- Create a basic angular app -->
- 
+<script src="scripts/lib/jquery.gridster.js"></script>
+<!-- angular-gridster -->
+<script src="scripts/lib/angular-gridster.js"></script>
+<!-- Create a basic angular app -->
