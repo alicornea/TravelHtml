@@ -57,7 +57,8 @@
         }
       };
 
-      $scope.submit = function() {
+      $scope.submit = function () {
+          console.log("travel submitted");
         if ($scope.attraction !== undefined) {
           $scope.attractions.push(createAttractionModel($scope.attraction));
         }

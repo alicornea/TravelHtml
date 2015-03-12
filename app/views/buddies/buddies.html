@@ -2,22 +2,39 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search friends.." ng-model="friendToSearch" ng-change="searchFriendsSuggestions()" />
-                <div></div>
+                <input id="friendToSearch" class="form-control" type="search" placeholder="Search friends.." name="friendToSearch" ng-model="friendToSearch" ng-change="searchFriendsSuggestions()" />
+                <span id="searchclear" class="glyphicon glyphicon-remove-circle" ng-show="showSuggestions" ng-click="clearSearch()"></span>
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-default form-control">
+                    <button type="button" class="btn btn-default form-control search-btn">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </div>
+
             </div>
-        </div>        
+            <div id="buddiesSuggestions" class="buddies-suggestions-dropdown" ng-if="users.length > 0">
+                <div class="row suggestion" ng-repeat="user in users | limitTo : 5">
+                    <div class="col-md-10">{{user.firstName}} {{user.lastName}}</div>
+                    <div class="col-md-2 add-friend-container" ng-if="!user.isBuddy"><button class="add-buddy-button" ng-click="addBuddy(user)"><span class="glyphicon glyphicon-plus-sign"></span> Add friend</button></div>
+                    <div class="col-md-2 added-friend-container" ng-if="user.isNewBuddy"><span class="glyphicon glyphicon-ok added-buddy-icon"></span></div>
+                    <div class="col-md-2 remove-friend-container" ng-if="user.isBuddy && !user.isNewBuddy"><button class="remove-buddy-button" ng-click="removeBuddy(user)"><span class="glyphicon glyphicon-minus-sign"></span> Unfriend</button></div>
+                </div>
+                <div class="row more-suggestions" ng-show="users.length > 5">
+                    <div class="col-md-12 more-suggestions-link"><strong>See more results >> </strong></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div ng-repeat="user in users">
-    {{user._id}}
-</div>
-<div id="buddies">
-    <div ng-repeat="buddy in buddies">
+<div id="buddies" class="buddies">
+    <!--<div ng-repeat="buddy in buddies">-->
+    <div class="buddy-profile">
+        <div id="profilePicture" class="profile-picture">
+            <image src="http://www.lapollera.cl/wp-content/uploads/2009/11/stewie.jpg"></image>
+        </div>
+        <div id="profileDetails" class="profile-details">
+            Bla bla bla.. detalii.. bla bla bla
+        </div>
     </div>
+    <!--</div>-->
 </div>

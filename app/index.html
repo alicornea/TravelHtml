@@ -2,150 +2,149 @@
 <html class="no-js" ng-app="travelHtmlApp">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(.) styles/vendor.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
-  <!-- endbower -->
-  <!-- endbuild -->
-  <!-- build:css(.tmp) styles/main.css -->
-  <link rel="stylesheet" href="styles/font-awesome.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/travel.css">
-  <link rel="stylesheet" href="styles/homer.css">
-  <link rel="stylesheet" href="styles/authentication.css">
-  <link rel="stylesheet" href="styles/buddies.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <!-- endbuild -->
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/travel.css">
+    <link rel="stylesheet" href="styles/homer.css">
+    <link rel="stylesheet" href="styles/authentication.css">
+    <link rel="stylesheet" href="styles/buddies.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- endbuild -->
 </head>
 
 <body ng-controller="AppJsCtrl">
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-  <script src="//connect.facebook.net/en_US/all.js"></script>
-  <!-- Add your site or application content here -->
-  <div class="container">
-    <div id="fb-root" ng-class="{ 'blur': isPopupEnabled }"></div>
-    <authentication ng-class="{ 'blur': isPopupEnabled }"></authentication>
-    <div class="header" ng-class="{ 'blur': isPopupEnabled }">
-      <ul class="nav nav-pills pull-right">
-        <li><a ng-href="#/user"><i class="fa fa-user"></i></a>
-        </li>
-        <li><a href="#"><i class="fa fa-bars"></i></a>
-        </li>
-        <li><a href="#"><i class="fa fa-envelope-o"></i></a>
-        </li>
-      </ul>
-      <h3 class="text-muted">Travel</h3>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+    <script src="//connect.facebook.net/en_US/all.js"></script>
+    <!-- Add your site or application content here -->
+    <div class="container">
+        <div id="fb-root" ng-class="{ 'blur': isPopupEnabled }"></div>
+        <authentication ng-class="{ 'blur': isPopupEnabled }"></authentication>
+        <div class="header" ng-class="{ 'blur': isPopupEnabled }">
+            <ul class="nav nav-pills pull-right">
+                <li>
+                    <a ng-href="#/user"><i class="fa fa-user"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                </li>
+            </ul>
+            <h3 class="text-muted">Travel</h3>
+        </div>
+
+        <div ng-view=""></div>
+
+        <div class="footer" ng-class="{ 'blur': isPopupEnabled }">
+            <p></p>
+        </div>
     </div>
 
-    <div ng-view=""></div>
 
-    <div class="footer" ng-class="{ 'blur': isPopupEnabled }">
-      <p></p>
-    </div>
-  </div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+    </script>
 
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.js"></script>
+      <![endif]-->
+    <!-- endbuild -->
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-gridster/lib/angular-gridster.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/angulike/angulike.js"></script>
+    <script src="bower_components/angular-swipe/dist/angular-swipe.js"></script>
+    <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/constants/serviceApi.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/app.js"></script>
+    <!--<script src="scripts/controllers/testctrl.js"></script>-->
 
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-  </script>
+    <script src="scripts/directives/authentication.js"></script>
+    <script src="scripts/factories/utils.js"></script>
+    <script src="scripts/factories/authInterceptor.js"></script>
+    <script src="scripts/factories/facebookService.js"></script>
+    <script src="scripts/factories/twitterService.js"></script>
+    <script src="scripts/factories/googlemapsinitializer.js"></script>
+    <script src="scripts/directives/datetimeformat.js"></script>
+    <script src="scripts/directives/dategreaterthan.js"></script>
+    <script src="scripts/directives/geolocation.js"></script>
 
-  <!-- build:js(.) scripts/oldieshim.js -->
-  <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <![endif]-->
-  <!-- endbuild -->
+    <script src="scripts/dashboard/controllers/dashboard.js"></script>
 
-  <!-- build:js(.) scripts/vendor.js -->
+    <script src="scripts/dashboard/services/dashboardService.js"></script>
 
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-gridster/lib/angular-gridster.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-  <script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
-  <script src="bower_components/lodash/lodash.js"></script>
-  <script src="bower_components/restangular/dist/restangular.js"></script>
-  <script src="bower_components/angulike/angulike.js"></script>
-  <script src="bower_components/angular-swipe/dist/angular-swipe.js"></script>
-  <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
+    <script src="scripts/travel/directives/travelrating.js"></script>
+    <script src="scripts/travel/directives/attractionrating.js"></script>
+    <script src="scripts/travel/factories/travelservice.js"></script>
+    <script src="scripts/travel/directives/attraction.js"></script>
+    <script src="scripts/travel/controllers/travels.js"></script>
+    <script src="scripts/travel/directives/addngautocomplete.js"></script>
 
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/constants/serviceApi.js"></script>
-  <script src="scripts/controllers/main.js"></script>
-  <script src="scripts/controllers/about.js"></script>
-  <script src="scripts/controllers/app.js"></script>
-  <!--<script src="scripts/controllers/testctrl.js"></script>-->
+    <script src="scripts/controllers/test.js"></script>
 
-  <script src="scripts/directives/authentication.js"></script>
-  <script src="scripts/factories/utils.js"></script>
-  <script src="scripts/factories/authInterceptor.js"></script>
-  <script src="scripts/factories/facebookService.js"></script>
-  <script src="scripts/factories/twitterService.js"></script>
-  <script src="scripts/factories/googlemapsinitializer.js"></script>
-  <script src="scripts/directives/datetimeformat.js"></script>
-  <script src="scripts/directives/dategreaterthan.js"></script>
-  <script src="scripts/directives/geolocation.js"></script>
+    <script src="scripts/gallery/controllers/gallery.js"></script>
 
-  <script src="scripts/dashboard/controllers/dashboard.js"></script>
+    <script src="scripts/buddies/factories/buddiesFactory.js"></script>
+    <script src="scripts/buddies/controllers/buddies.js"></script>
+    <script src="scripts/buddies/services/buddiesService.js"></script>
+    
+    <script src="scripts/user/controllers/userDetails.js"></script>
+    <script src="scripts/user/services/userService.js"></script>
 
-  <script src="scripts/dashboard/services/dashboardService.js"></script>
+    <script src="scripts/controllers/test.js"></script>
+    <script src="scripts/gallery/controllers/gallery.js"></script>
 
-  <script src="scripts/travel/directives/travelrating.js"></script>
-  <script src="scripts/travel/directives/attractionrating.js"></script>
-  <script src="scripts/travel/factories/travelservice.js"></script>
-  <script src="scripts/travel/directives/attraction.js"></script>
-  <script src="scripts/travel/controllers/travels.js"></script>
-  <script src="scripts/travel/directives/addngautocomplete.js"></script>
-
-  <script src="scripts/controllers/test.js"></script>
-
-  <script src="scripts/gallery/controllers/gallery.js"></script>
-
-  <script src="scripts/users/factories/usersService.js"></script>
-  <script src="scripts/buddies/controllers/buddies.js"></script>
-
-  <!--<script src="scripts/travel/directives/addattraction.js"></script>-->
-
-  <script src="scripts/user/controllers/userDetails.js"></script>
-  <script src="scripts/user/services/userService.js"></script>
-
-  <script src="scripts/controllers/test.js"></script>
-  <script src="scripts/gallery/controllers/gallery.js"></script>
-
-  <!-- endbuild -->
+    <!-- endbuild -->
 
 </body>
 

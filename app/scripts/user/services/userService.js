@@ -8,7 +8,7 @@
      * # userService
      * Factory in the travelHtmlApp.
      */
-    angular.module('travelHtmlApp').service('userService', ['$resource', 'ServiceApi', '$q', function($resource, ServiceApi, $q) {
+    angular.module('travelHtmlApp').service('userService', ['$resource', 'ServiceApi', '$q', 'Restangular', function($resource, ServiceApi, $q, Restangular) {
 
         var api = ServiceApi.url + '/api/users';
 
@@ -33,6 +33,16 @@
                     };
 
                 return deferred.promise;
+            },
+
+            getUsers: function () {
+                var deffered = $q.defer();
+
+                Restangular.all('api/users').getList().then(function (users) {
+                    deffered.resolve(users);
+                });
+                  
+                return deffered.promise;
             },
 
             updateUser: function(user) {
