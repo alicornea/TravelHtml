@@ -69,7 +69,12 @@ angular.module('travelHtmlApp', [
             .when('/user', {
                 templateUrl: 'views/user/user.html',
                 controller: 'UserDetailsCtrl'
-            }).when('/gallery', {
+            })
+            .when('/registration', {
+                templateUrl: 'views/user/registration.html',
+                controller: 'RegistrationCtrl'
+            })
+            .when('/gallery', {
                 templateUrl: 'views/gallery/gallery.html',
                 controller: 'GalleryCtrl'
             })

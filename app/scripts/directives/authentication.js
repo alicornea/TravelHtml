@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     /**
      * @ngdoc directive
@@ -7,31 +7,31 @@
      * # Login
      */
     angular.module('travelHtmlApp')
-        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', 'twitterService',
-            function($http, $window, $rootScope, ServiceApi, Convert, facebookService, twitterService) {
+        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', 'twitterService', '$location',
+            function ($http, $window, $rootScope, ServiceApi, Convert, facebookService, twitterService, $location) {
                 return {
                     restrict: 'E',
                     replace: true,
                     templateUrl: 'views/directives/authentication.html',
-                    link: function(scope) {
+                    link: function (scope) {
                         twitterService.initialize(); //initialize twitter service (oAuth)
 
                         scope.isLoggedIn = $window.localStorage != null && $window.localStorage.token != null;
 
-                        scope.login = function(credentials) {
+                        scope.login = function (credentials) {
                             $http.post(ServiceApi.url + '/authenticate', credentials)
-                                .success(function(data, status, headers, config) {
+                                .success(function (data, status, headers, config) {
                                     loginResponseHandler(data);
                                 })
-                                .error(function(data, status, headers, config) {
+                                .error(function (data, status, headers, config) {
                                     loginErrorResponseHandler();
                                 });
                         };
 
-                        scope.logout = function() {
-                            facebookService.getLoginStatus(function(response) {
+                        scope.logout = function () {
+                            facebookService.getLoginStatus(function (response) {
                                 if (response && response.status === 'connected') { //user logged in with FB
-                                    facebookService.logout(function() {
+                                    facebookService.logout(function () {
                                         logoutHandler();
                                     });
                                 }
@@ -42,15 +42,15 @@
                             });
                         };
 
-                        scope.twitterLogin = function() {
-                            twitterService.connectTwitter().then(function() {
+                        scope.twitterLogin = function () {
+                            twitterService.connectTwitter().then(function () {
                                 if (twitterService.isReady()) {
-                                    twitterService.getUserDetails().then(function(response) {
+                                    twitterService.getUserDetails().then(function (response) {
                                         $http.post(ServiceApi.url + '/authenticateviatwitter', parseUserDataFromTwitter(response))
-                                            .success(function(data, status, headers, config) {
+                                            .success(function (data, status, headers, config) {
                                                 loginResponseHandler(data);
                                             })
-                                            .error(function(data, status, headers, config) {
+                                            .error(function (data, status, headers, config) {
                                                 loginErrorResponseHandler();
                                             });
                                     });
@@ -58,9 +58,9 @@
                             });
                         };
 
-                        scope.fbLogin = function() {
+                        scope.fbLogin = function () {
                             //if logged in in FB, auto login in app
-                            facebookService.getLoginStatus(function(response) {
+                            facebookService.getLoginStatus(function (response) {
                                 if (response && response.status === 'connected') { //user logged in with FB
                                     connectWithFacebook();
                                 }
@@ -69,7 +69,7 @@
                             });
                         }
 
-                        $rootScope.$on("fb_connected", function(event, args) {
+                        $rootScope.$on("fb_connected", function (event, args) {
                             connectWithFacebook();
                         });
 
@@ -78,12 +78,12 @@
                         }
 
                         function connectWithFacebook() {
-                            facebookService.getUserInfo(function(response) {
+                            facebookService.getUserInfo(function (response) {
                                 $http.post(ServiceApi.url + '/authenticateViaFacebook', response)
-                                    .success(function(data, status, headers, config) {
+                                    .success(function (data, status, headers, config) {
                                         loginResponseHandler(data);
                                     })
-                                    .error(function(data, status, headers, config) {
+                                    .error(function (data, status, headers, config) {
                                         loginErrorResponseHandler();
                                     });
                             });
@@ -135,6 +135,8 @@
 
                             if (!scope.$$phase)
                                 scope.$apply();
+
+                            $location.path("/");
                         }
                     }
                 };

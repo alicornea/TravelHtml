@@ -56,13 +56,16 @@
             </div>
         </div>
     </div>
-    <br/>
+    <br />
     <div ng-show="!isLoggedIn">
         <span>Username : </span>
         <input type="text" ng-model="credentials.username" />
         <span>Password : </span>
         <input type="password" ng-model="credentials.password" />
         <button ng-click="login(credentials)">Login</button>
+        <div style="float:right">
+            <a ng-href="#/registration">Register</a>
+        </div>
         <div id="social-buttons">
             <span>Connect with : </span>
             <button class="button-facebook" ng-click="fbLogin()"></button>
