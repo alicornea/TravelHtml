@@ -8,14 +8,16 @@
 
     <div class="navigation">
         <ul class="nav nav-tabs" data-ng-init="visible = 'showTripContainer'">
-            <li data-ng-class="{ 'active' : visible == 'showTripContainer' }"><a data-ng-click="visible = 'showTripContainer'"><b>Trip</b></a>
+            <li data-ng-class="{ 'active' : visible == 'showTripContainer' }">
+                <a data-ng-click="visible = 'showTripContainer'"><b>Trip</b></a>
             </li>
-            <li data-ng-class="{ 'active' : visible == 'showattractionsContainer' }"><a data-ng-click="visible = 'showattractionsContainer'"><b>attractions</b></a>
+            <li data-ng-class="{ 'active' : visible == 'showattractionsContainer' }">
+                <a data-ng-click="visible = 'showattractionsContainer'"><b>attractions</b></a>
             </li>
         </ul>
     </div>
 
-    <form id="addTravelForm" name="addTravelForm" class="addTravelForm" data-ng-submit="addTravelForm.$valid" ng-init="readonly=false" novalidate>
+    <form id="addTravelForm" name="addTravelForm" class="addTravelForm" data-ng-submit="addTravelForm.$valid && submit()" ng-init="readonly=false" novalidate>
 
         <div data-ng-show="visible == 'showTripContainer'" class="add-travel-container">
             <div class="row">
@@ -73,7 +75,7 @@
                 <div class="col-md-4">
                     <div class="form-group" data-ng-class="{'has-error has-feedback' : submitted && !flight.length && addTravelForm.flight.$error.required }">
                         <label>Flight</label>
-                        <input class="form-control" type="text" data-ng-model="flight" name="flight" placeholder="Flight" required/>
+                        <input class="form-control" type="text" data-ng-model="flight" name="flight" placeholder="Flight" required />
                         <div class="alert alert-danger" data-ng-show="submitted && !addTravelForm.flight.$dirty && addTravelForm.flight.$error.required">Flight is required!</div>
                     </div>
                 </div>
@@ -98,6 +100,6 @@
             <attraction class="add-attraction"></attraction>
         </div>
 
-        <button class="btn submit-btn form-control" type="submit" data-ng-click="submitted=true; submit()">Submit</button>
+        <button class="button submit-btn form-control" type="submit" data-ng-click="submitted=true">Submit</button>
     </form>
 </div>

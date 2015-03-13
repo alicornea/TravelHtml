@@ -21,10 +21,10 @@ angular.module('travelHtmlApp', [
         'angulike',
         'ngAnimate',
         'ngTouch',
-        'swipe'
+        'swipe',
+        'ngAutocomplete'
 ])
-    .config(function ($routeProvider) {
-
+    .config(['$routeProvider', 'RestangularProvider', 'ServiceApi', function ($routeProvider, RestangularProvider, ServiceApi) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/dashboard/dashboard.html',
@@ -77,18 +77,20 @@ angular.module('travelHtmlApp', [
             .when('/gallery', {
                 templateUrl: 'views/gallery/gallery.html',
                 controller: 'GalleryCtrl'
+            }).when('/buddies', {
+                templateUrl: 'views/buddies/buddies.html',
+                controller: 'BuddiesCtrl'
             })
 
-        .otherwise({
-            redirectTo: '/'
-        });
-    });
+          .otherwise({
+              redirectTo: '/'
+          });
+
+        RestangularProvider.setBaseUrl(ServiceApi.url);
+    }]);
 
 
 angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', function ($window, facebookService, ServiceApi, Restangular, $rootScope) {
-
-
-    Restangular.setBaseUrl(ServiceApi.url);
 
     FB.init({
         appId: '1013215985358490',

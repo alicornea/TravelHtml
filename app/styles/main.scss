@@ -156,9 +156,9 @@ body {
     filter: blur(3px);
   }
   
-  .btn {
+  .button {
     margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     width: 100%;
     height: 35px;
     color: white;
@@ -170,6 +170,124 @@ body {
   .cancel-btn {
     background-color: slategrey;
   }
+  .animated-popup { 
+    -webkit-animation-duration: 1s; 
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both; 
+    } 
+
+    @-moz-keyframes fadeInDownPopup {
+      0% { 
+        opacity: 0; 
+        top: 0;
+        z-index: -5;
+      } 
+      30% {
+        opacity: 0;
+        top: 10%;
+        z-index: 30;
+      }
+      100% { 
+        opacity: 1; 
+        top: 25%;
+        z-index: 100;
+      } 
+    }
+
+    @-webkit-keyframes fadeInDownPopup {
+      0% { 
+        opacity: 0; 
+        top: 0;
+        z-index: -5;
+      } 
+      30% {
+        opacity: 0;
+        top: 10%;
+        z-index: 30;
+      }
+      100% { 
+        opacity: 1; 
+        top: 25%;
+        z-index: 100;
+      } 
+    }
+
+    @keyframes fadeInDownPopup {
+      0% { 
+        opacity: 0; 
+        top: 0;
+        z-index: -5;
+      } 
+      30% {
+        opacity: 0;
+        top: 10%;
+        z-index: 30;
+      }
+      100% { 
+        opacity: 1; 
+        top: 25%;
+        z-index: 100;
+      } 
+    }
+
+    @-moz-keyframes fadeOutUpPopup {
+      0% { 
+        opacity: 1; 
+        top: 25%;
+        z-index: 100;
+      } 
+      70%{
+        opacity: 0;
+        top: 10%;
+        z-index: 70;
+      }
+      100% {
+        opacity: 0;
+        top: 0;
+        z-index: -5;
+      }
+    }
+
+    @-webkit-keyframes fadeOutUpPopup {
+      0% { 
+        opacity: 1; 
+        top: 25%;
+        z-index: 100;
+      } 
+      70%{
+        opacity: 0;
+        top: 10%;
+        z-index: 70;
+      }
+      100% {
+        opacity: 0;
+        top: 0;
+        z-index: -5;
+      }
+    }
+
+    @keyframes fadeOutUpPopup {
+      0% { 
+        opacity: 1; 
+        top: 25%;
+        z-index: 100;
+      } 
+      70%{
+        opacity: 0;
+        top: 10%;
+        z-index: 70;
+      }
+      100% {
+        opacity: 0;
+        top: 0;
+        z-index: -5;
+      }
+    }
 }
 
 .header{
@@ -191,49 +309,3 @@ form .alert {
   border-radius: 0;
 }
 
-.animated-popup { 
-    -webkit-animation-duration: 1s; 
-    -moz-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-duration: 1s; 
-    -webkit-animation-fill-mode: both; 
-    -moz-animation-fill-mode: both;
-    -o-animation-fill-mode: both;
-    animation-fill-mode: both; 
-} 
-
-@keyframes fadeInDownPopup {
-  0% { 
-    opacity: 0; 
-    top: 0;
-    z-index: -5;
-  } 
-  30% {
-    opacity: 0;
-    top: 10%;
-    z-index: 30;
-  }
-  100% { 
-    opacity: 1; 
-    top: 25%;
-    z-index: 100;
-  } 
-}
-
-@keyframes fadeOutUpPopup {
-  0% { 
-    opacity: 1; 
-    top: 25%;
-    z-index: 100;
-  } 
-  70%{
-    opacity: 0;
-    top: 10%;
-    z-index: 70;
-  }
-  100% {
-    opacity: 0;
-    top: 0;
-    z-index: -5;
-  }
-}
