@@ -752,7 +752,7 @@
                 num : $w.attr("data-num"),
                 img : $w.attr("data-img"),
                 color : $w.attr("data-color"),
-                num : $w.attr("data-icon"),
+                icon : $w.attr("data-icon"),
                 txt : $w.attr("data-txt"),
                 link : $w.attr("data-link"),
             };
