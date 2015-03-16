@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     /**
@@ -8,13 +8,13 @@
      * # userService
      * Factory in the travelHtmlApp.
      */
-    angular.module('travelHtmlApp').service('userService', ['$resource', 'ServiceApi', '$q', function($resource, ServiceApi, $q) {
 
+    angular.module('travelHtmlApp').service('userService', ['$resource', 'ServiceApi', '$q', 'Restangular', function ($resource, ServiceApi, $q, Restangular) {
         var api = ServiceApi.url + '/api/users';
 
         return {
 
-            getUser: function(userId) {
+            getUser: function (userId) {
                 var userResource = $resource(api + '/:userId', null, {
                     'query': {
                         method: 'GET',
@@ -24,18 +24,28 @@
                 var deferred = $q.defer();
 
                 userResource.query({
-                        userId: userId
-                    }, function(user) {
-                        deferred.resolve(user);
-                    }),
-                    function(err) {
+                    userId: userId
+                }, function (user) {
+                    deferred.resolve(user);
+                }),
+                    function (err) {
                         deferred.reject(err);
                     };
 
                 return deferred.promise;
             },
 
-            updateUser: function(user) {
+            getUsers: function () {
+                var deffered = $q.defer();
+
+                Restangular.all('api/users').getList().then(function (users) {
+                    deffered.resolve(users);
+                });
+
+                return deffered.promise;
+            },
+
+            updateUser: function (user) {
                 var userResource = $resource(api + '/:userId', {
                     userId: '@userId'
                 }, {
@@ -47,7 +57,7 @@
 
                 userResource.update({
                     userId: user._id
-                }, user, function(res) {
+                }, user, function (res) {
                     if (res.hasError !== undefined && res.hasError) {
                         deferred.resolve({
                             updatedSuccessfully: false
@@ -61,24 +71,24 @@
                 });
 
                 return deferred.promise;
-            }
+            },
 
-            /*var save = function(travel) {
-                var travelResource = $resource(api);
+            saveUser: function (user) {
+                var userResource = $resource(ServiceApi.url + '/register');
                 var deferred = $q.defer();
 
-                travelResource.save(travel).$promise.then(function(res) {
-                        deferred.resolve(true);
-                    }),
-                    function(err) {
+                userResource.save(user).$promise.then(function (res) {
+                    deferred.resolve(res);
+                }),
+                    function (err) {
                         console.log(err);
                         deferred.resolve(false);
                     };
 
                 return deferred.promise;
-            };
+            }
 
-            var remove = function(travelId) {
+            /*var remove = function(travelId) {
                 var travelResource = $resource(api + '/:travelId');
                 var deferred = $q.defer();
 

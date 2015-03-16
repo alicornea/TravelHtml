@@ -1,0 +1,42 @@
+﻿<div>Registration</div>
+<form name="registrationForm" ng-submit="register()" novalidate>
+    <table>
+        <tr>
+            <td>Username : </td>
+            <td><input name="txtUsername" type="text" ng-model="user.username" required /></td>
+        </tr>
+        <tr>
+            <td>Password : </td>
+            <td><input name="txtPassword" type="password" ng-model="user.password" required /></td>
+        </tr>
+        <tr>
+            <td>Re-type password : </td>
+            <td><input type="password" ng-model="password_confirm" validate-equals="user.password" /></td>
+        </tr>
+        <tr>
+            <td>First Name : </td>
+            <td><input name="txtFirstName" ng-model="user.first_name" required /></td>
+        </tr>
+        <tr>
+            <td>Last Name : </td>
+            <td><input name="txtLastName" ng-model="user.last_name" required /></td>
+        </tr>
+        <tr>
+            <td>Email : </td>
+            <td><input name="txtEmail" type="email" ng-model="user.email" required /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+                <p ng-show="submitted && registrationForm.txtUsername.$invalid">Please enter a valid username</p>
+                <p ng-show="submitted && registrationForm.txtPassword.$invalid">Please enter a valid password</p>
+                <p ng-show="submitted && registrationForm.txtFirstName.$invalid">Please enter a first name</p>
+                <p ng-show="submitted && registrationForm.txtLastName.$invalid">Please enter a last name</p>
+                <p ng-show="submitted && registrationForm.txtEmail.$invalid">Please enter an email</p>
+                <br />
+                <input type="submit" ng-click="submitted=true" value="Register" />
+            </td>
+        </tr>
+    </table>
+
+</form>

@@ -4,7 +4,9 @@
 
 <div ng-if="isUserAuthenticated()" ng-init="loadTravels()">
 
-    <geo-location ng-if="googleMapsApi.isLoaded"></geo-location>
+    <div ng-class="{ 'blur' : isPopupEnabled }">
+        <geo-location ng-if="googleMapsApi.isLoaded"></geo-location>
+    </div>    
 
     <div class="alert alert-info" ng-show="noTravelAvaialble">You have no travels! To add a new travel, visit the <a href="#/addtravel">Add Travel</a> page.</div>
 
