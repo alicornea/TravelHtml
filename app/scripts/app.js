@@ -10,6 +10,7 @@
  */
 angular.module('travelHtmlApp', [
         'ngAnimate',
+        'ngMessages',
         'ngCookies',
         'ngResource',
         'ngRoute',
@@ -90,20 +91,26 @@ angular.module('travelHtmlApp', [
     }]);
 
 
-angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', function ($window, facebookService, ServiceApi, Restangular, $rootScope) {
+angular.module('travelHtmlApp').run(['$window', 'facebookService', 'ServiceApi', 'Restangular', '$rootScope', '$templateCache', '$http',
+    function ($window, facebookService, ServiceApi, Restangular, $rootScope, $templateCache, $http) {
 
-    FB.init({
-        appId: '1013215985358490',
-        channelUrl: 'app/channel.html',
-        status: true, //Set if you want to check the authentication statusat the start up of the app
-        cookie: true, //Enable cookies to allow the server to access the session
-        xfbml: true /* Parse XFBML */
-    });
+        FB.init({
+            appId: '1013215985358490',
+            channelUrl: 'app/channel.html',
+            status: true, //Set if you want to check the authentication statusat the start up of the app
+            cookie: true, //Enable cookies to allow the server to access the session
+            xfbml: true /* Parse XFBML */
+        });
 
-    FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
+        FB.Event.subscribe('auth.authResponseChange', facebookService.statusChangeCallback);
 
-    $rootScope.$on('$routeChangeStart', function (next, current) {
-        $rootScope.disableAddAttractionPopup();
-        $rootScope.disableEditAttractionPopup();
-    });
-}]);
+        $rootScope.$on('$routeChangeStart', function (next, current) {
+            $rootScope.disableAddAttractionPopup();
+            $rootScope.disableEditAttractionPopup();
+        });
+
+        $http.get('views/errorMessages.html').then(function (response) {
+            $templateCache.put('errorMessages', response.data);
+        });
+    }
+]);

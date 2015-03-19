@@ -10,13 +10,19 @@
      */
     angular.module('travelHtmlApp').controller('RegistrationCtrl', ['$rootScope', '$scope', 'userService', '$window', 'Convert', 'SHA1', '$location',
         function ($rootScope, $scope, userService, $window, Convert, SHA1, $location) {
-            $scope.register = function () {
+            $scope.register = function (isValid) {
+                if (!isValid) {
+                    return;
+                }
+
+                var user = angular.copy($scope.user);
                 //hash user password
-                $scope.password = SHA1.hash($scope.password);
-                userService.saveUser($scope.user).then(function (data) {
-                    console.log(data);
+                user.password = SHA1.hash($scope.user.password);
+                userService.saveUser(user).then(function (data) {
                     if (data.errorCode) {
-                        alert(data.errorCode);
+                        if (data.errorCode == "2") //error code for duplicate user
+                            $scope.registrationForm.txtUsername.$setValidity('duplicateUser', false);
+
                     }
                     else {//user is registered and we need to perform autologin
                         var encodedProfile = data.token.split('.')[1];
@@ -28,6 +34,10 @@
                         $location.path("/");
                     }
                 })
+            }
+
+            $scope.validateUsername = function () {
+                $scope.registrationForm.txtUsername.$setValidity('duplicateUser', true);
             }
         }]);
 })();
