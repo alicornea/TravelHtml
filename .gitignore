@@ -54,5 +54,6 @@ Temporary Items
 /.c9/
 
 #Ignore ServiceApi constant
-TravelHtml.v12.suo
+app/scripts/constants/serviceApi.js
+website.publishproj
 *.suo

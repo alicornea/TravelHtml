@@ -3,14 +3,15 @@
 <link rel="stylesheet" href="bower_components/angular-gridster/examples/example.css">
 
 <div style="clear:both"></div>
-<a href="https://travelhtml-andrei-murgu.c9.io/#/dashboard/1">edit</a>
+<a href="/#/dashboard/1">edit</a>
 <input type="button" class="button" ng-click="save()" value="Save" ng-show="editable" />
 <div class="gridster">
     <!-- Define gridster directives -->
     <ul gridster="gridsterOptions" class="dashboard" gridster-changed="changed(serialized)" gridster-editable="{{editable}}">
-        <li gridster-repeat="v in values" gridster-layout="values" class="row">
+        <li gridster-repeat="v in values" gridster-layout="values" class="row" data-icon="{{v.icon}}" data-img="{{v.img}}" data-txt="{{v.txt}}"
+            data-color="{{v.color}}" data-link="{{v.link}}">
             <div class="col">
-                <div class="thumbnail tile-{{v.color}}" {{v.img}}>
+                <div class="thumbnail tile-{{v.color}}" style="background-image:url({{v.img}})">
                     <a href="{{v.link}}" class="text-center ">
                         <div class="visual">
                             <i class="fa {{v.icon}}"></i>

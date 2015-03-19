@@ -106,7 +106,7 @@
                     col: 1,
                     size_x: 4,
                     size_y: 2,
-                    img: 'https://travelhtml-andrei-murgu.c9.io/images/map.jpg',
+                    img: 'http://dev.travelhtml.com:8080/images/map.jpg',
                     link: "#/my-map"
                 },
 
@@ -158,7 +158,7 @@
                     col: 1,
                     size_x: 4,
                     size_y: 2,
-                    img: "https://travelhtml-andrei-murgu.c9.io/images/photos.png",
+                    img: "http://dev.travelhtml.com:8080/images/photos.png",
                     link: "#/photos",
 
                 },
