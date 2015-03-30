@@ -7,8 +7,8 @@
      * # Login
      */
     angular.module('travelHtmlApp')
-        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', 'twitterService', '$location',
-            function ($http, $window, $rootScope, ServiceApi, Convert, facebookService, twitterService, $location) {
+        .directive('authentication', ['$http', '$window', '$rootScope', 'ServiceApi', 'Convert', 'facebookService', 'twitterService', '$location', 'SHA1',
+            function ($http, $window, $rootScope, ServiceApi, Convert, facebookService, twitterService, $location, SHA1) {
                 return {
                     restrict: 'E',
                     replace: true,
@@ -19,7 +19,8 @@
                         scope.isLoggedIn = $window.localStorage != null && $window.localStorage.token != null;
 
                         scope.login = function (credentials) {
-                            $http.post(ServiceApi.url + '/authenticate', credentials)
+                            //hash password before sending it to the server
+                            $http.post(ServiceApi.url + '/authenticate', { username: credentials.username, password: SHA1.hash(credentials.password) })
                                 .success(function (data, status, headers, config) {
                                     loginResponseHandler(data);
                                 })
