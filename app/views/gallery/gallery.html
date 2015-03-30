@@ -150,19 +150,48 @@
 
     <p>
         <label>Tags</label>
-        <input type="text" ng-model="image.tag" />
+        <input type="text" ng-model="image.tags" />
     </p>
 
     <p>
         <label>Images</label>
         <input type="button" value="Add Image" ng-click="addImage()"/>
-        <input type="file" id="imageField" value="Add"/>
-        <div id="imageList"></div>
+        <input type="file" id="imageField" value="Add"  ng-model-instant multiple onchange="angular.element(this).scope().setFiles(this)" />
+        
+        <div id="imageList">
+
+            <div ng-repeat="file in files" style="display:inline-block">
+                <img src="{{file.src}}" width="50" />
+               
+                <br />
+                <span ng-click="removeImage('{{file.name}}_{{file.size}}')">X</span>
+            
+            </div>
+
+        </div>
         <div></div>
     </p>
 
     <p>
-        <input type="button" value="Save" ng-click="SaveImage()" />
+        <input type="button" value="Save" ng-click="SaveGallery()" />
     </p>
 
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{upload.now}}" aria-valuemin="0" aria-valuemax="100" style="min-width:2em;width:{{upload.now}}%">
+            {{upload.now}}%
+        </div>
+    </div>
+    <div ng-app="fileUpload" style="background:yellow">
+        
+        Drop File:
+        <div ng-file-drop ng-model="files" class="drop-box"
+             drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+             accept=".jpg,.png,.pdf">Drop Images or PDFs files here</div>
+        <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    </div>
+
+   
+
 </form>
+
+

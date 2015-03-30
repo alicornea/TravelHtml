@@ -22,7 +22,8 @@ angular.module('travelHtmlApp', [
         'ngAnimate',
         'ngTouch',
         'swipe',
-        'ngAutocomplete'
+        'ngAutocomplete',
+        'angularFileUpload'
 ])
     .config(['$routeProvider', 'RestangularProvider', 'ServiceApi', function ($routeProvider, RestangularProvider, ServiceApi) {
         $routeProvider

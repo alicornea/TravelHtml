@@ -100,6 +100,11 @@
     <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+
+
+    <script src="../bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script src="../bower_components/ng-file-upload/angular-file-upload.min.js"></script> 
+
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/constants/serviceApi.js"></script>
@@ -151,6 +156,7 @@
 
     <script src="scripts/controllers/test.js"></script>
     <script src="scripts/gallery/controllers/gallery.js"></script>
+    <script src="scripts/gallery/services/galleryService.js"></script>
 
     <!-- endbuild -->
 
