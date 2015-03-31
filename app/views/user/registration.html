@@ -7,7 +7,7 @@
             <label>Username</label>
         </div>
         <div class="col-md-6">
-            <input name="txtUsername" class="form-control" type="text" ng-model="user.username" required ng-keypress="validateUsername()" />
+            <input name="txtUsername" class="form-control" ng-model="user.username" required ng-keypress="validateUsername()" />
             <div ng-messages="registrationForm.txtUsername.$error" ng-messages-include="errorMessages"></div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <label>Last name</label>
         </div>
         <div class="col-md-6">
-            <input name="txtLastName" ng-model="user.last_name" required />
+            <input name="txtLastName" class="form-control" ng-model="user.last_name" required />
             <div ng-messages="registrationForm.txtLastName.$error" ng-messages-include="errorMessages"></div>
         </div>
     </div>
@@ -52,7 +52,7 @@
             <label>Email</label>
         </div>
         <div class="col-md-6">
-            <input name="txtEmail" type="email" ng-model="user.email" required />
+            <input name="txtEmail" class="form-control" type="email" ng-model="user.email" required />
             <div ng-messages="registrationForm.txtEmail.$error" ng-messages-include="errorMessages"></div>
         </div>
     </div>

@@ -24,8 +24,8 @@
                     if (data.errorCode) {
                         if (data.errorCode == "2") //error code for duplicate user
                             $scope.registrationForm.txtUsername.$setValidity('duplicateUser', false);
-
-                        $scope.errorMessage = 'Technical error. Please try again later!';
+                        else
+                            $scope.errorMessage = 'Technical error. Please try again later!';
                     }
                     else {//user is registered and we need to perform autologin
                         var encodedProfile = data.token.split('.')[1];
@@ -33,6 +33,7 @@
 
                         $window.localStorage.token = data.token;
                         $window.localStorage.profileId = profile.id;
+                        $window.localStorage.appUser = profile.appUser;
 
                         $location.path("/");
                     }

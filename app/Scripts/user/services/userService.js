@@ -45,18 +45,19 @@
             },
 
             saveUser: function (user) {
-                //var userResource = $resource(api + '/register');
-                //var deferred = $q.defer();
+                var deffered = $q.defer();
 
-                //userResource.save(user).$promise.then(function (res) {
-                //    deferred.resolve(res);
-                //}),
-                //    function (err) {
-                //        console.log(err);
-                //        deferred.resolve(false);
-                //    };
+                Restangular.service("register").post({
+                    username: user.username,
+                    password: user.password,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email
+                }).then(function (data) {
+                    deffered.resolve(data);
+                });
 
-                //return deferred.promise;
+                return deffered.promise;
             },
 
             changePassword: function (userId, currentPassword, newPassword) {
