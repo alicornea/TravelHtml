@@ -33,13 +33,16 @@
 
           $scope.galleryImages.push(galleryItem)
 
-          $scope.SaveGallery = function () {
+          $scope.SaveGallery = function (valid, $event) {
+              
+              console.log(valid)
+              if (!valid) return false;
               var gallery = {
                   title: $scope.image.title,
                   description: $scope.image.description,
                   tags: $scope.image.tags
               }
-              galleryService.saveImage(gallery, saveImages);
+              galleryService.saveImage(gallery);
           }
 
           $scope.setFiles = function (element) {
@@ -139,7 +142,11 @@
 
               $scope.files = $.grep($scope.files, function (e, i) { return !(e.name == removeImage[0] && e.size == removeImage[1]); });
 
-              galleryService.removeImageFromGuid(currentGuid, item.name);
+              var index = uploadedFiles.indexOf(item.name + "_" + item.size)
+              uploadedFiles.splice(index, 1);
+              galleryService.removeImageFromGuid(currentGuid, item.name).then(function () {
+
+              });
               
           }
 

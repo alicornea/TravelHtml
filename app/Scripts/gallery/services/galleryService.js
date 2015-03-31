@@ -5,7 +5,7 @@
     app.service('galleryService', ['Restangular', '$window', function (Restangular, $window) {
         return {
 
-            saveImage: function (gallery, callback) {
+            saveImage: function (gallery ) {
                 var newGallery = Restangular.service('gallery')
                 var userId = $window.localStorage.profileId;
                 var response = newGallery.post({
@@ -15,7 +15,7 @@
                     tags: gallery.tags,
                     images : gallery.images
                 }).then(function (response) {
-                    callback(response.id);
+                    //callback(response.id);
                 });
             },
 
