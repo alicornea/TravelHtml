@@ -72,6 +72,10 @@ angular.module('travelHtmlApp', [
                 templateUrl: 'views/user/user.html',
                 controller: 'UserDetailsCtrl'
             })
+            .when('/changepassword', {
+                templateUrl: 'views/user/changepassword.html',
+                controller: 'ChangePasswordCtrl'
+            })
             .when('/registration', {
                 templateUrl: 'views/user/registration.html',
                 controller: 'RegistrationCtrl'
@@ -89,6 +93,9 @@ angular.module('travelHtmlApp', [
           });
 
         RestangularProvider.setBaseUrl(ServiceApi.url);
+        RestangularProvider.setRestangularFields({
+            id: "_id"
+        });
     }]);
 
 

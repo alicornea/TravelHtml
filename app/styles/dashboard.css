@@ -70,7 +70,7 @@ ul.dashboard .row .thumbnail {
     ul.dashboard .row .thumbnail .visual i {
       margin-left: -35px;
       font-size: 2.5em;
-      color: #fff
+      color: #fff;
       /*@include opacity($opacity-tile-icon);*/ }
   ul.dashboard .row .thumbnail a.view-more {
     color: #000;
@@ -94,4 +94,5 @@ ul.dashboard .row .tile-yellow {
   background: #dfba49; }
 ul.dashboard .row .tile-light-blue {
   background: #89C4F4; }
+
 /*# sourceMappingURL=dashboard.css.map */

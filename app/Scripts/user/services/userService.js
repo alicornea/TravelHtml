@@ -9,36 +9,25 @@
      * Factory in the travelHtmlApp.
      */
 
-    angular.module('travelHtmlApp').service('userService', ['$resource', 'ServiceApi', '$q', 'Restangular', function ($resource, ServiceApi, $q, Restangular) {
-        var api = ServiceApi.url + '/api/users';
+    angular.module('travelHtmlApp').service('userService', ['Restangular', '$q', function (Restangular, $q) {
+        var api = 'api/users';
 
         return {
 
             getUser: function (userId) {
-                var userResource = $resource(api + '/:userId', null, {
-                    'query': {
-                        method: 'GET',
-                        isArray: false
-                    }
+                var deffered = $q.defer();
+
+                Restangular.one(api, userId).get().then(function (user) {
+                    deffered.resolve(user);
                 });
-                var deferred = $q.defer();
 
-                userResource.query({
-                    userId: userId
-                }, function (user) {
-                    deferred.resolve(user);
-                }),
-                    function (err) {
-                        deferred.reject(err);
-                    };
-
-                return deferred.promise;
+                return deffered.promise;
             },
 
             getUsers: function () {
                 var deffered = $q.defer();
 
-                Restangular.all('api/users').getList().then(function (users) {
+                Restangular.all(api).getList().then(function (users) {
                     deffered.resolve(users);
                 });
 
@@ -46,98 +35,44 @@
             },
 
             updateUser: function (user) {
-                var userResource = $resource(api + '/:userId', {
-                    userId: '@userId'
-                }, {
-                    'update': {
-                        method: 'PUT'
-                    }
-                });
-                var deferred = $q.defer();
+                var deffered = $q.defer();
 
-                userResource.update({
-                    userId: user._id
-                }, user, function (res) {
-                    if (res.hasError !== undefined && res.hasError) {
-                        deferred.resolve({
-                            updatedSuccessfully: false
-                        });
-                    }
-                    else {
-                        deferred.resolve({
-                            updatedSuccessfully: true
-                        });
-                    }
+                user.put().then(function (user) {
+                    deffered.resolve(user);
                 });
 
-                return deferred.promise;
+                return deffered.promise;
             },
 
             saveUser: function (user) {
-                var userResource = $resource(ServiceApi.url + '/register');
-                var deferred = $q.defer();
+                //var userResource = $resource(api + '/register');
+                //var deferred = $q.defer();
 
-                userResource.save(user).$promise.then(function (res) {
-                    deferred.resolve(res);
-                }),
-                    function (err) {
-                        console.log(err);
-                        deferred.resolve(false);
-                    };
+                //userResource.save(user).$promise.then(function (res) {
+                //    deferred.resolve(res);
+                //}),
+                //    function (err) {
+                //        console.log(err);
+                //        deferred.resolve(false);
+                //    };
 
-                return deferred.promise;
+                //return deferred.promise;
+            },
+
+            changePassword: function (userId, currentPassword, newPassword) {
+                var deffered = $q.defer();
+
+                var userChangePassword = Restangular.service(api + '/changePassword');
+                userChangePassword.post({
+                    userId: userId,
+                    currentPassword: currentPassword,
+                    newPassword: newPassword
+                }).then(function (data) {
+                    deffered.resolve(data);
+                });
+
+                return deffered.promise;
             }
-
-            /*var remove = function(travelId) {
-                var travelResource = $resource(api + '/:travelId');
-                var deferred = $q.defer();
-
-                travelResource.delete({
-                    travelId: travelId
-                }, function(res) {
-                    if (res.hasError !== undefined && res.hasError) {
-                        deferred.resolve({
-                            removedSuccessfully: false
-                        });
-                    }
-                    else {
-                        deferred.resolve({
-                            removedSuccessfully: true
-                        });
-                    }
-                });
-
-                return deferred.promise;
-            };
-
-            var update = function(travel) {
-                var travelResource = $resource(api + '/:travelId', {
-                    travelId: '@travelId'
-                }, {
-                    'update': {
-                        method: 'PUT'
-                    }
-                });
-                var deferred = $q.defer();
-
-                travelResource.update({
-                    travelId: travel._id
-                }, travel, function(res) {
-                    if (res.hasError !== undefined && res.hasError) {
-                        deferred.resolve({
-                            updatedSuccessfully: false
-                        });
-                    }
-                    else {
-                        deferred.resolve({
-                            updatedSuccessfully: true
-                        });
-                    }
-                });
-
-                return deferred.promise;
-            };*/
-
         }
     }]);
 })();

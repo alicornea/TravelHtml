@@ -10,7 +10,9 @@
      */
     angular.module('travelHtmlApp').controller('RegistrationCtrl', ['$rootScope', '$scope', 'userService', '$window', 'Convert', 'SHA1', '$location',
         function ($rootScope, $scope, userService, $window, Convert, SHA1, $location) {
+            $scope.errorMessage = '';
             $scope.register = function (isValid) {
+                $scope.errorMessage = '';
                 if (!isValid) {
                     return;
                 }
@@ -23,6 +25,7 @@
                         if (data.errorCode == "2") //error code for duplicate user
                             $scope.registrationForm.txtUsername.$setValidity('duplicateUser', false);
 
+                        $scope.errorMessage = 'Technical error. Please try again later!';
                     }
                     else {//user is registered and we need to perform autologin
                         var encodedProfile = data.token.split('.')[1];

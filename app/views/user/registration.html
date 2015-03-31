@@ -1,54 +1,62 @@
-﻿<div>Registration</div>
-<form name="registrationForm" ng-submit="register(registrationForm.$valid)" novalidate>
-    <table>
-        <tr>
-            <td>Username : </td>
-            <td>
-                <input name="txtUsername" type="text" ng-model="user.username" required ng-keypress="validateUsername()" />
-                <div ng-messages="registrationForm.txtUsername.$error" ng-messages-include="errorMessages"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>Password : </td>
-            <td>
-                <input name="txtPassword" type="password" ng-model="user.password" required />
-                <div ng-messages="registrationForm.txtPassword.$error" ng-messages-include="errorMessages"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>Re-type password : </td>
-            <td>
-                <input name="txtConfirmPassword" type="password" ng-model="confirmPassword" compare-to="user.password" />
-                <div ng-messages="registrationForm.txtConfirmPassword.$error" ng-messages-include="errorMessages"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>First Name : </td>
-            <td>
-                <input name="txtFirstName" ng-model="user.first_name" required />
-                <div ng-messages="registrationForm.txtFirstName.$error" ng-messages-include="errorMessages"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>Last Name : </td>
-            <td>
-                <input name="txtLastName" ng-model="user.last_name" required />
-                <div ng-messages="registrationForm.txtLastName.$error" ng-messages-include="errorMessages"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>Email : </td>
-            <td>
-                <input name="txtEmail" type="email" ng-model="user.email" required />
-                <div ng-messages="registrationForm.txtEmail.$error" ng-messages-include="errorMessages"></div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <br />
-                <input type="submit" value="Register" />
-            </td>
-        </tr>
-    </table>
+﻿<div class="alert alert-danger" ng-show="errorMessage">
+    {{errorMessage}}
+</div>
+<form name="registrationForm" class="form" ng-submit="register(registrationForm.$valid)" novalidate>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Username</label>
+        </div>
+        <div class="col-md-6">
+            <input name="txtUsername" class="form-control" type="text" ng-model="user.username" required ng-keypress="validateUsername()" />
+            <div ng-messages="registrationForm.txtUsername.$error" ng-messages-include="errorMessages"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Password</label>
+        </div>
+        <div class="col-md-6">
+            <input name="txtPassword" class="form-control" type="password" ng-model="user.password" required />
+            <div ng-messages="registrationForm.txtPassword.$error" ng-messages-include="errorMessages"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Re-type password</label>
+        </div>
+        <div class="col-md-6">
+            <input name="txtConfirmPassword" class="form-control" type="password" ng-model="confirmPassword" compare-to="user.password" />
+            <div ng-messages="registrationForm.txtConfirmPassword.$error" ng-messages-include="errorMessages"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>First name</label>
+        </div>
+        <div class="col-md-6">
+            <input name="txtFirstName" class="form-control" ng-model="user.first_name" required />
+            <div ng-messages="registrationForm.txtFirstName.$error" ng-messages-include="errorMessages"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Last name</label>
+        </div>
+        <div class="col-md-6">
+            <input name="txtLastName" ng-model="user.last_name" required />
+            <div ng-messages="registrationForm.txtLastName.$error" ng-messages-include="errorMessages"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Email</label>
+        </div>
+        <div class="col-md-6">
+            <input name="txtEmail" type="email" ng-model="user.email" required />
+            <div ng-messages="registrationForm.txtEmail.$error" ng-messages-include="errorMessages"></div>
+        </div>
+    </div>
+
+    <input class="button submit-btn form-control" type="submit" value="Register" />
 
 </form>

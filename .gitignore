@@ -56,3 +56,4 @@ Temporary Items
 #Ignore ServiceApi constant
 website.publishproj
 *.suo
+*.suo

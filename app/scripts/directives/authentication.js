@@ -30,17 +30,22 @@
                         };
 
                         scope.logout = function () {
-                            facebookService.getLoginStatus(function (response) {
-                                if (response && response.status === 'connected') { //user logged in with FB
-                                    facebookService.logout(function () {
+                            //if the user is an app user don't log him out from social networks
+                            if ($window.localStorage && $window.localStorage.appUser == 'true')
+                                logoutHandler();
+                            else {
+                                facebookService.getLoginStatus(function (response) {
+                                    if (response && response.status === 'connected') { //user logged in with FB
+                                        facebookService.logout(function () {
+                                            logoutHandler();
+                                        });
+                                    }
+                                    else {
+                                        twitterService.clearCache();
                                         logoutHandler();
-                                    });
-                                }
-                                else {
-                                    twitterService.clearCache();
-                                    logoutHandler();
-                                }
-                            });
+                                    }
+                                });
+                            }
                         };
 
                         scope.twitterLogin = function () {
@@ -71,7 +76,9 @@
                         }
 
                         $rootScope.$on("fb_connected", function (event, args) {
-                            connectWithFacebook();
+                            //if user is already logged in don't log him with FB
+                            if (!userLoggedIn())
+                                connectWithFacebook();
                         });
 
                         function userLoggedIn() {
@@ -96,6 +103,7 @@
 
                             $window.localStorage.token = data.token;
                             $window.localStorage.profileId = profile.id;
+                            $window.localStorage.appUser = profile.appUser;
 
                             scope.welcome = 'Welcome ' + profile.first_name + ' ' + profile.last_name;
                             scope.isLoggedIn = true;
@@ -105,6 +113,7 @@
                             // Erase the token if the user fails to log in
                             delete $window.localStorage.token;
                             delete $window.localStorage.profileId;
+                            delete $window.localStorage.appUser;
 
                             // Handle login errors here
                             scope.error = 'Error: Invalid user or password';
@@ -129,6 +138,7 @@
                         function logoutHandler() {
                             delete $window.localStorage.token;
                             delete $window.localStorage.profileId;
+                            delete $window.localStorage.appUser;
 
                             scope.welcome = '';
                             scope.message = '';
