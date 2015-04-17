@@ -64,6 +64,10 @@ angular.module('travelHtmlApp', [
                 templateUrl: 'views/travel/mytravels.html',
                 controller: 'TravelsCtrl',
             })
+            .when('/attractions', {
+                templateUrl: 'views/attractions/attractions.html',
+                controller: 'AttractionsCtrl',
+                        })
             .when('/test', {
                 templateUrl: 'swipe.html',
                 controller: 'TestCtrl'
